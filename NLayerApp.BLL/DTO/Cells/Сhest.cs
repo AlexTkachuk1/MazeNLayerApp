@@ -1,4 +1,5 @@
 ﻿using NLayerApp.BLL_.DTO.Interfaces;
+using NLayerApp.BLL_.DTO.Items;
 
 namespace NLayerApp.BLL_.DTO.Cells
 {
@@ -6,9 +7,9 @@ namespace NLayerApp.BLL_.DTO.Cells
     {
 
         private readonly List<BaseCell> Cells;
-        public string item { get; set; }
+        public BaseItem item { get; set; }
 
-        public Сhest(int x, int y, IMaze maze, string item) : base(x, y, maze)
+        public Сhest(int x, int y, IMaze maze, BaseItem item) : base(x, y, maze)
         {
             this.item = item;
             Cells = maze.Cells;

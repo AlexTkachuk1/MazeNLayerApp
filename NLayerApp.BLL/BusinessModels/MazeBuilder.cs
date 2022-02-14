@@ -1,6 +1,7 @@
 ﻿using NLayerApp.BLL_.DTO;
 using NLayerApp.BLL_.DTO.Cells;
 using NLayerApp.BLL_.DTO.Interfaces;
+using NLayerApp.BLL_.DTO.Items;
 
 namespace NLayerApp.BLL_.BusinessModels
 {
@@ -93,7 +94,7 @@ namespace NLayerApp.BLL_.BusinessModels
         //метод принимает число до 100 которое представляет
         //собой долю клеток земли из их общего пула, и экземпляр клетки
         //копиями которой будут заменены клетки земли указанной доли.
-        public IMaze generateWithChance(double chance, string cellType, string? item = null)
+        public IMaze generateWithChance(double chance, string cellType, BaseItem? item = null)
         {
             double chanceFactor = chance / 100;
             var AllGraundCells = _maze.Cells.OfType<Ground>().ToList();
