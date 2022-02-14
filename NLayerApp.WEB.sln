@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayerApp.DAL.", "NLayerApp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayerApp.BLL.", "NLayerApp.BLL\NLayerApp.BLL..csproj", "{98A3C472-08EC-4763-8715-2822DC1291A8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MazeConsole", "MazeConsole\MazeConsole.csproj", "{ACE4CEE6-2D49-46F3-AAAE-71D1BD70727A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{98A3C472-08EC-4763-8715-2822DC1291A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98A3C472-08EC-4763-8715-2822DC1291A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98A3C472-08EC-4763-8715-2822DC1291A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACE4CEE6-2D49-46F3-AAAE-71D1BD70727A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACE4CEE6-2D49-46F3-AAAE-71D1BD70727A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACE4CEE6-2D49-46F3-AAAE-71D1BD70727A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACE4CEE6-2D49-46F3-AAAE-71D1BD70727A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
