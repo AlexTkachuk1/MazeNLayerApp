@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLayerApp.WEB", "NLayerApp.WEB\NLayerApp.WEB.csproj", "{5474855D-0E0C-4F24-9735-2C658F6E0FCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayerApp.WEB", "NLayerApp.WEB\NLayerApp.WEB.csproj", "{5474855D-0E0C-4F24-9735-2C658F6E0FCD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayerApp.DAL.", "NLayerApp.DAL\NLayerApp.DAL..csproj", "{9DE90713-D8C8-4CF4-ABEE-93D101EC72C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5474855D-0E0C-4F24-9735-2C658F6E0FCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5474855D-0E0C-4F24-9735-2C658F6E0FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5474855D-0E0C-4F24-9735-2C658F6E0FCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DE90713-D8C8-4CF4-ABEE-93D101EC72C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DE90713-D8C8-4CF4-ABEE-93D101EC72C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DE90713-D8C8-4CF4-ABEE-93D101EC72C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DE90713-D8C8-4CF4-ABEE-93D101EC72C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
