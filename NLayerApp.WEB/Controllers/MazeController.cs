@@ -27,7 +27,7 @@ namespace NLayerApp.WEB.Controllers
                 return View("CreateMaze", mazeViewModel);
             }
 
-            
+
             IMaze maze = mazeService.BuildMaze(mazeViewModel.Width, mazeViewModel.Height);
 
             var mazeDrawViewModel = new MazeDrawViewModel()
@@ -46,6 +46,35 @@ namespace NLayerApp.WEB.Controllers
             }
 
             return View(mazeDrawViewModel);
+        }
+        public IActionResult DrawJs()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult MazeDataForJs()
+        {
+            IMaze maze = mazeService.BuildMaze();
+
+            var mazeDrawJsWiewModels = new List<MazeDrawJsWiewModel>();
+
+            for (int y = 0; y < maze.Height; y++)
+            {
+                for (int x = 0; x < maze.Width; x++)
+                {
+                    var mazeDrawJsWiewModel = new MazeDrawJsWiewModel()
+                    {
+                        MazeHeight = maze.Height,
+                        MazeWidth = maze.Width,
+                        CordinateX = x,
+                        CordinateY = y,
+                        TypeName = maze.Cells.Single(cell => cell.CordinateX == x && cell.CordinateY == y).GetType().Name
+                    };
+                    mazeDrawJsWiewModels.Add(mazeDrawJsWiewModel);
+                }
+            }
+            return new JsonResult(mazeDrawJsWiewModels);
         }
         protected override void Dispose(bool disposing)
         {
