@@ -1,0 +1,34 @@
+﻿.cell {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-size: cover;
+}
+
+    .cell.Wall {
+        background-image: url('/image/maze/wall.png');
+    }
+
+    .cell.GoldHeap {
+        background-image: url('/image/maze/gold.png');
+    }
+
+    .cell.Ground {
+        background-image: url('/image/maze/ground.png');
+    }
+
+    .cell.Сhest {
+        background-image: url('/image/maze/loot.png');
+    }
+
+    .cell.Guard {
+        background-image: url('/image/maze/guard.png');
+    }
+
+    .cell.CellWithHero {
+        background-image: url('/image/maze/сellsWithHero.jpg');
+    }
+
+    .cell.Gate {
+        background-image: url('/image/maze/gate.jpg');
+    }

@@ -32,7 +32,7 @@ namespace NLayerApp.BLL_.DTO
         {
             get
             {
-                return Cells.SingleOrDefault(c => c.CordinateX == x && c.CordinateY == y);
+                return CellsWithHero.SingleOrDefault(c => c.CordinateX == x && c.CordinateY == y);
             }
             set
             {

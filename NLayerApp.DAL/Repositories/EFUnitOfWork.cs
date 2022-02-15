@@ -6,13 +6,13 @@ namespace NLayerApp.DAL_.Repositories
 {
     public class EFUnitOfWork : IUnitOfWork
     {
-        private MazeContext db;
+        private MazeDbContext db;
         private MazeRepository mazeRepository;
         private UserRepository userRepository;
 
-        public EFUnitOfWork(string connectionString)
+        public EFUnitOfWork(MazeDbContext mazeDbContext)
         {
-            db = new MazeContext(connectionString);
+            db = mazeDbContext;
         }
         public IRepository<Maze> Mazes
         {

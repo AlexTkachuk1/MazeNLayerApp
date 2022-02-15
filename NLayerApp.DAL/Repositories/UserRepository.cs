@@ -7,9 +7,9 @@ namespace NLayerApp.DAL_.Repositories
 {
     public class UserRepository : IRepository<User>
     {
-        private MazeContext db;
+        private MazeDbContext db;
 
-        public UserRepository(MazeContext context)
+        public UserRepository(MazeDbContext context)
         {
             this.db = context;
         }
@@ -31,7 +31,7 @@ namespace NLayerApp.DAL_.Repositories
 
         public void Update(User order)
         {
-            db.Entry(order).State = EntityState.Modified;
+            db.Entry(order).State = (Microsoft.EntityFrameworkCore.EntityState)EntityState.Modified;
         }
         public IEnumerable<User> Find(Func<User, Boolean> predicate)
         {

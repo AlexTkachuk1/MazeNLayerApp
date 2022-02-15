@@ -1,6 +1,30 @@
+using Microsoft.EntityFrameworkCore;
+using NLayerApp.BLL_.Interfaces;
+using NLayerApp.BLL_.Services;
+using NLayerApp.DAL_.EF;
+using NLayerApp.DAL_.Interfaces;
+using NLayerApp.DAL_.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<MazeDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+
+builder.Services.AddScoped<IUnitOfWork>(container =>
+new EFUnitOfWork(container.GetService<MazeDbContext>())
+);
+
+builder.Services.AddScoped<IMazeService>(container => 
+new MazeService(container.GetService<IUnitOfWork>())
+);;
+
+builder.Services.AddScoped<IUserService>(container =>
+new UserService(container.GetService<IUnitOfWork>())
+);
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

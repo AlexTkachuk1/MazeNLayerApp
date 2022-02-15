@@ -1,4 +1,4 @@
-namespace WebApplication2.Models
+namespace NLayerApp.WEB.Models
 {
     public class ErrorViewModel
     {

@@ -1,5 +1,4 @@
 ﻿using NLayerApp.BLL_.BusinessModels;
-using NLayerApp.BLL_.DTO;
 using NLayerApp.BLL_.DTO.Interfaces;
 using NLayerApp.BLL_.Interfaces;
 using NLayerApp.DAL_.Interfaces;
@@ -14,10 +13,10 @@ namespace NLayerApp.BLL_.Services
         {
             Database = uow;
         }
-        public  IMaze BuildMaze()
+        public  IMaze BuildMaze(int width = 10, int height = 10)
         {
             var builder = new MazeBuilder();
-            var newMaze = builder.Build();
+            IMaze newMaze = builder.Build(width, height);
             return newMaze;
         }
         public void Dispose()

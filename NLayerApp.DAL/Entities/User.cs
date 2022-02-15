@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public string Login { get; set; }
-        public ICollection<Maze> Mazes { get; set; }
+        public virtual List<Maze> Mazes { get; set; }
     }
 }

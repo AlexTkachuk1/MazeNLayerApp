@@ -7,9 +7,9 @@ namespace NLayerApp.DAL_.Repositories
 {
     public class MazeRepository: IRepository<Maze>
     {
-        private MazeContext db;
+        private MazeDbContext db;
 
-        public MazeRepository(MazeContext context)
+        public MazeRepository(MazeDbContext context)
         {
             this.db = context;
         }
@@ -31,7 +31,7 @@ namespace NLayerApp.DAL_.Repositories
 
         public void Update(Maze book)
         {
-            db.Entry(book).State = EntityState.Modified;
+            db.Entry(book).State = (Microsoft.EntityFrameworkCore.EntityState)EntityState.Modified;
         }
 
         public IEnumerable<Maze> Find(Func<Maze, Boolean> predicate)
