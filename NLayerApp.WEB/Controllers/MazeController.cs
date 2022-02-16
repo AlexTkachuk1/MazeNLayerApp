@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using NLayerApp.BLL_.DTO.Interfaces;
 using NLayerApp.BLL_.Interfaces;
 using NLayerApp.WEB.Models;
@@ -8,9 +9,13 @@ namespace NLayerApp.WEB.Controllers
     public class MazeController : Controller
     {
         IMazeService mazeService;
-        public MazeController(IMazeService serv)
+        public readonly IMapper mapper;
+        public MazeController(
+            IMapper mapper,
+            IMazeService mazeService)
         {
-            mazeService = serv;
+            this.mapper = mapper;
+            this.mazeService = mazeService;
         }
 
         [HttpGet]
@@ -57,24 +62,31 @@ namespace NLayerApp.WEB.Controllers
         {
             IMaze maze = mazeService.BuildMaze();
 
-            var mazeDrawJsWiewModels = new List<MazeDrawJsWiewModel>();
+            var cells = new List<CellViewModel>();
 
-            for (int y = 0; y < maze.Height; y++)
+            for (int c = 0;c < maze.Cells.Count; c++)
             {
-                for (int x = 0; x < maze.Width; x++)
-                {
-                    var mazeDrawJsWiewModel = new MazeDrawJsWiewModel()
-                    {
-                        MazeHeight = maze.Height,
-                        MazeWidth = maze.Width,
-                        CordinateX = x,
-                        CordinateY = y,
-                        TypeName = maze.Cells.Single(cell => cell.CordinateX == x && cell.CordinateY == y).GetType().Name
-                    };
-                    mazeDrawJsWiewModels.Add(mazeDrawJsWiewModel);
-                }
+                var cell = mapper.Map<CellViewModel>(maze.Cells[c]);
+                cells.Add(cell);
             }
-            return new JsonResult(mazeDrawJsWiewModels);
+
+            var items = new List<ItemViewModel>();
+
+            for (int i = 0; i < maze.Hero.Inventory.Count; i++)
+            {
+                var item = mapper.Map<ItemViewModel>(maze.Hero.Inventory[i]);
+                items.Add(item);
+            }
+
+            var hero = mapper.Map<HeroViewModel>(maze.Hero);
+            hero.Inventory.AddRange(items);
+
+
+            var mazeDrawJsModel = mapper.Map<MazeDataForJsViewModel>(maze);
+            mazeDrawJsModel.Hero = hero;
+            mazeDrawJsModel.CellViewModels.AddRange(cells);
+
+            return new JsonResult(mazeDrawJsModel);
         }
         protected override void Dispose(bool disposing)
         {
