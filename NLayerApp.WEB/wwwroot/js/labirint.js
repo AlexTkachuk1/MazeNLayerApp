@@ -1,38 +1,38 @@
 ﻿var Labirint = (function () {
     var labyrinth = [];
+
     heroX = 0;
     heroY = 0;
 
-    hight = 10;
-    width = 10;
+    mazeHight = 10;
+    mazeWidth = 10;
 
 
-    function setSize(_hight, _width) {
+    function setSize(hight, width) {
         if (hight > 0 && width > 0) {
-            hight = _hight;
-            width = _width;
+            mazeHight = hight;
+            mazeWidth = width;
         }
     }
 
     function generateLab(value) {
-        for (var y = 0; y < value[1].mazeHeight; y++) {
+        for (var y = 0; y < value.mazeHeight; y++) {
             var line = [];
-            for (var x = 0; x < value[1].mazeWidth; x++) {
+            for (var x = 0; x < value.mazeWidth; x++) {
                 line[x] = null;
             }
             labyrinth.push(line);
         }
-        for (var i = 0; i < value.length; i++) {
-            var cell = value[i];
+        for (var i = 0; i < value.cellViewModels.length; i++) {
+            var cell = value.cellViewModels[i];
             labyrinth[cell.cordinateX][cell.cordinateY] = cell.typeName;
         }
-        value.some(cell => cell.cordinateX == x && cell.cordinateY == y).typeName;
     }
 
     function getLabyrinth(value) {
         /*  let cells = JSON.parse(JSON.stringify(labyrinth));*/
         let labyrinthWithHero = [];
-        for (var y = 0; y < value[1].mazeHeight; y++) {
+        for (var y = 0; y < value.mazeHeight; y++) {
             let copyLine = labyrinth[y].slice();
             labyrinthWithHero.push(copyLine);
         }
@@ -77,14 +77,14 @@
                 heroXPossible--;
                 break;
         }
-        if (heroYPossible >= 0 && heroYPossible < hight
-            && heroXPossible >= 0 && heroXPossible < width
+        if (heroYPossible >= 0 && heroYPossible < mazeHight
+            && heroXPossible >= 0 && heroXPossible < mazeWidth
             && labyrinth[heroYPossible][heroXPossible] !== "Wall") {
             heroX = heroXPossible;
             heroY = heroYPossible;
-            switch (labyrinth[heroYPossible][heroXPossible]) {
+            switch (labyrinth[heroY][heroX]) {
                 case "GoldHeap":
-                    labyrinth[heroYPossible][heroXPossible] = "Ground";
+                    labyrinth[heroY][heroX] = "Ground";
                     break;
                 case "Gate":
                     window.location = "https://localhost:44328/Maze/DrawJs";
@@ -95,8 +95,10 @@
     }
 
     return {
-        getHight: function () { return hight; },
-        getWidth: function () { return width; },
+        getHight: function () { return mazeHight; },
+        getWidth: function () { return mazeWidth; },
+        getHeroX: function () { return heroX; },
+        getHeroY: function () { return heroY; },
         generateLab: generateLab,
         getLabyrinth: getLabyrinth,
         heroStep: heroStep,

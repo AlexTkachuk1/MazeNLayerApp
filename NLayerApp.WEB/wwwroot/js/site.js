@@ -4,7 +4,7 @@
     }
 
     function init(selector, value) {
-        Labirint.setSize(value[1].mazeHeight, value[1].mazeWidth);
+        Labirint.setSize(value.mazeHeight, value.mazeWidth);
         Labirint.generateLab(value);
         let labyrinth = Labirint.getLabyrinth(value);
 
