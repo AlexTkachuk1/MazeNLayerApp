@@ -4,33 +4,14 @@
     }
 
     function init(selector, value) {
+        Labirint.setSize(value[1].mazeHeight, value[1].mazeWidth);
         Labirint.generateLab(value);
         let labyrinth = Labirint.getLabyrinth(value);
 
-        drawLab(selector, labyrinth);
+        Labirint.drawLab(selector, labyrinth);
 
 
         step(selector, value);
-    }
-
-    function drawLab(selector, labyrinth) {
-        mainBlock = $(selector);
-        oldBlock = $('div').remove('.maze');
-        var maze = $('<div>');
-        maze.addClass('maze');
-        for (var x = 0; x < 10; x++) {
-            var mazeRow = $('<div>');
-            mazeRow.addClass('row');
-            for (var y = 0; y < 10; y++) {
-                var cellType = 'cell ' + labyrinth[x][y];
-                var mazeCell = $('<span>');
-                mazeCell.addClass(cellType);
-                mazeRow.append(mazeCell);
-            }
-            maze.append(mazeRow);
-        }
-
-        mainBlock.append(maze);
     }
 
     function step(selector, value) {
@@ -60,6 +41,6 @@
     function dtoweStep(dir, selector, value) {
         Labirint.heroStep(dir);
         let lab = Labirint.getLabyrinth(value);
-        drawLab(selector, lab);
+        Labirint.drawLab(selector, lab);
     }
 });

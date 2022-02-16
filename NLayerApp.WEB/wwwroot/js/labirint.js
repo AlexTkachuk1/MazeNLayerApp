@@ -5,15 +5,12 @@
 
     hight = 10;
     width = 10;
-    size = 50;
-    space = 3;
 
-    function setSize(hight, width, size, space) {
-        if (hight > 0 && width > 0 && size > 0 && space > 0) {
-            hight = hight;
-            width = width;
-            size = size;
-            space = space;
+
+    function setSize(_hight, _width) {
+        if (hight > 0 && width > 0) {
+            hight = _hight;
+            width = _width;
         }
     }
 
@@ -43,6 +40,26 @@
         return labyrinthWithHero;
     }
 
+    function drawLab(selector, labyrinth) {
+        mainBlock = $(selector);
+        oldBlock = $('div').remove('.maze');
+        var maze = $('<div>');
+        maze.addClass('maze');
+        for (var x = 0; x < Labirint.getHight(); x++) {
+            var mazeRow = $('<div>');
+            mazeRow.addClass('row');
+            for (var y = 0; y < Labirint.getWidth(); y++) {
+                var cellType = 'cell ' + labyrinth[x][y];
+                var mazeCell = $('<span>');
+                mazeCell.addClass(cellType);
+                mazeRow.append(mazeCell);
+            }
+            maze.append(mazeRow);
+        }
+
+        mainBlock.append(maze);
+    }
+
     function heroStep(direction) {
         let heroXPossible = heroX;
         let heroYPossible = heroY;
@@ -65,6 +82,14 @@
             && labyrinth[heroYPossible][heroXPossible] !== "Wall") {
             heroX = heroXPossible;
             heroY = heroYPossible;
+            switch (labyrinth[heroYPossible][heroXPossible]) {
+                case "GoldHeap":
+                    labyrinth[heroYPossible][heroXPossible] = "Ground";
+                    break;
+                case "Gate":
+                    window.location = "https://localhost:44328/Maze/DrawJs";
+                    break;
+            }
 
         }
     }
@@ -72,11 +97,10 @@
     return {
         getHight: function () { return hight; },
         getWidth: function () { return width; },
-        getSize: function () { return size; },
-        getSpace: function () { return space; },
         generateLab: generateLab,
         getLabyrinth: getLabyrinth,
         heroStep: heroStep,
         setSize: setSize,
+        drawLab: drawLab,
     };
 })();
