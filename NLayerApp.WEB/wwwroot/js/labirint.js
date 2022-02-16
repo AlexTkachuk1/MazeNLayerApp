@@ -62,7 +62,7 @@
         }
         if (heroYPossible >= 0 && heroYPossible < hight
             && heroXPossible >= 0 && heroXPossible < width
-            && labyrinth[heroYPossible][heroXPossible] != wall) {
+            && labyrinth[heroYPossible][heroXPossible] !== "Wall") {
             heroX = heroXPossible;
             heroY = heroYPossible;
 

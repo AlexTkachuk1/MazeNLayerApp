@@ -4,22 +4,18 @@
     }
 
     function init(selector, value) {
-        var jfba = false;
         Labirint.generateLab(value);
         let labyrinth = Labirint.getLabyrinth(value);
 
-        if (!jfba)
-        {
-            jfba = true;
-            drawLab(selector, labyrinth);
-        }
+        drawLab(selector, labyrinth);
 
-        /*step();*/
+
+        step(selector, value);
     }
 
     function drawLab(selector, labyrinth) {
         mainBlock = $(selector);
-
+        oldBlock = $('div').remove('.maze');
         var maze = $('<div>');
         maze.addClass('maze');
         for (var x = 0; x < 10; x++) {
@@ -37,33 +33,33 @@
         mainBlock.append(maze);
     }
 
-    function step() {
+    function step(selector, value) {
         $(document).keydown(function (e) {
             if (e.keyCode >= 37 && e.keyCode <= 40) {
                 //left
                 if (e.keyCode == 37) {
-                    dtoweStep(3);
+                    dtoweStep(3, selector, value);
                 }
                 //right
                 if (e.keyCode == 39) {
-                    dtoweStep(1);
+                    dtoweStep(1, selector, value);
                 }
                 //up
                 if (e.keyCode == 38) {
-                    dtoweStep(0);
+                    dtoweStep(0, selector, value);
                 }
                 //down
                 if (e.keyCode == 40) {
-                    dtoweStep(2);
+                    dtoweStep(2, selector, value);
                 }
                 e.preventDefault();
             }
         });
     }
 
-    function dtoweStep(dir) {
+    function dtoweStep(dir, selector, value) {
         Labirint.heroStep(dir);
-        labyrinth  = Labirint.getLabyrinth();
-        drawLab(labyrinth);
+        let lab = Labirint.getLabyrinth(value);
+        drawLab(selector, lab);
     }
 });
