@@ -1,7 +1,5 @@
 ﻿var Site = (function () {
     function init(value) {
-        HeroStatus.CreateHeroStatus(value);
-
         var selector = '.drawer';
         Labirint.setSize(value.mazeHeight, value.mazeWidth);
         Labirint.generateLab(value);

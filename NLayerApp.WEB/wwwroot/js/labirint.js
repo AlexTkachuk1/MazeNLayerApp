@@ -83,10 +83,7 @@
             heroY = heroYPossible;
             switch (labyrinth[heroY][heroX]) {
                 case "GoldHeap":
-                    var gold = Math.ceil(Math.random() * 30);
-
-                    HeroStatus.AddGold(gold);
-                    HeroStatus.SaveHeroStatusСhanges();
+                    HeroStatus.heroStepOnGold();
                     labyrinth[heroY][heroX] = "Ground";
                     break;
                 case "Gate":

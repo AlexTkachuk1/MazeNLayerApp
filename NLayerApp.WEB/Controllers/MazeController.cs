@@ -43,7 +43,15 @@ namespace NLayerApp.WEB.Controllers
             mazeService.UpdateHero(hero);
             return Json(new { result = "success" }, System.Web.Mvc.JsonRequestBehavior.AllowGet);
         }
-
+        public IActionResult HeroStepOnGold(string step)
+        {
+            var hero = mazeService.GetHero(16);
+            var random = new Random();
+            var gold = random.Next(1, 50);
+            hero.Gold += gold;
+            mazeService.UpdateHero(hero);
+            return Json(new { result = "success" }, System.Web.Mvc.JsonRequestBehavior.AllowGet);
+        }
         public IActionResult GetHeroStatus()
         {
             var hero = mazeService.GetHero(16);
