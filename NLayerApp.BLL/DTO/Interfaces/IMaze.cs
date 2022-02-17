@@ -9,6 +9,7 @@ namespace NLayerApp.BLL_.DTO.Interfaces
         IHero Hero { get; }
         int Height { get; set; }
         int Width { get; set; }
+        string Name { get; set; }
         BaseCell this[int x, int y] { get; set; }
         Action<IMaze> DrawStepByStep { get; set; }
         void TryToStep(Direction direction);

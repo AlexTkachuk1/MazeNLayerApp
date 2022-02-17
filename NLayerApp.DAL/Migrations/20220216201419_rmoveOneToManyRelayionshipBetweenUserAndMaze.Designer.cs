@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NLayerApp.DAL_.EF;
 
@@ -10,9 +11,10 @@ using NLayerApp.DAL_.EF;
 namespace NLayerApp.DAL_.Migrations
 {
     [DbContext(typeof(MazeDbContext))]
-    partial class MazeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220216201419_rmoveOneToManyRelayionshipBetweenUserAndMaze")]
+    partial class rmoveOneToManyRelayionshipBetweenUserAndMaze
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,7 +48,7 @@ namespace NLayerApp.DAL_.Migrations
 
                     b.HasIndex("MazeId");
 
-                    b.ToTable("Cells");
+                    b.ToTable("Cell");
                 });
 
             modelBuilder.Entity("NLayerApp.DAL_.Entities.Hero", b =>
@@ -66,9 +68,6 @@ namespace NLayerApp.DAL_.Migrations
                     b.Property<int>("HP")
                         .HasColumnType("int");
 
-                    b.Property<int>("MazeId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Stamina")
                         .HasColumnType("int");
 
@@ -79,9 +78,6 @@ namespace NLayerApp.DAL_.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MazeId")
-                        .IsUnique();
 
                     b.ToTable("Heroes");
                 });
@@ -119,14 +115,15 @@ namespace NLayerApp.DAL_.Migrations
                     b.Property<int>("Height")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("HeroId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Width")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("HeroId");
 
                     b.ToTable("Mazes");
                 });
@@ -159,21 +156,21 @@ namespace NLayerApp.DAL_.Migrations
                     b.Navigation("Maze");
                 });
 
-            modelBuilder.Entity("NLayerApp.DAL_.Entities.Hero", b =>
-                {
-                    b.HasOne("NLayerApp.DAL_.Entities.Maze", "Maze")
-                        .WithOne("Hero")
-                        .HasForeignKey("NLayerApp.DAL_.Entities.Hero", "MazeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Maze");
-                });
-
             modelBuilder.Entity("NLayerApp.DAL_.Entities.Item", b =>
                 {
                     b.HasOne("NLayerApp.DAL_.Entities.Hero", "Hero")
                         .WithMany("Inventory")
+                        .HasForeignKey("HeroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hero");
+                });
+
+            modelBuilder.Entity("NLayerApp.DAL_.Entities.Maze", b =>
+                {
+                    b.HasOne("NLayerApp.DAL_.Entities.Hero", "Hero")
+                        .WithMany()
                         .HasForeignKey("HeroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -189,9 +186,6 @@ namespace NLayerApp.DAL_.Migrations
             modelBuilder.Entity("NLayerApp.DAL_.Entities.Maze", b =>
                 {
                     b.Navigation("Cells");
-
-                    b.Navigation("Hero")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

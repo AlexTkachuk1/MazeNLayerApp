@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using NLayerApp.BLL_.Interfaces;
 using NLayerApp.BLL_.Services;
@@ -18,7 +19,7 @@ new EFUnitOfWork(container.GetService<MazeDbContext>())
 );
 
 builder.Services.AddScoped<IMazeService>(container => 
-new MazeService(container.GetService<IUnitOfWork>())
+new MazeService(container.GetService<IMapper>(), container.GetService<IUnitOfWork>())
 );;
 
 builder.Services.AddScoped<IUserService>(container =>
@@ -28,6 +29,9 @@ new UserService(container.GetService<IUnitOfWork>())
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddRazorPages()
+                .AddRazorRuntimeCompilation();
 
 var app = builder.Build();
 

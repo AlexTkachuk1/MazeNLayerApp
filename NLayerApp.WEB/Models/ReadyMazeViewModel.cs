@@ -1,6 +1,6 @@
 ﻿namespace NLayerApp.WEB.Models
 {
-    public class MazeDataForJsViewModel
+    public class ReadyMazeViewModel
     {
         public int MazeHeight { get; set; }
         public int MazeWidth { get; set; }

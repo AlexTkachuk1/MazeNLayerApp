@@ -5,6 +5,7 @@ namespace NLayerApp.BLL_.DTO
 {
     public class MazeDTO: IMaze
     {
+        public string Name { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
         public Action<IMaze> DrawStepByStep { get; set; } = null;

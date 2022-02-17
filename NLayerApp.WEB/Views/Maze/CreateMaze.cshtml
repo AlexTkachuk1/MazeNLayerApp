@@ -6,11 +6,11 @@
 
 <h2>Укажите основные пораметры лабиринта</h2>
 
-<form asp-action="Draw" asp-controller="Maze"  asp-antiforgery="true">
+<form asp-action="BuildMaze" asp-controller="Maze" asp-antiforgery="true">
     <div>
-        <div>
-            <label asp-for="Title"></label>
-            <input type="text" asp-for="Title" />
+        <div >
+            <label asp-for="Name"></label>
+            <input type="text" asp-for="Name"/>
         </div>
         <div>
             <label asp-for="Width"></label>

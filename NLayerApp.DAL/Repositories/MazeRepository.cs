@@ -16,7 +16,7 @@ namespace NLayerApp.DAL_.Repositories
 
         public IEnumerable<Maze> GetAll()
         {
-            return db.Mazes.Include(m => m.Creater);
+            return db.Mazes;
         }
 
         public Maze Get(int id)
@@ -24,19 +24,19 @@ namespace NLayerApp.DAL_.Repositories
             return db.Mazes.Find(id);
         }
 
-        public void Create(Maze book)
+        public void Create(Maze maze)
         {
-            db.Mazes.Add(book);
+            db.Mazes.Add(maze);
         }
 
-        public void Update(Maze book)
+        public void Update(Maze maze)
         {
-            db.Entry(book).State = (Microsoft.EntityFrameworkCore.EntityState)EntityState.Modified;
+            db.Entry(maze).State = (Microsoft.EntityFrameworkCore.EntityState)EntityState.Modified;
         }
 
         public IEnumerable<Maze> Find(Func<Maze, Boolean> predicate)
         {
-            return db.Mazes.Include(o => o.Creater).Where(predicate).ToList();
+            return db.Mazes.Where(predicate).ToList();
         }
 
         public void Delete(int id)

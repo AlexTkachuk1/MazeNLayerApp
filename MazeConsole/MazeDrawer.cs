@@ -34,6 +34,10 @@ namespace MazeConsole
                 {
                     Console.Write("@");
                 }
+                if (cell is Trap)
+                {
+                    Console.Write("*");
+                }
                 if (cell is Gate)
                 {
                     Console.Write("O");

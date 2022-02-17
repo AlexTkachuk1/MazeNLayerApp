@@ -23,38 +23,44 @@ namespace NLayerApp.WEB.Controllers
         {
             return View();
         }
-
-        [HttpPost]
-        public IActionResult Draw(MazeViewModel mazeViewModel)
+        public IActionResult DrawJs(MazeViewModel mazeViewModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return View("CreateMaze", mazeViewModel);
-            }
-
-
-            IMaze maze = mazeService.BuildMaze(mazeViewModel.Width, mazeViewModel.Height);
-
-            var mazeDrawViewModel = new MazeDrawViewModel()
-            {
-                Width = maze.Width,
-                Height = maze.Height,
-                Cells = new string[maze.Width, maze.Height]
-            };
-
-            for (int y = 0; y < maze.Height; y++)
-            {
-                for (int x = 0; x < maze.Width; x++)
-                {
-                    mazeDrawViewModel.Cells[x, y] = maze[x, y].GetType().Name;
-                }
-            }
-
-            return View(mazeDrawViewModel);
+            return View(mazeViewModel);
         }
-        public IActionResult DrawJs()
+
+        public IActionResult DrawFromDb()
         {
             return View();
+        }
+
+        public IActionResult BuildMaze(MazeViewModel mazeViewModel)
+        {
+            var mazeHeight = mazeViewModel.Height;
+            var mazeWidth = mazeViewModel.Width;
+            IMaze maze = mazeService.BuildMaze(mazeWidth, mazeHeight);
+            maze.Name = mazeViewModel.Name;
+            mazeService.SaveMaze(maze);
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult GetBaseLabyrinth()
+        {
+            var allMazes = mazeService.GetAllMazes();
+            var maze = allMazes[0];
+            var mazeVievModel = mapper.Map<ReadyMazeViewModel>(maze);
+            mazeVievModel.Hero = mapper.Map<HeroViewModel>(maze.Hero);
+            for (int i = 0; i < maze.Hero.Inventory.Count; i++)
+            {
+                var item = mapper.Map<ItemViewModel>(maze.Hero.Inventory[i]);
+                mazeVievModel.Hero.Inventory.Add(item);
+            }
+            for (int i = 0; i < maze.Cells.Count; i++)
+            {
+                var cell = mapper.Map<CellViewModel>(maze.Cells[i]);
+                mazeVievModel.CellViewModels.Add(cell);
+            }
+            return new JsonResult(mazeVievModel);
         }
 
         [HttpGet]
@@ -64,7 +70,7 @@ namespace NLayerApp.WEB.Controllers
 
             var cells = new List<CellViewModel>();
 
-            for (int c = 0;c < maze.Cells.Count; c++)
+            for (int c = 0; c < maze.Cells.Count; c++)
             {
                 var cell = mapper.Map<CellViewModel>(maze.Cells[c]);
                 cells.Add(cell);
@@ -82,7 +88,7 @@ namespace NLayerApp.WEB.Controllers
             hero.Inventory.AddRange(items);
 
 
-            var mazeDrawJsModel = mapper.Map<MazeDataForJsViewModel>(maze);
+            var mazeDrawJsModel = mapper.Map<ReadyMazeViewModel>(maze);
             mazeDrawJsModel.Hero = hero;
             mazeDrawJsModel.CellViewModels.AddRange(cells);
 

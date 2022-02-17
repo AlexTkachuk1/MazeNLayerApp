@@ -1,9 +1,6 @@
-﻿$(document).ready(function () {
-    if (value !== null) {
-        init('.drawer', value);
-    }
-
-    function init(selector, value) {
+﻿var Site = (function () {
+function init(value) {
+        var selector = '.drawer';
         Labirint.setSize(value.mazeHeight, value.mazeWidth);
         Labirint.generateLab(value);
         let labyrinth = Labirint.getLabyrinth(value);
@@ -43,4 +40,7 @@
         let lab = Labirint.getLabyrinth(value);
         Labirint.drawLab(selector, lab);
     }
-});
+    return {
+        Init: init
+    };
+})();

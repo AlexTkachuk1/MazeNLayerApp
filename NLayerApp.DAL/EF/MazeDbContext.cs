@@ -9,15 +9,17 @@ namespace NLayerApp.DAL_.EF
         public DbSet<Maze> Mazes { get; set; }
         public DbSet<Hero> Heroes { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<Cell> Cells { get; set; }
 
         public MazeDbContext(DbContextOptions options) : base(options)
         {
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasMany(x => x.Mazes)
-                .WithOne(x => x.Creater);
+            modelBuilder.Entity<Maze>()
+                .HasOne(x => x.Hero)
+                .WithOne(x => x.Maze)
+                .HasForeignKey<Hero>(p => p.MazeId);
             modelBuilder.Entity<Hero>()
                 .HasMany(x => x.Inventory)
                 .WithOne(x => x.Hero);

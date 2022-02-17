@@ -4,8 +4,12 @@ namespace NLayerApp.DAL_.Interfaces
 {
     public interface IUnitOfWork: IDisposable
     {
-        IRepository<User> Users { get; }
+
+        IRepository<Item> Items { get; }
+        IRepository<Hero> Heroes { get; }
+        IRepository<Cell> Cells { get; }
         IRepository<Maze> Mazes { get; }
+        IRepository<User> Users { get; }
         void Save();
     }
 }

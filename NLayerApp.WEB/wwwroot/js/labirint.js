@@ -5,7 +5,7 @@
     heroY = 0;
 
     mazeHight = 10;
-    mazeWidth = 10;
+    mazeWidth = 20;
 
 
     function setSize(hight, width) {
@@ -25,7 +25,7 @@
         }
         for (var i = 0; i < value.cellViewModels.length; i++) {
             var cell = value.cellViewModels[i];
-            labyrinth[cell.cordinateX][cell.cordinateY] = cell.typeName;
+            labyrinth[cell.cordinateY][cell.cordinateX] = cell.typeName;
         }
     }
 
@@ -88,6 +88,9 @@
                     break;
                 case "Gate":
                     window.location = "https://localhost:44328/Maze/DrawJs";
+                    break;
+                case "Trap":
+                    labyrinth[heroY][heroX] = "BrokenTrap";
                     break;
             }
 

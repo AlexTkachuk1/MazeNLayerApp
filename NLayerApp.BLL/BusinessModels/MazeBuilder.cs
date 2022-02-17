@@ -10,7 +10,7 @@ namespace NLayerApp.BLL_.BusinessModels
         private IMaze _maze;
         private Random _random = new Random();
 
-        public IMaze Build(int width = 10,
+        public IMaze Build(int width = 20,
             int height = 10,
             Action<IMaze> drawStepByStep = null)
         {
@@ -29,6 +29,8 @@ namespace NLayerApp.BLL_.BusinessModels
             BuildGate();
 
             BuildGoldHeap();
+
+            BuildTrap();
 
             return _maze;
         }
@@ -91,52 +93,78 @@ namespace NLayerApp.BLL_.BusinessModels
             ConsoleDrawer();
         }
 
+        public void BuildTrap()
+        {
+            generateWithChance(5, "Trap");
+            ConsoleDrawer();
+        }
+
         //метод принимает число до 100 которое представляет
         //собой долю клеток земли из их общего пула, и экземпляр клетки
         //копиями которой будут заменены клетки земли указанной доли.
         public IMaze generateWithChance(double chance, string cellType, BaseItem? item = null)
         {
             double chanceFactor = chance / 100;
-            var AllGraundCells = _maze.Cells.OfType<Ground>().ToList();
-            double numberOfGraundCells = AllGraundCells.Count;
-            var numberOfCellsGenerated = numberOfGraundCells * chanceFactor;
-            for (int i = 1; i < numberOfCellsGenerated; i++)
+            var graundCells = _maze.Cells.OfType<Ground>().ToList();
+            
+            double numberOfGraundCells = graundCells.Count;
+            var numberOfCellsGenerated = (int)Math.Round(numberOfGraundCells * chanceFactor);
+
+            var allGraundCells = new List<BaseCell>();
+            allGraundCells.AddRange(graundCells);
+
+            return generateTheNumberOfCells(numberOfCellsGenerated, cellType, allGraundCells);
+        }
+
+        //метод получает название типа клетки и количество(int), а также принимает колекцию клеток ,
+        //из которой будут случайно выбрано указанное количество клеток и заменено на указанный тип клеток. 
+        public IMaze generateTheNumberOfCells(int numberOfCells, string cellType, List<BaseCell> cells, BaseItem? item = null)
+        {
+            for (int i = 1; i < numberOfCells; i++)
             {
-                var oldCell = GetRandom(AllGraundCells);
+                var oldCell = GetRandom(cells);
 
                 switch (cellType)
                 {
                     case "Сhest":
-                        if (item !=null)
+                        if (item != null)
                         {
                             var newСhest = new Сhest(oldCell.CordinateX, oldCell.CordinateY, _maze, item);
                             ReplaceCell(newСhest);
                         }
-                        else { throw new NotImplementedException();}
+                        else { throw new NotImplementedException(); }
                         break;
                     case "GoldHeap":
                         var newGoldHeap = new GoldHeap(oldCell.CordinateX, oldCell.CordinateY, _maze);
                         ReplaceCell(newGoldHeap);
                         break;
-                    case "Lava":
-                        var newLava = new Lava(oldCell.CordinateX, oldCell.CordinateY, _maze);
-                        ReplaceCell(newLava);
-                        break;
                     case "Water":
                         var newWater = new Water(oldCell.CordinateX, oldCell.CordinateY, _maze);
                         ReplaceCell(newWater);
                         break;
+                    case "Wall":
+                        var newWall = new Water(oldCell.CordinateX, oldCell.CordinateY, _maze);
+                        ReplaceCell(newWall);
+                        break;
+                    case "Lava":
+                        var newLava = new Lava(oldCell.CordinateX, oldCell.CordinateY, _maze);
+                        ReplaceCell(newLava);
+                        break;
+                    case "Trap":
+                        var newTrap = new Trap(oldCell.CordinateX, oldCell.CordinateY, _maze);
+                        ReplaceCell(newTrap);
+                        break;
                 }
 
-                AllGraundCells.Remove(oldCell);
+                cells.Remove(oldCell);
             }
-
+            
             return _maze;
         }
 
-        //метод находть ближайшую клетку определенного типа к определенной координате,
-        //которую представляет клетка переданная в метод.
-        private BaseCell FindNearestCell<T>(BaseCell сell, string cellType)
+            //метод находть ближайшую клетку определенного типа к определенной координате,
+            //которую представляет клетка переданная в метод.
+            private BaseCell FindNearestCell<T>(BaseCell сell, string cellType)
             where T : BaseCell
         {
             var startCell = сell;
@@ -239,7 +267,7 @@ namespace NLayerApp.BLL_.BusinessModels
                 case "Lava":
                     // требуется написать всю логику связанную с отображением смерти персонажа.
                     break;
-                case "Water":
+                case "Trap":
                     // требуется придумать как будет отображаться урон.
                     break;
             }

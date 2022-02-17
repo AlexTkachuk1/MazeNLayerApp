@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using NLayerApp.BLL_.DTO.Cells;
+using NLayerApp.DAL_.Entities;
 using NLayerApp.WEB.Models;
 
 namespace NLayerApp.WEB.Profiles
@@ -92,7 +93,7 @@ namespace NLayerApp.WEB.Profiles
                     from => from.MapFrom(x => $"{x.GetType().Name}")
                 );
 
-            CreateMap<Water, CellViewModel>()
+            CreateMap<Trap, CellViewModel>()
                 .ForMember(
                     dest => dest.CordinateX,
                     from => from.MapFrom(x => $"{x.CordinateX}")
@@ -118,6 +119,172 @@ namespace NLayerApp.WEB.Profiles
                 .ForMember(
                     dest => dest.TypeName,
                     from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+            CreateMap<Trap, CellViewModel>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+
+            CreateMap<CellWithHero, Cell>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+
+            CreateMap<Gate, Cell>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+
+            CreateMap<GoldHeap, Cell>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+
+            CreateMap<Ground, Cell>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+
+            CreateMap<Lava, Cell>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+
+            CreateMap<Wall, Cell>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+
+            CreateMap<Trap, Cell>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+
+            CreateMap<Сhest, Cell>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+            CreateMap<Trap, Cell>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+
+            CreateMap<Cell, CellViewModel>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.TypeName}")
+                );
+
+            CreateMap<CellViewModel, Cell>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.TypeName}")
                 );
         }
     }

@@ -7,7 +7,7 @@ namespace NLayerApp.WEB.Models
     {
         [Required]
         [DisplayName("Название")]
-        public string Title { get; set; }
+        public string Name { get; set; }
 
         [Range(3,20)]
         [DisplayName("Ширина")]
@@ -16,5 +16,7 @@ namespace NLayerApp.WEB.Models
         [Range(3, 20)]
         [DisplayName("Высота")]
         public int Height { get; set; }
+
+
     }
 }

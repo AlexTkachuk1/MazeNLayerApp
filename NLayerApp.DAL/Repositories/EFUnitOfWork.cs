@@ -9,7 +9,9 @@ namespace NLayerApp.DAL_.Repositories
         private MazeDbContext db;
         private MazeRepository mazeRepository;
         private UserRepository userRepository;
-
+        private ItemRepository itemRepository;
+        private CellRepository cellRepository;
+        private HeroRepository heroRepository;
         public EFUnitOfWork(MazeDbContext mazeDbContext)
         {
             db = mazeDbContext;
@@ -23,7 +25,33 @@ namespace NLayerApp.DAL_.Repositories
                 return mazeRepository;
             }
         }
-
+        public IRepository<Item> Items
+        {
+            get
+            {
+                if (itemRepository == null)
+                    itemRepository = new ItemRepository(db);
+                return itemRepository;
+            }
+        }
+        public IRepository<Hero> Heroes
+        {
+            get
+            {
+                if (heroRepository == null)
+                    heroRepository = new HeroRepository(db);
+                return heroRepository;
+            }
+        }
+        public IRepository<Cell> Cells
+        {
+            get
+            {
+                if (cellRepository == null)
+                    cellRepository = new CellRepository(db);
+                return cellRepository;
+            }
+        }
         public IRepository<User> Users
         {
             get

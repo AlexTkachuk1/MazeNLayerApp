@@ -32,3 +32,11 @@
     .cell.Gate {
         background-image: url('/image/maze/gate.jpg');
     }
+
+    .cell.Trap {
+        background-image: url('/image/maze/trap.jpg');
+    }
+
+    .cell.BrokenTrap {
+        background-image: url('/image/maze/brokenTrap.png');
+    }
