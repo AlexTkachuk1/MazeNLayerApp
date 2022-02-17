@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NLayerApp.BLL_.DTO.Interfaces;
 using NLayerApp.BLL_.Interfaces;
+using NLayerApp.DAL_.Entities;
 using NLayerApp.WEB.Models;
 
 namespace NLayerApp.WEB.Controllers
@@ -32,7 +33,23 @@ namespace NLayerApp.WEB.Controllers
         {
             return View();
         }
+        public IActionResult UpdateHeroStatus(HeroViewModel heroViewModel)
+        {
+            var newData = heroViewModel;
+            var hero = mapper.Map<Hero>(newData);
+            // надо на никнейм заменить , с ID как-то не очень.
+            hero.Id = 16;
+            hero.MazeId = 17;
+            mazeService.UpdateHero(hero);
+            return Json(new { result = "success" }, System.Web.Mvc.JsonRequestBehavior.AllowGet);
+        }
 
+        public IActionResult GetHeroStatus()
+        {
+            var hero = mazeService.GetHero(16);
+            var heroViewModel = mapper.Map<HeroViewModel>(hero);
+            return new JsonResult(heroViewModel);
+        }
         public IActionResult BuildMaze(MazeViewModel mazeViewModel)
         {
             var mazeHeight = mazeViewModel.Height;

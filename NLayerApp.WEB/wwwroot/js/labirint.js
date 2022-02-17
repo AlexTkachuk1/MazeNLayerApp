@@ -1,6 +1,5 @@
 ﻿var Labirint = (function () {
     var labyrinth = [];
-
     heroX = 0;
     heroY = 0;
 
@@ -60,7 +59,7 @@
         mainBlock.append(maze);
     }
 
-    function heroStep(direction) {
+    function heroStep(direction, value) {
         let heroXPossible = heroX;
         let heroYPossible = heroY;
         switch (direction) {
@@ -84,6 +83,10 @@
             heroY = heroYPossible;
             switch (labyrinth[heroY][heroX]) {
                 case "GoldHeap":
+                    var gold = Math.ceil(Math.random() * 30);
+
+                    HeroStatus.AddGold(gold);
+                    HeroStatus.SaveHeroStatusСhanges();
                     labyrinth[heroY][heroX] = "Ground";
                     break;
                 case "Gate":

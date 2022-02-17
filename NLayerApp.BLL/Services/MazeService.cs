@@ -48,6 +48,14 @@ namespace NLayerApp.BLL_.Services
             }
             Database.Save();
         }
+        public Hero GetHero(int id)
+        {
+            return Database.Heroes.Get(id);
+        }
+        public void UpdateHero(Hero hero)
+        {
+            Database.Heroes.Update(hero);
+        }
         public List<Maze> GetAllMazes()
         {
             return Database.Mazes.GetAll().ToList();

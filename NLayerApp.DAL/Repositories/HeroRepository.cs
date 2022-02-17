@@ -24,14 +24,20 @@ namespace NLayerApp.DAL_.Repositories
             return db.Heroes.Find(id);
         }
 
-        public void Create(Hero maze)
+        public void Create(Hero hero)
         {
-            db.Heroes.Add(maze);
+            db.Heroes.Add(hero);
         }
 
-        public void Update(Hero maze)
+        public void Update(Hero hero)
         {
-            db.Entry(maze).State = (Microsoft.EntityFrameworkCore.EntityState)EntityState.Modified;
+            var heroForUpdate = db.Heroes.SingleOrDefault(x => x.Id == hero.Id);
+            heroForUpdate.X = hero.X;
+            heroForUpdate.Y = hero.Y;
+            heroForUpdate.Damage = hero.Damage;
+            heroForUpdate.Gold = hero.Gold;
+            heroForUpdate.Stamina = hero.Stamina;
+            db.SaveChanges();
         }
 
         public IEnumerable<Hero> Find(Func<Hero, Boolean> predicate)
