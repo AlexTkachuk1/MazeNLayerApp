@@ -140,14 +140,13 @@
                     break;
                 case "Boss":
                     if (HeroIndicators.GetInvisible()) {
-                        sleep(50);
                         HeroStatus.heroStepOnCell("Boss");
                         labyrinth[heroYPossible][heroXPossible] = "Boss";
                     }
                     else
                     {
                         HeroStatus.heroStepOnCell("Boss");
-                        labyrinth[heroYPossible][heroXPossible] = "Rip";
+                        labyrinth[heroYPossible][heroXPossible] = "DethBoss";
                     }
                     break;
                 case "Rip":
@@ -167,6 +166,9 @@
                     break;
                 case "MiracleShop":
                     window.location = "https://localhost:44328/Maze/MiracleShop";
+                    break;
+                case "DethBoss":
+                    
                     break;
             }
             heroX = heroXPossible;

@@ -16,6 +16,10 @@
     background-image: url('/image/maze/wall2.jpg');
 }
 
+.cell.DethBoss {
+    background-image: url('/image/maze/dethBoss.jpg');
+}
+
 .cell.GoldHeap {
     background-image: url('/image/maze/gold1.jpg');
 }
@@ -39,7 +43,7 @@
     background-image: url('/image/maze/gate3.jpg');
 }
 .cell.Trap {
-        background-image: url('/image/maze/trap.jpg');
+    background-image: url('/image/maze/trap4.png');
 }
 .cell.BrokenTrap {
         background-image: url('/image/maze/brokenTrap.png');
@@ -48,7 +52,7 @@
     background-image: url('/image/maze/goblin.jpg');
 }
 .cell.Rip {
-    background-image: url('/image/maze/Rip.webp');
+    background-image: url('/image/maze/rip3.jpg');
 }
 .cell.Teleport {
     background-image: url('/image/maze/teleport.jpg');

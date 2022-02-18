@@ -104,7 +104,7 @@ namespace NLayerApp.BLL_.Services
                 {
                     var damage = _random.Next(20, 50);
                     var allDamage = (damage - hero.Armor);
-                    if (allDamage > hero.HP)
+                    if (allDamage >= hero.HP)
                     {
                         hero.GameOver = true;
                         Database.Save();
@@ -132,6 +132,11 @@ namespace NLayerApp.BLL_.Services
         public void StepOnBoss()
         {
             var hero = GetHero();
+            if (hero.Invisible)
+            {
+                hero.Invisible = false;
+                Database.Save();
+            }
             var gold = _random.Next(10, 50);
             hero.Gold += gold;
             if (hero.Damage > 0)
@@ -143,7 +148,7 @@ namespace NLayerApp.BLL_.Services
             {
                 var damage = _random.Next(30, 70);
                 var allDamage = (damage - hero.Armor);
-                if (allDamage > hero.HP)
+                if (allDamage >= hero.HP)
                 {
                     hero.GameOver = true;
                     Database.Save();
