@@ -39,6 +39,8 @@ namespace NLayerApp.BLL_.BusinessModels
 
             BuildTeleport();
 
+            BuildMiracleShop();
+
             return _maze;
         }
         private void BuildWall()
@@ -118,10 +120,15 @@ namespace NLayerApp.BLL_.BusinessModels
 
         public void BuildСhest()
         {
-            generateWithTrueChance(3, "Сhest");
+            generateWithTrueChance(30, "Сhest");
             ConsoleDrawer();
         }
 
+        public void BuildMiracleShop()
+        {
+            generateWithTrueChance(5, "MiracleShop");
+            ConsoleDrawer();
+        }
         public void BuildTeleport()
         {
             var graundCells = _maze.Cells.OfType<Ground>().ToList();
@@ -154,7 +161,7 @@ namespace NLayerApp.BLL_.BusinessModels
             allGraundCells.AddRange(graundCells);
             for (int i = 0; i < graundCells.Count; i++)
             {
-                double number = _random.Next(0, 100);
+                double number = _random.Next(0, 1000);
                 if (chance > number)
                 {
                     IMaze maze = generateTheNumberOfCells(1, cellType, allGraundCells);
@@ -207,6 +214,10 @@ namespace NLayerApp.BLL_.BusinessModels
                     case "Teleport":
                         var newTeleport = new Teleport(oldCell.CordinateX, oldCell.CordinateY, _maze);
                         ReplaceCell(newTeleport);
+                        break;
+                    case "MiracleShop":
+                        var newMiracleShop = new MiracleShop(oldCell.CordinateX, oldCell.CordinateY, _maze);
+                        ReplaceCell(newMiracleShop);
                         break;
                 }
 

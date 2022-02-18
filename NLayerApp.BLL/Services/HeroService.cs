@@ -125,6 +125,10 @@ namespace NLayerApp.BLL_.Services
         {
 
         }
+        public void StepOnMiracleShop()
+        {
+
+        }
         public void StepOnBoss()
         {
             var hero = GetHero();

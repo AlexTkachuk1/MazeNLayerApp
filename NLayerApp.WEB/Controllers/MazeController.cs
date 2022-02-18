@@ -41,6 +41,37 @@ namespace NLayerApp.WEB.Controllers
         {
             return View();
         }
+
+        public IActionResult MiracleShop()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult AddNewItems([FromQuery(Name = "Name")] string cellTypeName)
+        {
+            var hero = heroService.GetHero();
+            var item = new Item();
+            switch (cellTypeName)
+            {
+                case "PotionTreatment":
+                    hero.Gold -= 50;
+                    item.Name = "PotionTreatment";
+                    break;
+                case "InvisibilityCap":
+                    hero.Gold -= 60;
+                    item.Name = "InvisibilityCap";
+                    break;
+                case "GiganHammer":
+                    hero.Gold -= 70;
+                    item.Name = "GiganHammer";
+                    break;
+            }
+            hero.Inventory.Add(item);
+            heroService.UpdateHero(hero);
+            return RedirectToAction("MiracleShop", "Maze");
+        }
+
         [HttpPost]
         public IActionResult HeroStepOnGold([FromQuery(Name = "Name")] string cellTypeName)
         {
@@ -65,7 +96,7 @@ namespace NLayerApp.WEB.Controllers
                 case "BrokenTrap":
                     heroService.BrokenTrap();
                     break;
-                case "Legionary":  
+                case "Legionary":
                     heroService.StepOnLegionary();
                     break;
                 case "Rip":
@@ -80,11 +111,15 @@ namespace NLayerApp.WEB.Controllers
                 case "Teleport":
                     heroService.StepOnTeleport();
                     break;
+                case "MiracleShop":
+                    heroService.StepOnMiracleShop();
+                    break;
             }
 
             return StatusCode(200);
 
         }
+
         public IActionResult GameOver()
         {
             heroService.ReturnDefaultHeroStatus();

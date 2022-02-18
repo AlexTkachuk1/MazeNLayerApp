@@ -165,6 +165,9 @@
                         heroXPossible = teleport[0][1];
                     }
                     break;
+                case "MiracleShop":
+                    window.location = "https://localhost:44328/Maze/MiracleShop";
+                    break;
             }
             heroX = heroXPossible;
             heroY = heroYPossible;

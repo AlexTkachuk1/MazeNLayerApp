@@ -50,6 +50,10 @@ namespace MazeConsole
                 {
                     Console.Write("0");
                 }
+                if (cell is MiracleShop)
+                {
+                    Console.Write("F");
+                }
                 if (cell is Lava)
                 {
                     Console.BackgroundColor = ConsoleColor.DarkRed;

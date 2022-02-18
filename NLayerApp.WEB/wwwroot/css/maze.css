@@ -53,6 +53,9 @@
 .cell.Teleport {
     background-image: url('/image/maze/teleport.jpg');
 }
+.cell.MiracleShop {
+    background-image: url('/image/maze/miracleShop.jpg');
+}
 .status.Hp {
     background-image: url('/image/status/hp.jpg');
 }

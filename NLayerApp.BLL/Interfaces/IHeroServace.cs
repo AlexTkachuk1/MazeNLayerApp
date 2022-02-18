@@ -17,6 +17,7 @@ namespace NLayerApp.BLL_.Interfaces
         void StepOnBoss();
         void StepOnWall();
         void StepOnTeleport();
+        void StepOnMiracleShop();
         void ReturnDefaultHeroStatus();
         void Dispose();
     }
