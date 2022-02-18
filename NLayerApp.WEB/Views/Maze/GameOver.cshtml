@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+@section Head{
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+}
+<h2>Game Over</h2>
+<h1>Would you like to try again?</h1>
+<div class ="Choice">
+    <form asp-action="DrawJs" asp-controller="Maze" asp-antiforgery="true">
+        <div>
+            <div>
+                <input type="submit" value="Yes" />
+            </div>
+        </div>
+    </form>
+
+    <form asp-action="Index" asp-controller="Home" asp-antiforgery="true">
+        <div>
+            <div>
+                <input type="submit" value="No" />
+            </div>
+        </div>
+    </form>
+</div>

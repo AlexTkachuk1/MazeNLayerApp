@@ -40,7 +40,7 @@
     }
 
     function drawLab(selector, labyrinth) {
-        mainBlock = $(selector);
+        var mainBlock = $(selector);
         oldBlock = $('div').remove('.maze');
         var maze = $('<div>');
         maze.addClass('maze');
@@ -103,7 +103,6 @@
                     
                     break;
             }
-
         }
     }
 

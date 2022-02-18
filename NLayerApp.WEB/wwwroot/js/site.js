@@ -35,10 +35,20 @@
         });
     }
 
+    function sleep(milliseconds) {
+        const date = Date.now();
+        let currentDate = null;
+        do {
+            currentDate = Date.now();
+        } while (currentDate - date < milliseconds);
+    }
+
     function dtoweStep(dir, selector, value) {
         Labirint.heroStep(dir);
         let lab = Labirint.getLabyrinth(value);
         Labirint.drawLab(selector, lab);
+        sleep(50);
+        HeroIndicators.Update();
     }
     return {
         Init: init

@@ -27,9 +27,14 @@ namespace NLayerApp.WEB.Controllers
         {
             return View();
         }
-        public IActionResult DrawJs(MazeViewModel mazeViewModel)
+        public IActionResult StartGame()
         {
-            return View(mazeViewModel);
+            heroService.ReturnDefaultHeroStatus();
+            return RedirectToAction("DrawJs", "Maze");
+        }
+        public IActionResult DrawJs()
+        {
+            return View();
         }
 
         public IActionResult DrawFromDb()
@@ -65,7 +70,7 @@ namespace NLayerApp.WEB.Controllers
             if (hero.GameOver)
             {
                 heroService.ReturnDefaultHeroStatus();
-                return View("GameOver");
+                return RedirectToAction("GameOver", "Maze");
             }
 
             return StatusCode(200);
@@ -73,6 +78,17 @@ namespace NLayerApp.WEB.Controllers
         public IActionResult GameOver()
         {
             return View();
+        }
+        public IActionResult Menu()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult HeroIndicators()
+        {
+            var hero = heroService.GetHero();
+            var heroViewModel = mapper.Map<HeroViewModel>(hero);
+            return new JsonResult(heroViewModel);
         }
         public IActionResult GetHeroStatus()
         {

@@ -5,7 +5,7 @@ namespace NLayerApp.BLL_.Interfaces
 {
     public interface IMazeService
     {
-        IMaze BuildMaze(int width = 20, int height = 10);
+        IMaze BuildMaze(int width = 23, int height = 11);
         void SaveMaze(IMaze maze);
         List<Maze> GetAllMazes();
         void Dispose();

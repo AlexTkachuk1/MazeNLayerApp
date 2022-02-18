@@ -18,34 +18,8 @@
             }
         };
         xhr.send(user);
-
-        //var cellTypeName = JSON.stringify(cellTypeName);
-        //$.ajax({
-        //    url: "/Maze/HeroStepOnGold/",
-        //    method: "POST",
-        //    contentType: 'application/json',
-        //    data: cellTypeName,
-        //    success: function (response) {
-        //        console.log(response);
-        //    }
-        //});
     }
-
-    function saveHeroStatusСhanges() {
-        var heroViewModel = JSON.stringify(hero);
-        $.ajax({
-            url: "/Maze/UpdateHeroStatus/",
-            method: "POST",
-            contentType: 'application/json',
-            data: heroViewModel,
-            success: function (response) {
-                console.log(response);
-            }
-        });
-    }
-
     return {
         heroStepOnCell: heroStepOnCell,
-        SaveHeroStatusСhanges: saveHeroStatusСhanges
     };
 })();

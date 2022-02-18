@@ -5,38 +5,52 @@
     background-size: cover;
 }
 
-    .cell.Wall {
+.status {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-size: cover;
+}
+
+.cell.Wall {
         background-image: url('/image/maze/wall.png');
-    }
+ }
 
-    .cell.GoldHeap {
+.cell.GoldHeap {
         background-image: url('/image/maze/gold.png');
-    }
+}
 
-    .cell.Ground {
+.cell.Ground {
         background-image: url('/image/maze/ground.png');
-    }
+}
 
-    .cell.Сhest {
+.cell.Сhest {
         background-image: url('/image/maze/loot.png');
-    }
+ }
 
-    .cell.Guard {
+.cell.Guard {
         background-image: url('/image/maze/guard.png');
-    }
-
-    .cell.CellWithHero {
+}
+.cell.CellWithHero {
         background-image: url('/image/maze/сellsWithHero.jpg');
-    }
+}
 
-    .cell.Gate {
+.cell.Gate {
         background-image: url('/image/maze/gate.jpg');
-    }
+}
 
-    .cell.Trap {
+.cell.Trap {
         background-image: url('/image/maze/trap.jpg');
-    }
-
-    .cell.BrokenTrap {
+}
+.cell.BrokenTrap {
         background-image: url('/image/maze/brokenTrap.png');
-    }
+}
+.status.Hp {
+    background-image: url('/image/status/hp.jpg');
+}
+.status.Gold {
+    background-image: url('/image/status/gold.jpg');
+}
+.heroStatus{
+    display:flex;
+}

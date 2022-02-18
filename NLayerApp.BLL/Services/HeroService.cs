@@ -19,7 +19,7 @@ namespace NLayerApp.BLL_.Services
         }
         public Hero GetHero()
         {
-            return Database.Heroes.Get(1);
+            return Database.Heroes.Get(2);
         }
         public void StepOnСhest()
         {
