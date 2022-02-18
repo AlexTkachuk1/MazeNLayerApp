@@ -1,6 +1,6 @@
 ﻿.cell {
-    width: 26px;
-    height: 26px;
+    width: 30px;
+    height: 30px;
     display: inline-block;
     background-size: cover;
 }
@@ -13,15 +13,15 @@
 }
 
 .cell.Wall {
-        background-image: url('/image/maze/wall.png');
- }
+    background-image: url('/image/maze/wall2.jpg');
+}
 
 .cell.GoldHeap {
-    background-image: url('/image/maze/gold.jpg');
+    background-image: url('/image/maze/gold1.jpg');
 }
 
 .cell.Ground {
-        background-image: url('/image/maze/ground.png');
+    background-image: url('/image/maze/ground4.png');
 }
 
 .cell.Сhest {
@@ -29,14 +29,14 @@
  }
 
 .cell.Boss {
-    background-image: url('/image/maze/boss.jpg');
+    background-image: url('/image/maze/boss1.jpg');
 }
 .cell.CellWithHero {
     background-image: url('/image/maze/hero.jpg');
 }
 
 .cell.Gate {
-    background-image: url('/image/maze/gate.jpg');
+    background-image: url('/image/maze/gate3.jpg');
 }
 .cell.Trap {
         background-image: url('/image/maze/trap.jpg');

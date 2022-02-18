@@ -35,7 +35,7 @@ namespace NLayerApp.BLL_.Services
         public void StepOnTrap()
         {
             var hero = GetHero();
-            var damage = _random.Next(10, 30);
+            var damage = _random.Next(10, 20);
             if (damage> hero.HP)
             {
                 hero.GameOver = true;
@@ -58,7 +58,7 @@ namespace NLayerApp.BLL_.Services
         public void StepOnLegionary()
         {
             var hero = GetHero();
-            var gold = _random.Next(10, 50);
+            var gold = _random.Next(15, 30);
             hero.Gold += gold;
             if (hero.Damage>0)
             {
