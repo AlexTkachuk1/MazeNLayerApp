@@ -12,6 +12,9 @@ namespace NLayerApp.BLL_.Interfaces
         void StepOnTrap();
         void StepOnGate();
         void BrokenTrap();
+        void StepOnLegionary();
+        void StepOnRip();
+        void StepOnBoss();
         void ReturnDefaultHeroStatus();
         void Dispose();
     }

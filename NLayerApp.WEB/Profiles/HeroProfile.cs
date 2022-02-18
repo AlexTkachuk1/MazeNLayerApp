@@ -60,6 +60,31 @@ namespace NLayerApp.WEB.Profiles
                     dest => dest.Stamina,
                     from => from.MapFrom(x => $"{x.Stamina}")
                 );
+            CreateMap<Hero, IHero>()
+                .ForMember(
+                    dest => dest.X,
+                    from => from.MapFrom(x => $"{x.X}")
+                )
+                .ForMember(
+                    dest => dest.Y,
+                    from => from.MapFrom(x => $"{x.Y}")
+                )
+                .ForMember(
+                    dest => dest.Damage,
+                    from => from.MapFrom(x => $"{x.Damage}")
+                )
+                .ForMember(
+                    dest => dest.Gold,
+                    from => from.MapFrom(x => $"{x.Gold}")
+                )
+                .ForMember(
+                    dest => dest.HP,
+                    from => from.MapFrom(x => $"{x.HP}")
+                )
+                .ForMember(
+                    dest => dest.Stamina,
+                    from => from.MapFrom(x => $"{x.Stamina}")
+                );
 
             CreateMap<HeroViewModel, Hero>()
                 .ForMember(

@@ -9,16 +9,27 @@ namespace NLayerApp.WEB.Profiles
     {
         public ItemProfile()
         {
-            CreateMap<BaseItem, ItemViewModel> ()
+            CreateMap<Shield, ItemViewModel> ()
                 .ForMember(
                     dest => dest.Name,
-                    from => from.MapFrom(x => $"{x.Name}")
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
                 );
 
-            CreateMap<BaseItem, Item>()
+            CreateMap<Shield, Item>()
                .ForMember(
                    dest => dest.Name,
-                   from => from.MapFrom(x => $"{x.Name}")
+                   from => from.MapFrom(x => $"{x.GetType().Name}")
+               );
+            CreateMap<Sword, ItemViewModel>()
+                .ForMember(
+                    dest => dest.Name,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+
+            CreateMap<Sword, Item>()
+               .ForMember(
+                   dest => dest.Name,
+                   from => from.MapFrom(x => $"{x.GetType().Name}")
                );
 
             CreateMap<Item, ItemViewModel>()

@@ -26,6 +26,7 @@ namespace NLayerApp.BLL_.DTO
         public int Gold { get; set; }
         public int HP { get; set; } = 100;
         public int Stamina { get; set; }
+        public int Armor { get; set; }
         public bool  GameOver { get; set; } = false;
         public List<BaseItem> Inventory { get; set; } = new List<BaseItem>();
     }

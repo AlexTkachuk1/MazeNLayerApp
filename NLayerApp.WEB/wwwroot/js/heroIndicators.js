@@ -42,6 +42,24 @@
         GoldValue.text(value.gold);
         status.append(GoldValue);
 
+        var Damage = $('<span>');
+        Damage.addClass("status Damage");
+        status.append(Damage);
+
+        var DamageValue = $('<span>');
+        DamageValue.addClass(DamageValue);
+        DamageValue.text(value.damage);
+        status.append(DamageValue);
+
+        var Armor = $('<span>');
+        Armor.addClass("status Armor");
+        status.append(Armor);
+
+        var ArmorValue = $('<span>');
+        ArmorValue.addClass(ArmorValue);
+        ArmorValue.text(value.armor);
+        status.append(ArmorValue);
+
         mainBlock.append(status);
     }
 

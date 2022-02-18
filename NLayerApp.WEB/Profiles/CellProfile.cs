@@ -286,6 +286,58 @@ namespace NLayerApp.WEB.Profiles
                     dest => dest.TypeName,
                     from => from.MapFrom(x => $"{x.TypeName}")
                 );
+            CreateMap<Legionary, Cell>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+            CreateMap<Legionary, CellViewModel>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+            CreateMap<Boss, Cell>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+            CreateMap<Boss, CellViewModel>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
         }
     }
 }

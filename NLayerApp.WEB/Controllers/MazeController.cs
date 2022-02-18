@@ -65,6 +65,15 @@ namespace NLayerApp.WEB.Controllers
                 case "BrokenTrap":
                     heroService.BrokenTrap();
                     break;
+                case "Legionary":  
+                    heroService.StepOnLegionary();
+                    break;
+                case "Rip":
+                    heroService.StepOnRip();
+                    break;
+                case "Boss":
+                    heroService.StepOnBoss();
+                    break;
             }
 
             return StatusCode(200);

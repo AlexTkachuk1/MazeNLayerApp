@@ -21,7 +21,7 @@ namespace NLayerApp.DAL_.Repositories
 
         public Hero Get(int id)
         {
-            return db.Heroes.Find(id);
+            return db.Heroes.First();
         }
 
         public void Create(Hero hero)
@@ -37,6 +37,7 @@ namespace NLayerApp.DAL_.Repositories
             heroForUpdate.Damage = hero.Damage;
             heroForUpdate.Gold = hero.Gold;
             heroForUpdate.Stamina = hero.Stamina;
+            heroForUpdate.Armor = hero.Armor;
             db.SaveChanges();
         }
 

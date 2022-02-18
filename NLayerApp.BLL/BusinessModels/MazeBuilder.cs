@@ -32,6 +32,10 @@ namespace NLayerApp.BLL_.BusinessModels
 
             BuildTrap();
 
+            BuildGoblin();
+
+            BuildBoss();
+
             return _maze;
         }
         private void BuildWall()
@@ -77,7 +81,12 @@ namespace NLayerApp.BLL_.BusinessModels
                     .ToList();
             }
         }
-        public void BuildGate()
+        public void BuildGoblin()
+        {
+            generateWithChance(5, "Legionary");
+            ConsoleDrawer();
+        }
+            public void BuildGate()
         {
             var lastCell = _maze.Cells.Single(cell => cell.CordinateY == _maze.Height - 1
             && cell.CordinateX == _maze.Width - 1);
@@ -96,6 +105,11 @@ namespace NLayerApp.BLL_.BusinessModels
         public void BuildTrap()
         {
             generateWithChance(5, "Trap");
+            ConsoleDrawer();
+        }
+        public void BuildBoss()
+        {
+            generateWithChance(2, "Boss");
             ConsoleDrawer();
         }
 
@@ -153,6 +167,14 @@ namespace NLayerApp.BLL_.BusinessModels
                     case "Trap":
                         var newTrap = new Trap(oldCell.CordinateX, oldCell.CordinateY, _maze);
                         ReplaceCell(newTrap);
+                        break;
+                    case "Legionary":
+                        var newLegionary = new Legionary(oldCell.CordinateX, oldCell.CordinateY, _maze);
+                        ReplaceCell(newLegionary);
+                        break;
+                    case "Boss":
+                        var newBoss = new Boss(oldCell.CordinateX, oldCell.CordinateY, _maze);
+                        ReplaceCell(newBoss);
                         break;
                 }
 

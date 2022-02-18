@@ -1,6 +1,6 @@
 ﻿.cell {
-    width: 20px;
-    height: 20px;
+    width: 26px;
+    height: 26px;
     display: inline-block;
     background-size: cover;
 }
@@ -17,7 +17,7 @@
  }
 
 .cell.GoldHeap {
-        background-image: url('/image/maze/gold.png');
+    background-image: url('/image/maze/gold.jpg');
 }
 
 .cell.Ground {
@@ -28,29 +28,42 @@
         background-image: url('/image/maze/loot.png');
  }
 
-.cell.Guard {
-        background-image: url('/image/maze/guard.png');
+.cell.Boss {
+    background-image: url('/image/maze/boss.jpg');
 }
 .cell.CellWithHero {
-        background-image: url('/image/maze/сellsWithHero.jpg');
+    background-image: url('/image/maze/hero.jpg');
 }
 
 .cell.Gate {
-        background-image: url('/image/maze/gate.jpg');
+    background-image: url('/image/maze/gate.jpg');
 }
-
 .cell.Trap {
         background-image: url('/image/maze/trap.jpg');
 }
 .cell.BrokenTrap {
         background-image: url('/image/maze/brokenTrap.png');
 }
+.cell.Legionary {
+    background-image: url('/image/maze/goblin.jpg');
+}
+.cell.Rip {
+    background-image: url('/image/maze/Rip.webp');
+}
 .status.Hp {
     background-image: url('/image/status/hp.jpg');
 }
 .status.Gold {
+    width: 20px;
+    height: 20px;
     background-image: url('/image/status/gold.jpg');
 }
 .heroStatus{
     display:flex;
+}
+.status.Damage {
+    background-image: url('/image/status/damage.jpg');
+}
+.status.Armor {
+    background-image: url('/image/status/armor.jpg');
 }

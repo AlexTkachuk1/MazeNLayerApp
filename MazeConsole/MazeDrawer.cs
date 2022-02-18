@@ -42,6 +42,10 @@ namespace MazeConsole
                 {
                     Console.Write("O");
                 }
+                if (cell is Legionary)
+                {
+                    Console.Write("+");
+                }
                 if (cell is Lava)
                 {
                     Console.BackgroundColor = ConsoleColor.DarkRed;

@@ -102,6 +102,17 @@
                 case "BrokenTrap":
                     
                     break;
+                case "Legionary":
+                    HeroStatus.heroStepOnCell("Legionary");
+                    labyrinth[heroY][heroX] = "Rip";
+                    break;
+                case "Boss":
+                    HeroStatus.heroStepOnCell("Boss");
+                    labyrinth[heroY][heroX] = "Rip";
+                    break;
+                case "Rip":
+
+                break;
             }
         }
     }
