@@ -2,12 +2,12 @@
 
 namespace NLayerApp.BLL_.DTO.Cells
 {
-    public class Boss:BaseCell
+    public class Teleport : BaseCell
     {
-        public Boss(int x, int y, IMaze maze) : base(x, y, maze)
+        public Teleport(int x, int y, IMaze maze) : base(x, y, maze)
         {
-        }
 
+        }
         public override bool TryStep()
         {
             return true;

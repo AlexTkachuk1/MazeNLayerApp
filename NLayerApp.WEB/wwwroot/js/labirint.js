@@ -3,6 +3,8 @@
     heroX = 0;
     heroY = 0;
 
+    var teleport = [];
+
     mazeHight = 10;
     mazeWidth = 20;
 
@@ -25,6 +27,13 @@
         for (var i = 0; i < value.cellViewModels.length; i++) {
             var cell = value.cellViewModels[i];
             labyrinth[cell.cordinateY][cell.cordinateX] = cell.typeName;
+            if (cell.typeName == "Teleport")
+            {
+                var teleportCell = [];
+                teleportCell.push(cell.cordinateY);
+                teleportCell.push(cell.cordinateX);
+                teleport.push(teleportCell);
+            }
         }
     }
 
@@ -143,6 +152,18 @@
                     break;
                 case "Rip":
 
+                    break;
+                case "Teleport":
+                    if (teleport[0][0] == heroYPossible && teleport[0][1] == heroXPossible)
+                    {
+                        heroYPossible = teleport[1][0];
+                        heroXPossible = teleport[1][1];
+                    }
+                    else if (teleport[1][0] == heroYPossible && teleport[1][1] == heroXPossible)
+                    {
+                        heroYPossible = teleport[0][0];
+                        heroXPossible = teleport[0][1];
+                    }
                     break;
             }
             heroX = heroXPossible;

@@ -37,6 +37,8 @@ namespace NLayerApp.BLL_.BusinessModels
 
             BuildСhest();
 
+            BuildTeleport();
+
             return _maze;
         }
         private void BuildWall()
@@ -120,6 +122,15 @@ namespace NLayerApp.BLL_.BusinessModels
             ConsoleDrawer();
         }
 
+        public void BuildTeleport()
+        {
+            var graundCells = _maze.Cells.OfType<Ground>().ToList();
+            var allGraundCells = new List<BaseCell>();
+            allGraundCells.AddRange(graundCells);
+            generateTheNumberOfCells(2, "Teleport", allGraundCells);
+            ConsoleDrawer();
+        }
+
         //метод принимает число до 100 которое представляет
         //собой долю клеток земли из их общего пула, и экземпляр клетки
         //копиями которой будут заменены клетки земли указанной доли.
@@ -192,6 +203,10 @@ namespace NLayerApp.BLL_.BusinessModels
                     case "Boss":
                         var newBoss = new Boss(oldCell.CordinateX, oldCell.CordinateY, _maze);
                         ReplaceCell(newBoss);
+                        break;
+                    case "Teleport":
+                        var newTeleport = new Teleport(oldCell.CordinateX, oldCell.CordinateY, _maze);
+                        ReplaceCell(newTeleport);
                         break;
                 }
 

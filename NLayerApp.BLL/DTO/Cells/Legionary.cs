@@ -10,7 +10,7 @@ namespace NLayerApp.BLL_.DTO.Cells
 
         public override bool TryStep()
         {
-            return false;
+            return true;
         }
     }
 }

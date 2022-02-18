@@ -40,11 +40,15 @@ namespace MazeConsole
                 }
                 if (cell is Gate)
                 {
-                    Console.Write("O");
+                    Console.Write("!");
                 }
                 if (cell is Legionary)
                 {
                     Console.Write("+");
+                }
+                if (cell is Teleport)
+                {
+                    Console.Write("0");
                 }
                 if (cell is Lava)
                 {

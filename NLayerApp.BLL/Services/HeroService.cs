@@ -178,6 +178,10 @@ namespace NLayerApp.BLL_.Services
             hero.Gold += gold;
             UpdateHero(hero);
         }
+        public void StepOnTeleport()
+        {
+
+        }
         public void SaveHero(Hero hero)
         {
             Database.Heroes.Create(hero);
