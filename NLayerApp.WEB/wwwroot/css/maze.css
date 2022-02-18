@@ -25,8 +25,8 @@
 }
 
 .cell.Сhest {
-        background-image: url('/image/maze/loot.png');
- }
+    background-image: url('/image/maze/сhest.jpeg');
+}
 
 .cell.Boss {
     background-image: url('/image/maze/boss1.jpg');
@@ -66,4 +66,10 @@
 }
 .status.Armor {
     background-image: url('/image/status/armor.jpg');
+}
+.status.HasGiganHammer {
+    background-image: url('/image/status/hasGiganHammer.jpg');
+}
+.status.Invisible {
+    background-image: url('/image/status/invisible.jpg');
 }

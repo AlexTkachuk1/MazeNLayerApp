@@ -15,6 +15,7 @@ namespace NLayerApp.BLL_.Interfaces
         void StepOnLegionary();
         void StepOnRip();
         void StepOnBoss();
+        void StepOnWall();
         void ReturnDefaultHeroStatus();
         void Dispose();
     }

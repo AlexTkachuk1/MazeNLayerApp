@@ -28,7 +28,7 @@ namespace MazeConsole
                 }
                 if (cell is Сhest)
                 {
-                    Console.Write("?");
+                    Console.Write("%");
                 }
                 if (cell is CellWithHero)
                 {

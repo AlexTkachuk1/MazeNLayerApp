@@ -10,6 +10,8 @@
         public int Stamina { get; set; }
         public int Armor { get; set; }
         public bool GameOver { get; set; }
+        public bool Invisible { get; set; }
+        public bool HasGiganHammer { get; set; }
         public List<ItemViewModel> Inventory { get; set; } = new List<ItemViewModel>();
     }
 }

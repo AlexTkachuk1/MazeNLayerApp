@@ -1,7 +1,6 @@
 ﻿using NLayerApp.BLL_.DTO;
 using NLayerApp.BLL_.DTO.Cells;
 using NLayerApp.BLL_.DTO.Interfaces;
-using NLayerApp.BLL_.DTO.Items;
 
 namespace NLayerApp.BLL_.BusinessModels
 {
@@ -10,8 +9,8 @@ namespace NLayerApp.BLL_.BusinessModels
         private IMaze _maze;
         private Random _random = new Random();
 
-        public IMaze Build(int width = 20,
-            int height = 10,
+        public IMaze Build(int width = 30,
+            int height = 15,
             Action<IMaze> drawStepByStep = null)
         {
             _maze = new MazeDTO()
@@ -35,6 +34,8 @@ namespace NLayerApp.BLL_.BusinessModels
             BuildGoblin();
 
             BuildBoss();
+
+            BuildСhest();
 
             return _maze;
         }
@@ -86,7 +87,7 @@ namespace NLayerApp.BLL_.BusinessModels
             generateWithChance(5, "Legionary");
             ConsoleDrawer();
         }
-            public void BuildGate()
+        public void BuildGate()
         {
             var lastCell = _maze.Cells.Single(cell => cell.CordinateY == _maze.Height - 1
             && cell.CordinateX == _maze.Width - 1);
@@ -113,14 +114,20 @@ namespace NLayerApp.BLL_.BusinessModels
             ConsoleDrawer();
         }
 
+        public void BuildСhest()
+        {
+            generateWithTrueChance(3, "Сhest");
+            ConsoleDrawer();
+        }
+
         //метод принимает число до 100 которое представляет
         //собой долю клеток земли из их общего пула, и экземпляр клетки
         //копиями которой будут заменены клетки земли указанной доли.
-        public IMaze generateWithChance(double chance, string cellType, BaseItem? item = null)
+        public IMaze generateWithChance(double chance, string cellType)
         {
             double chanceFactor = chance / 100;
             var graundCells = _maze.Cells.OfType<Ground>().ToList();
-            
+
             double numberOfGraundCells = graundCells.Count;
             var numberOfCellsGenerated = (int)Math.Round(numberOfGraundCells * chanceFactor);
 
@@ -129,24 +136,34 @@ namespace NLayerApp.BLL_.BusinessModels
 
             return generateTheNumberOfCells(numberOfCellsGenerated, cellType, allGraundCells);
         }
-
+        public IMaze generateWithTrueChance(double chance, string cellType)
+        {
+            var graundCells = _maze.Cells.OfType<Ground>().ToList();
+            var allGraundCells = new List<BaseCell>();
+            allGraundCells.AddRange(graundCells);
+            for (int i = 0; i < graundCells.Count; i++)
+            {
+                double number = _random.Next(0, 100);
+                if (chance > number)
+                {
+                    IMaze maze = generateTheNumberOfCells(1, cellType, allGraundCells);
+                }
+            }
+            return _maze;
+        }
         //метод получает название типа клетки и количество(int), а также принимает колекцию клеток ,
         //из которой будут случайно выбрано указанное количество клеток и заменено на указанный тип клеток. 
-        public IMaze generateTheNumberOfCells(int numberOfCells, string cellType, List<BaseCell> cells, BaseItem? item = null)
+        public IMaze generateTheNumberOfCells(int numberOfCells, string cellType, List<BaseCell> cells)
         {
-            for (int i = 1; i < numberOfCells; i++)
+            for (int i = 0; i < numberOfCells; i++)
             {
                 var oldCell = GetRandom(cells);
 
                 switch (cellType)
                 {
                     case "Сhest":
-                        if (item != null)
-                        {
-                            var newСhest = new Сhest(oldCell.CordinateX, oldCell.CordinateY, _maze, item);
-                            ReplaceCell(newСhest);
-                        }
-                        else { throw new NotImplementedException(); }
+                        var newСhest = new Сhest(oldCell.CordinateX, oldCell.CordinateY, _maze);
+                        ReplaceCell(newСhest);
                         break;
                     case "GoldHeap":
                         var newGoldHeap = new GoldHeap(oldCell.CordinateX, oldCell.CordinateY, _maze);
@@ -180,14 +197,14 @@ namespace NLayerApp.BLL_.BusinessModels
 
                 cells.Remove(oldCell);
             }
-            
+
             return _maze;
         }
 
-            //метод находть ближайшую клетку определенного типа к определенной координате,
-            //которую представляет клетка переданная в метод.
-            private BaseCell FindNearestCell<T>(BaseCell сell, string cellType)
-            where T : BaseCell
+        //метод находть ближайшую клетку определенного типа к определенной координате,
+        //которую представляет клетка переданная в метод.
+        private BaseCell FindNearestCell<T>(BaseCell сell, string cellType)
+        where T : BaseCell
         {
             var startCell = сell;
             var differentTypeCells = new List<BaseCell>();
@@ -274,7 +291,7 @@ namespace NLayerApp.BLL_.BusinessModels
 
         public IMaze StateOfTheMaze()
         {
-            var oldCell = _maze.Cells.Single(x => x.CordinateX == _maze.Hero.X 
+            var oldCell = _maze.Cells.Single(x => x.CordinateX == _maze.Hero.X
             && x.CordinateY == _maze.Hero.Y);
             string cellType = oldCell.GetType().Name;
             switch (cellType)

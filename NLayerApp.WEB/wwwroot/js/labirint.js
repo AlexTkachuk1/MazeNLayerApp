@@ -59,6 +59,14 @@
         mainBlock.append(maze);
     }
 
+    function sleep(milliseconds) {
+        const date = Date.now();
+        let currentDate = null;
+        do {
+            currentDate = Date.now();
+        } while (currentDate - date < milliseconds);
+    }
+
     function heroStep(direction, value) {
         let heroXPossible = heroX;
         let heroYPossible = heroY;
@@ -77,43 +85,68 @@
                 break;
         }
         if (heroYPossible >= 0 && heroYPossible < mazeHight
-            && heroXPossible >= 0 && heroXPossible < mazeWidth
-            && labyrinth[heroYPossible][heroXPossible] !== "Wall") {
-            heroX = heroXPossible;
-            heroY = heroYPossible;
-            switch (labyrinth[heroY][heroX]) {
+            && heroXPossible >= 0 && heroXPossible < mazeWidth) {
+
+            switch (labyrinth[heroYPossible][heroXPossible]) {
                 case "Сhest":
-                    
+                    HeroStatus.heroStepOnCell("Сhest");
+                    labyrinth[heroYPossible][heroXPossible] = "Ground";
                     break;
-                case "Water":
-                    
+                case "Wall":
+                    if (HeroIndicators.GetHasGiganHammer()) {
+                        HeroStatus.heroStepOnCell("Wall");
+                        labyrinth[heroYPossible][heroXPossible] = "Ground";
+                    }
+                    else {
+                        heroXPossible = heroX;
+                        heroYPossible = heroY;
+                    }
                     break;
                 case "Trap":
                     HeroStatus.heroStepOnCell("Trap");
-                    labyrinth[heroY][heroX] = "BrokenTrap";
+                    labyrinth[heroYPossible][heroXPossible] = "BrokenTrap";
                     break;
                 case "GoldHeap":
                     HeroStatus.heroStepOnCell("GoldHeap");
-                    labyrinth[heroY][heroX] = "Ground";
+                    labyrinth[heroYPossible][heroXPossible] = "Ground";
                     break;
                 case "Gate":
                     window.location = "https://localhost:44328/Maze/DrawJs";
                     break;
                 case "BrokenTrap":
-                    
+
                     break;
                 case "Legionary":
-                    HeroStatus.heroStepOnCell("Legionary");
-                    labyrinth[heroY][heroX] = "Rip";
+                    if (HeroIndicators.GetInvisible())
+                    {
+                        sleep(50);
+                        HeroStatus.heroStepOnCell("Legionary");
+                        labyrinth[heroYPossible][heroXPossible] = "Legionary";
+                    }
+                    else
+                    {
+                        HeroStatus.heroStepOnCell("Legionary");
+                        labyrinth[heroYPossible][heroXPossible] = "Rip";
+                    }
                     break;
                 case "Boss":
-                    HeroStatus.heroStepOnCell("Boss");
-                    labyrinth[heroY][heroX] = "Rip";
+                    if (HeroIndicators.GetInvisible()) {
+                        sleep(50);
+                        HeroStatus.heroStepOnCell("Boss");
+                        labyrinth[heroYPossible][heroXPossible] = "Boss";
+                    }
+                    else
+                    {
+                        HeroStatus.heroStepOnCell("Boss");
+                        labyrinth[heroYPossible][heroXPossible] = "Rip";
+                    }
                     break;
                 case "Rip":
 
-                break;
+                    break;
             }
+            heroX = heroXPossible;
+            heroY = heroYPossible;
         }
     }
 

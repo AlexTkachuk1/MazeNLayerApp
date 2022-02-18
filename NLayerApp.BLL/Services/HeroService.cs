@@ -1,7 +1,4 @@
 ﻿using AutoMapper;
-using NLayerApp.BLL_.DTO;
-using NLayerApp.BLL_.DTO.Interfaces;
-using NLayerApp.BLL_.DTO.Items;
 using NLayerApp.BLL_.Interfaces;
 using NLayerApp.DAL_.Entities;
 using NLayerApp.DAL_.Interfaces;
@@ -26,12 +23,43 @@ namespace NLayerApp.BLL_.Services
         }
         public void StepOnСhest()
         {
-
+            var hero = GetHero();
+            switch (_random.Next(1, 4))
+            {
+                case 1:
+                    var potionTreatment = new Item();
+                    potionTreatment.Name = "PotionTreatment";
+                    potionTreatment.Hero = hero;
+                    hero.Inventory.Add(potionTreatment);
+                    break;
+                case 2:
+                    var invisibilityCap = new Item();
+                    invisibilityCap.Name = "InvisibilityCap";
+                    invisibilityCap.Hero = hero;
+                    hero.Inventory.Add(invisibilityCap);
+                    break;
+                case 3:
+                    var giganHammer = new Item();
+                    giganHammer.Name = "GiganHammer";
+                    giganHammer.Hero = hero;
+                    hero.Inventory.Add(giganHammer);
+                    break;
+            }
+            useInventory();
+            Database.Save();
         }
         public void StepOnWater()
         {
 
         }
+
+        public void StepOnWall()
+        {
+            var hero = GetHero();
+            hero.HasGiganHammer = false;
+            Database.Save();
+        }
+
         public void StepOnTrap()
         {
             var hero = GetHero();
@@ -58,30 +86,39 @@ namespace NLayerApp.BLL_.Services
         public void StepOnLegionary()
         {
             var hero = GetHero();
-            var gold = _random.Next(15, 30);
-            hero.Gold += gold;
-            if (hero.Damage>0)
+            if (hero.Invisible)
             {
-                hero.Damage--;
-                UpdateHero(hero);
+                hero.Invisible = false;
+                Database.Save();
             }
-            else
+            else 
             {
-                var damage = _random.Next(20, 50);
-                var allDamage = (damage - hero.Armor);
-                if (allDamage > hero.HP)
+                var gold = _random.Next(15, 30);
+                hero.Gold += gold;
+                if (hero.Damage > 0)
                 {
-                    hero.GameOver = true;
-                    Database.Save();
+                    hero.Damage--;
+                    UpdateHero(hero);
                 }
                 else
                 {
-                    if (allDamage > 0)
+                    var damage = _random.Next(20, 50);
+                    var allDamage = (damage - hero.Armor);
+                    if (allDamage > hero.HP)
                     {
-                        hero.HP -= allDamage;
+                        hero.GameOver = true;
+                        Database.Save();
                     }
-                    UpdateHero(hero);
+                    else
+                    {
+                        if (allDamage > 0)
+                        {
+                            hero.HP -= allDamage;
+                        }
+                        UpdateHero(hero);
+                    }
                 }
+            
             }
         }
         public void StepOnRip()
@@ -164,6 +201,8 @@ namespace NLayerApp.BLL_.Services
             hero.Gold = 0;
             hero.Damage = 0;
             hero.Armor = 0;
+            hero.Invisible = false;
+            hero.HasGiganHammer = false;
             Database.Heroes.Update(hero);
         }
         public void useInventory()
@@ -179,8 +218,20 @@ namespace NLayerApp.BLL_.Services
                         hero.Armor += 10;
                         inventory.Remove(item);
                         break;
-                    case "Sword":
+                    case"Sword":
                         hero.Damage += 2;
+                        inventory.Remove(item);
+                        break;
+                    case"PotionTreatment":
+                        hero.HP += 50;
+                        inventory.Remove(item);
+                        break;
+                    case "InvisibilityCap":
+                        hero.Invisible = true;
+                        inventory.Remove(item);
+                        break;
+                    case "GiganHammer":
+                        hero.HasGiganHammer = true;
                         inventory.Remove(item);
                         break;
                 }

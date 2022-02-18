@@ -74,6 +74,9 @@ namespace NLayerApp.WEB.Controllers
                 case "Boss":
                     heroService.StepOnBoss();
                     break;
+                case "Wall":
+                    heroService.StepOnWall();
+                    break;
             }
 
             return StatusCode(200);

@@ -1,5 +1,8 @@
 ﻿var HeroIndicators = (function () {
 
+    var HasGiganHammer;
+    var Invisible;
+
     var Update = (async function () {
         var value = null;
         const requestURL = 'https://localhost:44328/Maze/HeroIndicators';
@@ -9,6 +12,8 @@
         if (response.ok) { // если HTTP-статус в диапазоне 200-299
             // получаем тело ответа (см. про этот метод ниже)
             value = await response.json();
+            HasGiganHammer = value.hasGiganHammer;
+            Invisible = value.invisible;
             if (value.gameOver) {
                 window.location = "https://localhost:44328/Maze/GameOver";
             }
@@ -17,6 +22,15 @@
             alert("Ошибка HTTP: " + response.status);
         }
     });
+
+    function GetInvisible() {
+        return Invisible;
+    }
+
+    function GetHasGiganHammer()
+    {
+        return HasGiganHammer;
+    }
 
     function DisplayIndicators(value) {
         var mainBlock = $("div.heroIndicators");
@@ -60,12 +74,32 @@
         ArmorValue.text(value.armor);
         status.append(ArmorValue);
 
+        var Invisible = $('<span>');
+        Invisible.addClass("status Invisible");
+        status.append(Invisible);
+
+        var InvisibleValue = $('<span>');
+        InvisibleValue.addClass(InvisibleValue);
+        InvisibleValue.text(value.invisible);
+        status.append(InvisibleValue);
+
+        var HasGiganHammer = $('<span>');
+        HasGiganHammer.addClass("status HasGiganHammer");
+        status.append(HasGiganHammer);
+
+        var HasGiganHammerValue = $('<span>');
+        HasGiganHammerValue.addClass(HasGiganHammerValue);
+        HasGiganHammerValue.text(value.hasGiganHammer);
+        status.append(HasGiganHammerValue);
+
         mainBlock.append(status);
     }
 
     return {
         Update: Update,
-        DisplayIndicators: DisplayIndicators
+        DisplayIndicators: DisplayIndicators,
+        GetHasGiganHammer: GetHasGiganHammer,
+        GetInvisible: GetInvisible
     };
 })();
 
