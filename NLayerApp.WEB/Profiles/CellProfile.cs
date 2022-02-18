@@ -390,6 +390,32 @@ namespace NLayerApp.WEB.Profiles
                     dest => dest.TypeName,
                     from => from.MapFrom(x => $"{x.GetType().Name}")
                 );
+            CreateMap<Killer, Cell>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
+            CreateMap<Killer, CellViewModel>()
+                .ForMember(
+                    dest => dest.CordinateX,
+                    from => from.MapFrom(x => $"{x.CordinateX}")
+                )
+                .ForMember(
+                    dest => dest.CordinateY,
+                    from => from.MapFrom(x => $"{x.CordinateY}")
+                )
+                .ForMember(
+                    dest => dest.TypeName,
+                    from => from.MapFrom(x => $"{x.GetType().Name}")
+                );
         }
     }
 }

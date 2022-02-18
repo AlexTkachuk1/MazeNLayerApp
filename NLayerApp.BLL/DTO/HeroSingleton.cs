@@ -30,6 +30,7 @@ namespace NLayerApp.BLL_.DTO
         public bool  GameOver { get; set; } = false;
         public bool Invisible { get; set; } = false;
         public bool HasGiganHammer { get; set; } = false;
+        public int CanJump { get; set; } 
         public List<BaseItem> Inventory { get; set; } = new List<BaseItem>();
     }
 }

@@ -27,8 +27,7 @@
         for (var i = 0; i < value.cellViewModels.length; i++) {
             var cell = value.cellViewModels[i];
             labyrinth[cell.cordinateY][cell.cordinateX] = cell.typeName;
-            if (cell.typeName == "Teleport")
-            {
+            if (cell.typeName == "Teleport") {
                 var teleportCell = [];
                 teleportCell.push(cell.cordinateY);
                 teleportCell.push(cell.cordinateX);
@@ -106,6 +105,34 @@
                         HeroStatus.heroStepOnCell("Wall");
                         labyrinth[heroYPossible][heroXPossible] = "Ground";
                     }
+                    else if (HeroIndicators.GetCanJumpValue()>0) {
+                        switch (direction) {
+                            case 0:
+                                heroYPossible--;
+                                break;
+                            case 1:
+                                heroXPossible++;
+                                break;
+                            case 2:
+                                heroYPossible++;
+                                break;
+                            case 3:
+                                heroXPossible--;
+                                break;
+                        }
+                        if (heroYPossible >= 0 && heroYPossible < mazeHight
+                            && heroXPossible >= 0 && heroXPossible < mazeWidth
+                            && labyrinth[heroYPossible][heroXPossible] == "Ground") {
+                            HeroStatus.heroStepOnCell("Wall");
+                            heroX = heroXPossible;
+                            heroY = heroYPossible;
+                        }
+                        else {
+                            heroXPossible = heroX;
+                            heroYPossible = heroY;
+                        }
+
+                    }
                     else {
                         heroXPossible = heroX;
                         heroYPossible = heroY;
@@ -126,14 +153,11 @@
 
                     break;
                 case "Legionary":
-                    if (HeroIndicators.GetInvisible())
-                    {
-                        sleep(50);
+                    if (HeroIndicators.GetInvisible()) {
                         HeroStatus.heroStepOnCell("Legionary");
                         labyrinth[heroYPossible][heroXPossible] = "Legionary";
                     }
-                    else
-                    {
+                    else {
                         HeroStatus.heroStepOnCell("Legionary");
                         labyrinth[heroYPossible][heroXPossible] = "Rip";
                     }
@@ -143,8 +167,7 @@
                         HeroStatus.heroStepOnCell("Boss");
                         labyrinth[heroYPossible][heroXPossible] = "Boss";
                     }
-                    else
-                    {
+                    else {
                         HeroStatus.heroStepOnCell("Boss");
                         labyrinth[heroYPossible][heroXPossible] = "DethBoss";
                     }
@@ -153,13 +176,11 @@
 
                     break;
                 case "Teleport":
-                    if (teleport[0][0] == heroYPossible && teleport[0][1] == heroXPossible)
-                    {
+                    if (teleport[0][0] == heroYPossible && teleport[0][1] == heroXPossible) {
                         heroYPossible = teleport[1][0];
                         heroXPossible = teleport[1][1];
                     }
-                    else if (teleport[1][0] == heroYPossible && teleport[1][1] == heroXPossible)
-                    {
+                    else if (teleport[1][0] == heroYPossible && teleport[1][1] == heroXPossible) {
                         heroYPossible = teleport[0][0];
                         heroXPossible = teleport[0][1];
                     }
@@ -168,7 +189,17 @@
                     window.location = "https://localhost:44328/Maze/MiracleShop";
                     break;
                 case "DethBoss":
-                    
+
+                    break;
+                case "Killer":
+                    if (HeroIndicators.GetInvisible()) {
+                        HeroStatus.heroStepOnCell("Killer");
+                        labyrinth[heroYPossible][heroXPossible] = "Killer";
+                    }
+                    else {
+                        HeroStatus.heroStepOnCell("Killer");
+                        labyrinth[heroYPossible][heroXPossible] = "DethKiller";
+                    }
                     break;
             }
             heroX = heroXPossible;

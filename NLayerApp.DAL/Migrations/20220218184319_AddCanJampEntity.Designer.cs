@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NLayerApp.DAL_.EF;
 
@@ -10,9 +11,10 @@ using NLayerApp.DAL_.EF;
 namespace NLayerApp.DAL_.Migrations
 {
     [DbContext(typeof(MazeDbContext))]
-    partial class MazeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220218184319_AddCanJampEntity")]
+    partial class AddCanJampEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,8 +62,8 @@ namespace NLayerApp.DAL_.Migrations
                     b.Property<int>("Armor")
                         .HasColumnType("int");
 
-                    b.Property<int>("CanJump")
-                        .HasColumnType("int");
+                    b.Property<bool>("CanJump")
+                        .HasColumnType("bit");
 
                     b.Property<int>("Damage")
                         .HasColumnType("int");

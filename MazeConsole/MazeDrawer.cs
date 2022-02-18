@@ -54,6 +54,10 @@ namespace MazeConsole
                 {
                     Console.Write("F");
                 }
+                if (cell is Killer)
+                {
+                    Console.Write("X");
+                }
                 if (cell is Lava)
                 {
                     Console.BackgroundColor = ConsoleColor.DarkRed;

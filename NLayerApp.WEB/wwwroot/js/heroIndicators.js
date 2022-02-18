@@ -2,6 +2,7 @@
 
     var HasGiganHammer;
     var Invisible;
+    var CanJumpValue;
 
     var Update = (async function () {
         var value = null;
@@ -14,6 +15,7 @@
             value = await response.json();
             HasGiganHammer = value.hasGiganHammer;
             Invisible = value.invisible;
+            CanJumpValue = value.canJump;
             if (value.gameOver) {
                 window.location = "https://localhost:44328/Maze/GameOver";
             }
@@ -27,9 +29,11 @@
         return Invisible;
     }
 
-    function GetHasGiganHammer()
-    {
+    function GetHasGiganHammer() {
         return HasGiganHammer;
+    }
+    function CanJumpValue() {
+        return CanJumpValue;
     }
 
     function DisplayIndicators(value) {
@@ -92,6 +96,15 @@
         HasGiganHammerValue.text(value.hasGiganHammer);
         status.append(HasGiganHammerValue);
 
+        var CanJump = $('<span>');
+        CanJump.addClass("status CanJump");
+        status.append(CanJump);
+
+        var CanJumpValue = $('<span>');
+        CanJumpValue.addClass(CanJumpValue);
+        CanJumpValue.text(value.canJump);
+        status.append(CanJumpValue);
+
         mainBlock.append(status);
     }
 
@@ -99,7 +112,8 @@
         Update: Update,
         DisplayIndicators: DisplayIndicators,
         GetHasGiganHammer: GetHasGiganHammer,
-        GetInvisible: GetInvisible
+        GetInvisible: GetInvisible,
+        GetCanJumpValue: CanJumpValue
     };
 })();
 

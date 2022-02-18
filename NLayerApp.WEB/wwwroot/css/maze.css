@@ -60,6 +60,9 @@
 .cell.MiracleShop {
     background-image: url('/image/maze/miracleShop.jpg');
 }
+.cell.Killer {
+    background-image: url('/image/maze/killer .jpg');
+}
 .status.Hp {
     background-image: url('/image/status/hp.jpg');
 }
@@ -82,4 +85,7 @@
 }
 .status.Invisible {
     background-image: url('/image/status/invisible.jpg');
+}
+.status.CanJump {
+    background-image: url('/image/status/jumperBoots.jpg');
 }

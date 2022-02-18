@@ -41,6 +41,8 @@ namespace NLayerApp.BLL_.BusinessModels
 
             BuildMiracleShop();
 
+            BuildKiller();
+
             return _maze;
         }
         private void BuildWall()
@@ -127,6 +129,11 @@ namespace NLayerApp.BLL_.BusinessModels
         public void BuildMiracleShop()
         {
             generateWithTrueChance(5, "MiracleShop");
+            ConsoleDrawer();
+        }
+        public void BuildKiller()
+        {
+            generateWithTrueChance(5, "Killer");
             ConsoleDrawer();
         }
         public void BuildTeleport()
@@ -218,6 +225,10 @@ namespace NLayerApp.BLL_.BusinessModels
                     case "MiracleShop":
                         var newMiracleShop = new MiracleShop(oldCell.CordinateX, oldCell.CordinateY, _maze);
                         ReplaceCell(newMiracleShop);
+                        break;
+                    case "Killer":
+                        var newKiller = new Killer(oldCell.CordinateX, oldCell.CordinateY, _maze);
+                        ReplaceCell(newKiller);
                         break;
                 }
 

@@ -66,6 +66,10 @@ namespace NLayerApp.WEB.Controllers
                     hero.Gold -= 70;
                     item.Name = "GiganHammer";
                     break;
+                case "JumperBoots":
+                    hero.Gold -= 100;
+                    item.Name = "JumperBoots";
+                    break;
             }
             hero.Inventory.Add(item);
             heroService.UpdateHero(hero);
@@ -113,6 +117,9 @@ namespace NLayerApp.WEB.Controllers
                     break;
                 case "MiracleShop":
                     heroService.StepOnMiracleShop();
+                    break;
+                case "Killer":
+                    heroService.StepOnKiller();
                     break;
             }
 
