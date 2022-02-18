@@ -1,6 +1,6 @@
 ﻿var HeroStatus = (function () {
 
-    function heroStepOnCell(cellTypeName) {
+    async function heroStepOnCell(cellTypeName) {
 
         // данные для отправки
         const user = cellTypeName;

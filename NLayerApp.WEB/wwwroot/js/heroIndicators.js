@@ -9,6 +9,9 @@
         if (response.ok) { // если HTTP-статус в диапазоне 200-299
             // получаем тело ответа (см. про этот метод ниже)
             value = await response.json();
+            if (value.gameOver) {
+                window.location = "https://localhost:44328/Maze/GameOver";
+            }
             HeroIndicators.DisplayIndicators(value);
         } else {
             alert("Ошибка HTTP: " + response.status);

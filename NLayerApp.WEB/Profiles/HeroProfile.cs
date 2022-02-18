@@ -85,6 +85,10 @@ namespace NLayerApp.WEB.Profiles
                 .ForMember(
                     dest => dest.Stamina,
                     from => from.MapFrom(x => $"{x.Stamina}")
+                )
+                .ForMember(
+                    dest => dest.GameOver,
+                    from => from.MapFrom(x => $"{x.GameOver}")
                 );
 
             CreateMap<Hero, HeroViewModel>()
@@ -111,6 +115,10 @@ namespace NLayerApp.WEB.Profiles
                 .ForMember(
                     dest => dest.Stamina,
                     from => from.MapFrom(x => $"{x.Stamina}")
+                )
+                .ForMember(
+                    dest => dest.GameOver,
+                    from => from.MapFrom(x => $"{x.GameOver}")
                 );
         }
     }

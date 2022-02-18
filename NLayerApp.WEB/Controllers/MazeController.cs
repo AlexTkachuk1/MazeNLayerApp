@@ -66,17 +66,13 @@ namespace NLayerApp.WEB.Controllers
                     heroService.BrokenTrap();
                     break;
             }
-            var hero = heroService.GetHero();
-            if (hero.GameOver)
-            {
-                heroService.ReturnDefaultHeroStatus();
-                return RedirectToAction("GameOver", "Maze");
-            }
 
             return StatusCode(200);
+
         }
         public IActionResult GameOver()
         {
+            heroService.ReturnDefaultHeroStatus();
             return View();
         }
         public IActionResult Menu()

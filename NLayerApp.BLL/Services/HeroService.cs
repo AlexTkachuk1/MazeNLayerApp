@@ -32,10 +32,11 @@ namespace NLayerApp.BLL_.Services
         public void StepOnTrap()
         {
             var hero = GetHero();
-            var damage = _random.Next(1, 20);
+            var damage = _random.Next(20, 50);
             if (damage> hero.HP)
             {
                 hero.GameOver = true;
+                Database.Save();
             }
             else
             {
@@ -54,7 +55,7 @@ namespace NLayerApp.BLL_.Services
         public void StepOnGoldHeap()
         {
             var hero = GetHero();
-            var gold = _random.Next(1, 20);
+            var gold = _random.Next(1, 10);
             hero.Gold += gold;
             UpdateHero(hero);
         }
