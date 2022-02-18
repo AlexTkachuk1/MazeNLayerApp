@@ -8,8 +8,6 @@ namespace NLayerApp.BLL_.Interfaces
         IMaze BuildMaze(int width = 20, int height = 10);
         void SaveMaze(IMaze maze);
         List<Maze> GetAllMazes();
-        Hero GetHero(int id);
-        void UpdateHero(Hero hero);
         void Dispose();
     }
 }

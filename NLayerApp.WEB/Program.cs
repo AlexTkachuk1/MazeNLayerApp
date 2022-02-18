@@ -26,6 +26,10 @@ builder.Services.AddScoped<IUserService>(container =>
 new UserService(container.GetService<IUnitOfWork>())
 );
 
+builder.Services.AddScoped<IHeroService>(container =>
+new HeroService(container.GetService<IMapper>(), container.GetService<IUnitOfWork>())
+);
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllersWithViews();

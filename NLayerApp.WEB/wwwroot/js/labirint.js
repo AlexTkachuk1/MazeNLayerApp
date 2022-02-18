@@ -82,15 +82,25 @@
             heroX = heroXPossible;
             heroY = heroYPossible;
             switch (labyrinth[heroY][heroX]) {
+                case "Сhest":
+                    
+                    break;
+                case "Water":
+                    
+                    break;
+                case "Trap":
+                    HeroStatus.heroStepOnCell("Trap");
+                    labyrinth[heroY][heroX] = "BrokenTrap";
+                    break;
                 case "GoldHeap":
-                    HeroStatus.heroStepOnGold();
+                    HeroStatus.heroStepOnCell("GoldHeap");
                     labyrinth[heroY][heroX] = "Ground";
                     break;
                 case "Gate":
                     window.location = "https://localhost:44328/Maze/DrawJs";
                     break;
-                case "Trap":
-                    labyrinth[heroY][heroX] = "BrokenTrap";
+                case "BrokenTrap":
+                    
                     break;
             }
 

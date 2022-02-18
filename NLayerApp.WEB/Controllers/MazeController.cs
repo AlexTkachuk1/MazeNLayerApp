@@ -9,12 +9,15 @@ namespace NLayerApp.WEB.Controllers
 {
     public class MazeController : Controller
     {
+        IHeroService heroService;
         IMazeService mazeService;
         public readonly IMapper mapper;
         public MazeController(
+            IHeroService heroService,
             IMapper mapper,
             IMazeService mazeService)
         {
+            this.heroService = heroService;
             this.mapper = mapper;
             this.mazeService = mazeService;
         }
@@ -33,28 +36,47 @@ namespace NLayerApp.WEB.Controllers
         {
             return View();
         }
-        public IActionResult UpdateHeroStatus(HeroViewModel heroViewModel)
+        [HttpPost]
+        public IActionResult HeroStepOnGold([FromQuery(Name = "Name")] string cellTypeName)
         {
-            var newData = heroViewModel;
-            var hero = mapper.Map<Hero>(newData);
-            // надо на никнейм заменить , с ID как-то не очень.
-            hero.Id = 16;
-            hero.MazeId = 17;
-            mazeService.UpdateHero(hero);
-            return Json(new { result = "success" }, System.Web.Mvc.JsonRequestBehavior.AllowGet);
+
+            switch (cellTypeName)
+            {
+                case "Сhest":
+                    heroService.StepOnСhest();
+                    break;
+                case "Water":
+                    heroService.StepOnWater();
+                    break;
+                case "Trap":
+                    heroService.StepOnTrap();
+                    break;
+                case "GoldHeap":
+                    heroService.StepOnGoldHeap();
+                    break;
+                case "Gate":
+                    heroService.StepOnGate();
+                    break;
+                case "BrokenTrap":
+                    heroService.BrokenTrap();
+                    break;
+            }
+            var hero = heroService.GetHero();
+            if (hero.GameOver)
+            {
+                heroService.ReturnDefaultHeroStatus();
+                return View("GameOver");
+            }
+
+            return StatusCode(200);
         }
-        public IActionResult HeroStepOnGold(string step)
+        public IActionResult GameOver()
         {
-            var hero = mazeService.GetHero(16);
-            var random = new Random();
-            var gold = random.Next(1, 50);
-            hero.Gold += gold;
-            mazeService.UpdateHero(hero);
-            return Json(new { result = "success" }, System.Web.Mvc.JsonRequestBehavior.AllowGet);
+            return View();
         }
         public IActionResult GetHeroStatus()
         {
-            var hero = mazeService.GetHero(16);
+            var hero = heroService.GetHero();
             var heroViewModel = mapper.Map<HeroViewModel>(hero);
             return new JsonResult(heroViewModel);
         }
