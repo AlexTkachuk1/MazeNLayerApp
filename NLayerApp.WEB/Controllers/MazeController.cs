@@ -50,29 +50,7 @@ namespace NLayerApp.WEB.Controllers
         [HttpGet]
         public IActionResult AddNewItems([FromQuery(Name = "Name")] string cellTypeName)
         {
-            var hero = heroService.GetHero();
-            var item = new Item();
-            switch (cellTypeName)
-            {
-                case "PotionTreatment":
-                    hero.Gold -= 50;
-                    item.Name = "PotionTreatment";
-                    break;
-                case "InvisibilityCap":
-                    hero.Gold -= 60;
-                    item.Name = "InvisibilityCap";
-                    break;
-                case "GiganHammer":
-                    hero.Gold -= 70;
-                    item.Name = "GiganHammer";
-                    break;
-                case "JumperBoots":
-                    hero.Gold -= 100;
-                    item.Name = "JumperBoots";
-                    break;
-            }
-            hero.Inventory.Add(item);
-            heroService.UpdateHero(hero);
+            heroService.StepOnMiracleShop(cellTypeName);
             return RedirectToAction("MiracleShop", "Maze");
         }
 
@@ -114,9 +92,6 @@ namespace NLayerApp.WEB.Controllers
                     break;
                 case "Teleport":
                     heroService.StepOnTeleport();
-                    break;
-                case "MiracleShop":
-                    heroService.StepOnMiracleShop();
                     break;
                 case "Killer":
                     heroService.StepOnKiller();

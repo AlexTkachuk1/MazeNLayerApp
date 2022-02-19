@@ -27,21 +27,21 @@ namespace NLayerApp.BLL_.BusinessModels
 
             BuildGate();
 
-            BuildGoldHeap();
+            BuildGoldHeap(8);
 
-            BuildTrap();
+            BuildTrap(7);
 
             BuildGoblin();
+            
+            BuildBoss(1);
 
-            BuildBoss();
-
-            BuildСhest();
+            BuildKiller(2);
 
             BuildTeleport();
 
-            BuildMiracleShop();
+            BuildMiracleShop(5);
 
-            BuildKiller();
+            BuildСhest(10);
 
             return _maze;
         }
@@ -103,37 +103,44 @@ namespace NLayerApp.BLL_.BusinessModels
             ConsoleDrawer();
         }
 
-        public void BuildGoldHeap()
+        public void BuildGoldHeap(int chance)
         {
-            generateWithChance(10, "GoldHeap");
+            generateWithChance(chance, "GoldHeap");
             ConsoleDrawer();
         }
 
-        public void BuildTrap()
+        public void BuildTrap(int chance)
         {
-            generateWithChance(5, "Trap");
+            generateWithChance(chance, "Trap");
             ConsoleDrawer();
         }
-        public void BuildBoss()
+        public void BuildBoss(int number)
         {
-            generateWithChance(2, "Boss");
+            var graundCells = _maze.Cells.OfType<Ground>().ToList();
+            var allGraundCells = new List<BaseCell>();
+            allGraundCells.AddRange(graundCells);
+            generateTheNumberOfCells(number, "Boss", allGraundCells);
+            ConsoleDrawer();
             ConsoleDrawer();
         }
 
-        public void BuildСhest()
+        public void BuildСhest(int chanceFrom1000)
         {
-            generateWithTrueChance(30, "Сhest");
+            generateWithTrueChance(chanceFrom1000, "Сhest");
             ConsoleDrawer();
         }
 
-        public void BuildMiracleShop()
+        public void BuildMiracleShop(int chanceFrom1000)
         {
-            generateWithTrueChance(5, "MiracleShop");
+            generateWithTrueChance(chanceFrom1000, "MiracleShop");
             ConsoleDrawer();
         }
-        public void BuildKiller()
+        public void BuildKiller(int number)
         {
-            generateWithTrueChance(5, "Killer");
+            var graundCells = _maze.Cells.OfType<Ground>().ToList();
+            var allGraundCells = new List<BaseCell>();
+            allGraundCells.AddRange(graundCells);
+            generateTheNumberOfCells(number, "Killer", allGraundCells);
             ConsoleDrawer();
         }
         public void BuildTeleport()

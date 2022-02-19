@@ -24,7 +24,8 @@ namespace NLayerApp.BLL_.Services
         public void StepOnСhest()
         {
             var hero = GetHero();
-            switch (_random.Next(1, 5))
+            int val = _random.Next(1, 5);
+            switch (val)
             {
                 case 1:
                     var potionTreatment = new Item();
@@ -66,32 +67,22 @@ namespace NLayerApp.BLL_.Services
                 hero.Invisible = false;
                 Database.Save();
             }
-            if (hero.Damage > 0)
-            {
-                hero.Damage--;
-                UpdateHero(hero);
-            }
             else
             {
-                var damage = 100;
-                if(damage >= hero.HP)
-                    {
-                    hero.GameOver = true;
-                    Database.Save();
-                }
-                else
-                {
-                    hero.HP -= damage;
-                }
-                
+                var trueDamage = 100;
+                DealDamage(trueDamage);
+
             }
             Database.Save();
         }
         public void StepOnWall()
         {
             var hero = GetHero();
-            hero.HasGiganHammer = false;
-            if (hero.CanJump > 0)
+            if (hero.HasGiganHammer)
+            {
+                hero.HasGiganHammer = false;
+            }
+            else if (hero.CanJump > 0)
             {
                 hero.CanJump--;
             }
@@ -101,17 +92,8 @@ namespace NLayerApp.BLL_.Services
         public void StepOnTrap()
         {
             var hero = GetHero();
-            var damage = _random.Next(10, 20);
-            if (damage > hero.HP)
-            {
-                hero.GameOver = true;
-                Database.Save();
-            }
-            else
-            {
-                hero.HP -= damage;
-                UpdateHero(hero);
-            }
+            var damage = _random.Next(10, 15);
+            DealDamage(damage);
         }
         public void StepOnGate()
         {
@@ -142,19 +124,7 @@ namespace NLayerApp.BLL_.Services
                 {
                     var damage = _random.Next(20, 50);
                     var allDamage = (damage - hero.Armor);
-                    if (allDamage >= hero.HP)
-                    {
-                        hero.GameOver = true;
-                        Database.Save();
-                    }
-                    else
-                    {
-                        if (allDamage > 0)
-                        {
-                            hero.HP -= allDamage;
-                        }
-                        UpdateHero(hero);
-                    }
+                    DealDamage(allDamage);
                 }
 
             }
@@ -163,9 +133,39 @@ namespace NLayerApp.BLL_.Services
         {
 
         }
-        public void StepOnMiracleShop()
+        public void StepOnMiracleShop(string cellTypeName)
         {
-
+            var hero = GetHero();
+            var item = new Item();
+            switch (cellTypeName)
+            {
+                case "PotionTreatment":
+                    hero.Gold -= 50;
+                    if (hero.HP + 50 > 100)
+                    {
+                        hero.HP = 100;
+                    }
+                    else
+                    {
+                        hero.HP += 50;
+                    }
+                    break;
+                case "InvisibilityCap":
+                    hero.Gold -= 60;
+                    item.Name = "InvisibilityCap";
+                    break;
+                case "GiganHammer":
+                    hero.Gold -= 70;
+                    item.Name = "GiganHammer";
+                    break;
+                case "JumperBoots":
+                    hero.Gold -= 100;
+                    item.Name = "JumperBoots";
+                    break;
+            }
+            hero.Inventory.Add(item);
+            useInventory();
+            UpdateHero(hero);
         }
         public void StepOnBoss()
         {
@@ -175,54 +175,67 @@ namespace NLayerApp.BLL_.Services
                 hero.Invisible = false;
                 Database.Save();
             }
-            var gold = _random.Next(10, 50);
-            hero.Gold += gold;
-            if (hero.Damage > 0)
-            {
-                hero.Damage--;
-                UpdateHero(hero);
-            }
             else
             {
-                var damage = _random.Next(30, 70);
-                var allDamage = (damage - hero.Armor);
-                if (allDamage >= hero.HP)
+                var gold = _random.Next(10, 50);
+                hero.Gold += gold;
+                var trueDamage = 50;
+                if (trueDamage >= hero.HP)
                 {
                     hero.GameOver = true;
                     Database.Save();
                 }
-                else
+                hero.HP -= trueDamage;
+                UpdateHero(hero);
+
+                if (hero.Damage > 0)
                 {
-                    if (allDamage > 0)
-                    {
-                        hero.HP -= allDamage;
-                    }
+                    hero.Damage--;
                     UpdateHero(hero);
                 }
-                switch (_random.Next(1, 3))
+                else
+                {
+                    var damage = _random.Next(20, 60);
+                    var allDamage = (damage - hero.Armor);
+                    DealDamage(allDamage);
+                }
+                int val = _random.Next(1, 3);
+                var item = new Item();
+                switch (val)
                 {
                     case 1:
-                        var shield = new Item();
-                        shield.Name = "Shield";
-                        shield.Hero = hero;
-                        hero.Inventory.Add(shield);
+                        item.Name = "Shield";
                         break;
                     case 2:
-                        var sword = new Item();
-                        sword.Name = "Sword";
-                        sword.Hero = hero;
-                        hero.Inventory.Add(sword);
+                        item.Name = "Sword";
                         break;
                 }
-            }
+                hero.Inventory.Add(item);
+                item.Hero = hero;
+                useInventory();
+                Database.Save();
 
-            useInventory();
-            Database.Save();
+
+            }
+        }
+        public void DealDamage(int damage)
+        {
+            var hero = GetHero();
+            if (damage > 0)
+            {
+                if (damage >= hero.HP)
+                {
+                    hero.GameOver = true;
+                    Database.Save();
+                }
+                hero.HP -= damage;
+                UpdateHero(hero);
+            }
         }
         public void StepOnGoldHeap()
         {
             var hero = GetHero();
-            var gold = _random.Next(1, 10);
+            var gold = _random.Next(1, 5);
             hero.Gold += gold;
             UpdateHero(hero);
         }
@@ -268,15 +281,22 @@ namespace NLayerApp.BLL_.Services
                 switch (item.Name)
                 {
                     case "Shield":
-                        hero.Armor += 10;
+                        hero.Armor += 15;
                         inventory.Remove(item);
                         break;
                     case "Sword":
-                        hero.Damage += 2;
+                        hero.Damage += 1;
                         inventory.Remove(item);
                         break;
                     case "PotionTreatment":
-                        hero.HP += 50;
+                        if (hero.HP + 50 > 100)
+                        {
+                            hero.HP = 100;
+                        }
+                        else
+                        {
+                            hero.HP += 50;
+                        }
                         inventory.Remove(item);
                         break;
                     case "InvisibilityCap":
@@ -288,7 +308,7 @@ namespace NLayerApp.BLL_.Services
                         inventory.Remove(item);
                         break;
                     case "JumperBoots":
-                        hero.CanJump = 5;
+                        hero.CanJump += 3;
                         inventory.Remove(item);
                         break;
                 }
