@@ -18,6 +18,9 @@ body {
 }
 
 .Choice{
+    display:none;
+}
+.Choice1{
     display:flex;
 }
 .paginator-button {

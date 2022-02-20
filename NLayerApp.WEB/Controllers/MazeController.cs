@@ -42,11 +42,6 @@ namespace NLayerApp.WEB.Controllers
             return View();
         }
 
-        public IActionResult MiracleShop()
-        {
-            return View();
-        }
-
         [HttpGet]
         public IActionResult AddNewItems([FromQuery(Name = "Name")] string cellTypeName)
         {

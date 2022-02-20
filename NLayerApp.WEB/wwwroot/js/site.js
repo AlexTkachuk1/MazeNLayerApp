@@ -3,10 +3,10 @@
         var selector = '.drawer';
         Labirint.setSize(value.mazeHeight, value.mazeWidth);
         Labirint.generateLab(value);
+        HeroIndicators.Update();
         let labyrinth = Labirint.getLabyrinth(value);
 
         Labirint.drawLab(selector, labyrinth);
-
 
         step(selector, value);
     }

@@ -186,7 +186,10 @@
                     }
                     break;
                 case "MiracleShop":
-                    window.location = "https://localhost:44328/Maze/MiracleShop";
+                    $('.Choice').show();
+                    $('.drawer').hide();
+                    heroXPossible = heroX;
+                    heroYPossible = heroY;
                     break;
                 case "DethBoss":
 
@@ -202,11 +205,14 @@
                     }
                     break;
             }
+            $('.end').click(function () {
+                $('.Choice').hide();
+                $('.drawer').show();
+            });
             heroX = heroXPossible;
             heroY = heroYPossible;
         }
     }
-
     return {
         getHight: function () { return mazeHight; },
         getWidth: function () { return mazeWidth; },

@@ -3,14 +3,63 @@
 
 @section Head{
 <link rel="stylesheet" href="~/css/maze.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
 <script src="~/js/fetchForRandomMaze r.js"></script>
 <script src="~/js/site.js"></script>
 <script src="~/js/labirint.js"></script>
 <script src="~/js/heroIndicators.js"></script>
 <script src="~/js/heroStatus.js"></script>
+<script src="~/js/miracleShop.js"></script>
 }
 <body class="maze">
     <div class="drawer">
+    </div>
+    <div class="Choice" >
+        <div>
+            <ul>
+                <li class="one_quarter"><h5>Potion treatment costs 50 silver</h5></li>
+            </ul>
+            <ul>
+                <li class="one_quarter"><a class="paginator-button" href="/Maze/AddNewItems?Name=PotionTreatment">I want to buy potion treatment</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <ul>
+                <li class="one_quarter"><h5>InvisibilityCap costs 60 silver</h5></li>
+            </ul>
+
+            <ul>
+                <li class="one_quarter"><a class="paginator-button" href="/Maze/AddNewItems?Name=InvisibilityCap">I want to buy invisibilityCap</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <ul>
+                <li class="one_quarter"><h5>GiganHammer costs 70 silver</h5></li>
+            </ul>
+
+            <ul>
+                <li class="one_quarter"><a class="paginator-button" href="/Maze/AddNewItems?Name=GiganHammer">I want to buy giganHammer</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <ul>
+                <li class="one_quarter"><h5>JumperBoots costs 100 silver</h5></li>
+            </ul>
+
+            <ul>
+                <li class="one_quarter"><a class="paginator-button" href="/Maze/AddNewItems?Name=JumperBoots">I want to buy JumperBoots</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <ul>
+                <li class="one_quarter"><h5>I teleport you back and enjoy being alive.</h5></li>
+            </ul>
+             <input  class="end" type='button' value="Сontinue the game" />
+        </div>
     </div>
     <div class="heroIndicators">
     </div>
