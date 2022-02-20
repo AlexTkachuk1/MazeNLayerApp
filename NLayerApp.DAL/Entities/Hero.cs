@@ -11,8 +11,8 @@
         public int Stamina { get; set; }
         public int Armor { get; set; }
         public bool GameOver { get; set; }
-        public bool Invisible { get; set; }
-        public bool HasGiganHammer { get; set; }
+        public int Invisible { get; set; }
+        public int HasGiganHammer { get; set; }
         public int CanJump { get; set; }
         public virtual int MazeId { get; set; }
         public virtual Maze Maze { get; set; }

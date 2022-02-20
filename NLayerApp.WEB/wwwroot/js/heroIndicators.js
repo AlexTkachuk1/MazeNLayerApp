@@ -46,7 +46,7 @@
         Hp.addClass("status Hp");
         status.append(Hp);
 
-        var HpValue = $('<span>');
+        var HpValue = $('<h2>');
         HpValue.addClass(HpValue);
         HpValue.text(value.hp);
         status.append(HpValue);
@@ -55,7 +55,7 @@
         Gold.addClass("status Gold");
         status.append(Gold);
 
-        var GoldValue = $('<span>');
+        var GoldValue = $('<h2>');
         GoldValue.addClass(GoldValue);
         GoldValue.text(value.gold);
         status.append(GoldValue);
@@ -64,7 +64,7 @@
         Damage.addClass("status Damage");
         status.append(Damage);
 
-        var DamageValue = $('<span>');
+        var DamageValue = $('<h2>');
         DamageValue.addClass(DamageValue);
         DamageValue.text(value.damage);
         status.append(DamageValue);
@@ -73,7 +73,7 @@
         Armor.addClass("status Armor");
         status.append(Armor);
 
-        var ArmorValue = $('<span>');
+        var ArmorValue = $('<h2>');
         ArmorValue.addClass(ArmorValue);
         ArmorValue.text(value.armor);
         status.append(ArmorValue);
@@ -82,7 +82,7 @@
         Invisible.addClass("status Invisible");
         status.append(Invisible);
 
-        var InvisibleValue = $('<span>');
+        var InvisibleValue = $('<h2>');
         InvisibleValue.addClass(InvisibleValue);
         InvisibleValue.text(value.invisible);
         status.append(InvisibleValue);
@@ -91,7 +91,7 @@
         HasGiganHammer.addClass("status HasGiganHammer");
         status.append(HasGiganHammer);
 
-        var HasGiganHammerValue = $('<span>');
+        var HasGiganHammerValue = $('<h2>');
         HasGiganHammerValue.addClass(HasGiganHammerValue);
         HasGiganHammerValue.text(value.hasGiganHammer);
         status.append(HasGiganHammerValue);
@@ -100,7 +100,7 @@
         CanJump.addClass("status CanJump");
         status.append(CanJump);
 
-        var CanJumpValue = $('<span>');
+        var CanJumpValue = $('<h2>');
         CanJumpValue.addClass(CanJumpValue);
         CanJumpValue.text(value.canJump);
         status.append(CanJumpValue);

@@ -153,7 +153,7 @@
 
                     break;
                 case "Legionary":
-                    if (HeroIndicators.GetInvisible()) {
+                    if (HeroIndicators.GetInvisible()>0) {
                         HeroStatus.heroStepOnCell("Legionary");
                         labyrinth[heroYPossible][heroXPossible] = "Legionary";
                     }
@@ -163,7 +163,7 @@
                     }
                     break;
                 case "Boss":
-                    if (HeroIndicators.GetInvisible()) {
+                    if (HeroIndicators.GetInvisible()>0) {
                         HeroStatus.heroStepOnCell("Boss");
                         labyrinth[heroYPossible][heroXPossible] = "Boss";
                     }
@@ -192,7 +192,7 @@
 
                     break;
                 case "Killer":
-                    if (HeroIndicators.GetInvisible()) {
+                    if (HeroIndicators.GetInvisible()>0) {
                         HeroStatus.heroStepOnCell("Killer");
                         labyrinth[heroYPossible][heroXPossible] = "Killer";
                     }

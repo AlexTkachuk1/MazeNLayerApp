@@ -28,8 +28,8 @@ namespace NLayerApp.BLL_.DTO
         public int Stamina { get; set; }
         public int Armor { get; set; }
         public bool  GameOver { get; set; } = false;
-        public bool Invisible { get; set; } = false;
-        public bool HasGiganHammer { get; set; } = false;
+        public int Invisible { get; set; }
+        public int HasGiganHammer { get; set; }
         public int CanJump { get; set; } 
         public List<BaseItem> Inventory { get; set; } = new List<BaseItem>();
     }

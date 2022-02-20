@@ -40,6 +40,8 @@ namespace NLayerApp.DAL_.Repositories
             heroForUpdate.Armor = hero.Armor;
             heroForUpdate.Invisible = hero.Invisible;
             heroForUpdate.HasGiganHammer = hero.HasGiganHammer;
+            heroForUpdate.Inventory = hero.Inventory;
+            heroForUpdate.HP = hero.HP;
             db.SaveChanges();
         }
 

@@ -62,14 +62,14 @@ namespace NLayerApp.BLL_.Services
         public void StepOnKiller()
         {
             var hero = GetHero();
-            if (hero.Invisible)
+            if (hero.Invisible > 0)
             {
-                hero.Invisible = false;
+                hero.Invisible--;
                 Database.Save();
             }
             else
             {
-                var trueDamage = 100;
+                var trueDamage = 50;
                 DealDamage(trueDamage);
 
             }
@@ -78,9 +78,9 @@ namespace NLayerApp.BLL_.Services
         public void StepOnWall()
         {
             var hero = GetHero();
-            if (hero.HasGiganHammer)
+            if (hero.HasGiganHammer > 0)
             {
-                hero.HasGiganHammer = false;
+                hero.HasGiganHammer--;
             }
             else if (hero.CanJump > 0)
             {
@@ -93,7 +93,18 @@ namespace NLayerApp.BLL_.Services
         {
             var hero = GetHero();
             var damage = _random.Next(10, 15);
-            DealDamage(damage);
+            var trueDamage = damage - hero.Armor;
+            
+            if (trueDamage > 0)
+            {
+                DealDamage(trueDamage);
+            }
+            if (hero.HP + 5 > 100)
+            {
+                hero.HP = 100;
+            }
+            hero.HP += 5;
+            Database.Save();
         }
         public void StepOnGate()
         {
@@ -106,9 +117,9 @@ namespace NLayerApp.BLL_.Services
         public void StepOnLegionary()
         {
             var hero = GetHero();
-            if (hero.Invisible)
+            if (hero.Invisible > 0)
             {
-                hero.Invisible = false;
+                hero.Invisible--;
                 Database.Save();
             }
             else
@@ -153,33 +164,36 @@ namespace NLayerApp.BLL_.Services
                 case "InvisibilityCap":
                     hero.Gold -= 60;
                     item.Name = "InvisibilityCap";
+                    hero.Inventory.Add(item);
                     break;
                 case "GiganHammer":
                     hero.Gold -= 70;
                     item.Name = "GiganHammer";
+                    hero.Inventory.Add(item);
                     break;
                 case "JumperBoots":
                     hero.Gold -= 100;
                     item.Name = "JumperBoots";
+                    hero.Inventory.Add(item);
                     break;
             }
-            hero.Inventory.Add(item);
+
             useInventory();
             UpdateHero(hero);
         }
         public void StepOnBoss()
         {
             var hero = GetHero();
-            if (hero.Invisible)
+            if (hero.Invisible > 0)
             {
-                hero.Invisible = false;
+                hero.Invisible--;
                 Database.Save();
             }
             else
             {
-                var gold = _random.Next(10, 50);
+                var gold = _random.Next(1, 30);
                 hero.Gold += gold;
-                var trueDamage = 50;
+                var trueDamage = 40;
                 if (trueDamage >= hero.HP)
                 {
                     hero.GameOver = true;
@@ -235,7 +249,7 @@ namespace NLayerApp.BLL_.Services
         public void StepOnGoldHeap()
         {
             var hero = GetHero();
-            var gold = _random.Next(1, 5);
+            var gold = _random.Next(5, 10);
             hero.Gold += gold;
             UpdateHero(hero);
         }
@@ -266,8 +280,8 @@ namespace NLayerApp.BLL_.Services
             hero.Gold = 0;
             hero.Damage = 0;
             hero.Armor = 0;
-            hero.Invisible = false;
-            hero.HasGiganHammer = false;
+            hero.Invisible = 0;
+            hero.HasGiganHammer = 0;
             hero.CanJump = 0;
             Database.Heroes.Update(hero);
         }
@@ -300,11 +314,11 @@ namespace NLayerApp.BLL_.Services
                         inventory.Remove(item);
                         break;
                     case "InvisibilityCap":
-                        hero.Invisible = true;
+                        hero.Invisible += 2;
                         inventory.Remove(item);
                         break;
                     case "GiganHammer":
-                        hero.HasGiganHammer = true;
+                        hero.HasGiganHammer += 2;
                         inventory.Remove(item);
                         break;
                     case "JumperBoots":

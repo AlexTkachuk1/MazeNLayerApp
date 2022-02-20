@@ -8,7 +8,6 @@ namespace NLayerApp.BLL_.BusinessModels
     {
         private IMaze _maze;
         private Random _random = new Random();
-
         public IMaze Build(int width = 30,
             int height = 15,
             Action<IMaze> drawStepByStep = null)
@@ -32,7 +31,7 @@ namespace NLayerApp.BLL_.BusinessModels
             BuildTrap(7);
 
             BuildGoblin();
-            
+
             BuildBoss(1);
 
             BuildKiller(2);
@@ -58,6 +57,7 @@ namespace NLayerApp.BLL_.BusinessModels
         }
         private void BuildGround()
         {
+
             var randomCell = GetRandom(_maze.Cells);
             var wallsToDestroy = new List<BaseCell>()
             {
@@ -65,11 +65,9 @@ namespace NLayerApp.BLL_.BusinessModels
             };
             var startCell = _maze.Cells.Single(x => x.CordinateX == 0 && x.CordinateY == 0);
             wallsToDestroy.Add(startCell);
-            //_maze.Hero.X = randomCell.CordinateX;
-            //_maze.Hero.Y = randomCell.CordinateY;
+            _maze.Hero.X = startCell.CordinateX;
+            _maze.Hero.Y = startCell.CordinateY;
 
-            _maze.Hero.X = 0;
-            _maze.Hero.Y = 0;
 
             while (wallsToDestroy.Any())
             {
@@ -81,6 +79,7 @@ namespace NLayerApp.BLL_.BusinessModels
                 wallsToDestroy.Remove(wallToDestroy);
 
                 var nearestWalls = GetNears<Wall>(newGraundCell);
+                    
                 wallsToDestroy.AddRange(nearestWalls);
 
                 wallsToDestroy = wallsToDestroy
@@ -120,7 +119,6 @@ namespace NLayerApp.BLL_.BusinessModels
             var allGraundCells = new List<BaseCell>();
             allGraundCells.AddRange(graundCells);
             generateTheNumberOfCells(number, "Boss", allGraundCells);
-            ConsoleDrawer();
             ConsoleDrawer();
         }
 
