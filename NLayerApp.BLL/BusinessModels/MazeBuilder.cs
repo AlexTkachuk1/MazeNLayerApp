@@ -124,13 +124,19 @@ namespace NLayerApp.BLL_.BusinessModels
 
         public void BuildСhest(int chanceFrom1000)
         {
-            generateWithTrueChance(chanceFrom1000, "Сhest");
+            var allGroundCells = _maze.Cells.OfType<Ground>().ToList();
+            var allCells = new List<BaseCell>();
+            allCells.AddRange(allGroundCells);
+            generateWithTrueChance(chanceFrom1000, "Сhest", allCells);
             ConsoleDrawer();
         }
 
         public void BuildMiracleShop(int chanceFrom1000)
         {
-            generateWithTrueChance(chanceFrom1000, "MiracleShop");
+            var allGroundCells = _maze.Cells.OfType<Wall>().ToList();
+            var allCells = new List<BaseCell>();
+            allCells.AddRange(allGroundCells);
+            generateWithTrueChance(chanceFrom1000, "MiracleShop", allCells);
             ConsoleDrawer();
         }
         public void BuildKiller(int number)
@@ -166,9 +172,9 @@ namespace NLayerApp.BLL_.BusinessModels
 
             return generateTheNumberOfCells(numberOfCellsGenerated, cellType, allGraundCells);
         }
-        public IMaze generateWithTrueChance(double chance, string cellType)
+        public IMaze generateWithTrueChance(double chance, string cellType,List<BaseCell> allCells)
         {
-            var graundCells = _maze.Cells.OfType<Ground>().ToList();
+            var graundCells = allCells; /*_maze.Cells.OfType<Ground>().ToList()*/
             var allGraundCells = new List<BaseCell>();
             allGraundCells.AddRange(graundCells);
             for (int i = 0; i < graundCells.Count; i++)

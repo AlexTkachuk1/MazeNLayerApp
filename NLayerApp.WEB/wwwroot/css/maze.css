@@ -1,10 +1,30 @@
 ﻿.cell {
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 50px;
     display: inline-block;
     background-size: cover;
 }
-
+.spanSection {
+    width: 11px;
+}
+.drawerSection {
+    display: flex;
+    background-image: url('/image/maze/ground3.png');
+}
+.menu {
+    background-image: url('/image/maze/iceBoard.jpg');
+}
+.Choice {
+    display:flex;
+    background-image: url('/image/appBackground/Shop.jpg');
+    background-repeat: no-repeat;
+}
+.indent {
+    height: 10px;
+}
+.gameMenuIndent {
+    height: 100px;
+}
 .status {
     width: 50px;
     height: 50px;
@@ -12,11 +32,8 @@
     background-size: cover;
 }
 .top {
-    background-image: url('/image/appBackground/фон2.jpg');
+    background-image: url('/image/appBackground/фон.jpg');
     background-repeat:no-repeat;
-}
-.drawer {
-    
 }
 .cell.Wall {
     background-image: url('/image/maze/wall2.jpg');
@@ -31,7 +48,7 @@
 }
 
 .cell.Ground {
-    /*background-image: url('/image/maze/ground.png');*/
+    /*background-image: url('/image/maze/groundCell.png');*/
 }
 
 .cell.Сhest {
@@ -70,28 +87,33 @@
     background-image: url('/image/maze/killer.gif');
 }
 .status.Hp {
+    width: 100px;
+    height: 100px;
     background-image: url('/image/status/hp.gif');
 }
 .status.Gold {
-    width: 40px;
-    height: 40px;
+    width: 70px;
+    height: 70px;
     background-image: url('/image/status/coin.gif');
 }
 .status.Damage {
-    height: 100px;
+    width:100px;
+    height: 90px;
     background-image: url('/image/status/sword.gif');
 }
 .status.Armor {
+    width: 70px;
+    height: 70px;
     background-image: url('/image/status/sheald.gif');
 }
 .status.HasGiganHammer {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 70px;
     background-image: url('/image/status/hammer.gif');
 }
 .status.Invisible {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     background-image: url('/image/status/stealth.gif');
 }
 .status.CanJump {
@@ -101,4 +123,13 @@
 }
 .heroStatus {
     display: flex;
+}
+.heroIndicators {
+    
+}
+.DamageValue {
+    font-family: "Herculanum", fantasy;
+}
+.font {
+    /*font-family: "Curlz MT", fantasy;*/
 }

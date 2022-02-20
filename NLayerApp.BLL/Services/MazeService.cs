@@ -18,7 +18,7 @@ namespace NLayerApp.BLL_.Services
             Database = uow;
             this.mapper = mapper;
         }
-        public  IMaze BuildMaze(int width = 20, int height = 10)
+        public  IMaze BuildMaze(int width = 25, int height = 10)
         {
             var builder = new MazeBuilder();
             IMaze newMaze = builder.Build(width, height);
