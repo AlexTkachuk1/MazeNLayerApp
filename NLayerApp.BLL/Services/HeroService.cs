@@ -151,35 +151,56 @@ namespace NLayerApp.BLL_.Services
             switch (cellTypeName)
             {
                 case "PotionTreatment":
-                    hero.Gold -= 50;
-                    if (hero.HP + 50 > 100)
+                    if (ToBuy(50)) 
                     {
-                        hero.HP = 100;
-                    }
-                    else
-                    {
-                        hero.HP += 50;
-                    }
+                        if (hero.HP + 50 > 100)
+                        {
+                            hero.HP = 100;
+                        }
+                        else
+                        {
+                            hero.HP += 50;
+                        }
+                    } 
                     break;
                 case "InvisibilityCap":
-                    hero.Gold -= 60;
-                    item.Name = "InvisibilityCap";
-                    hero.Inventory.Add(item);
+                    if (ToBuy(60))
+                    {
+                        item.Name = "InvisibilityCap";
+                        hero.Inventory.Add(item);
+                    }
                     break;
                 case "GiganHammer":
-                    hero.Gold -= 70;
-                    item.Name = "GiganHammer";
-                    hero.Inventory.Add(item);
+                    if (ToBuy(70))
+                    {
+                        item.Name = "GiganHammer";
+                        hero.Inventory.Add(item);
+                    }
                     break;
                 case "JumperBoots":
-                    hero.Gold -= 100;
-                    item.Name = "JumperBoots";
-                    hero.Inventory.Add(item);
+                    if (ToBuy(100))
+                    {
+                        item.Name = "JumperBoots";
+                        hero.Inventory.Add(item);
+                    }
                     break;
             }
 
             useInventory();
             UpdateHero(hero);
+        }
+        public bool ToBuy(int cost)
+        {
+            var hero = GetHero();
+            if (hero.Gold - cost>0)
+            {
+                hero.Gold -= cost;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public void StepOnBoss()
         {
@@ -299,7 +320,7 @@ namespace NLayerApp.BLL_.Services
                         inventory.Remove(item);
                         break;
                     case "Sword":
-                        hero.Damage += 1;
+                        hero.Damage += 2;
                         inventory.Remove(item);
                         break;
                     case "PotionTreatment":
