@@ -1,6 +1,6 @@
 ﻿.cell {
-    width: 48px;
-    height: 50px;
+    width: 81px;
+    height: 80px;
     display: inline-block;
     background-size: cover;
 }
@@ -9,10 +9,10 @@
 }
 .drawerSection {
     display: flex;
-    background-image: url('/image/maze/ground3.png');
+    background-image: url('/image/appBackground/ground.jpg');
 }
 .menu {
-    background-image: url('/image/maze/iceBoard.jpg');
+    background-image: url('/image/appBackground/groundIce.jpg');
 }
 .Choice {
     display:flex;
@@ -32,11 +32,11 @@
     background-size: cover;
 }
 .top {
-    background-image: url('/image/appBackground/фон.jpg');
+    background-image: url('/image/appBackground/фон4.jpg');
     background-repeat:no-repeat;
 }
 .cell.Wall {
-    background-image: url('/image/maze/wall2.jpg');
+    background-image: url('/image/maze/wall3.jpg');
 }
 
 .cell.DethBoss {
@@ -52,14 +52,14 @@
 }
 
 .cell.Сhest {
-    background-image: url('/image/maze/chest.gif');
+    background-image: url('/image/maze/chest1.gif');
 }
 
 .cell.Boss {
     background-image: url('/image/maze/boss1.gif');
 }
 .cell.CellWithHero {
-    background-image: url('/image/maze/hero2.gif');
+    background-image: url('/image/maze/hero4.gif');
 }
 
 .cell.Gate {
@@ -72,7 +72,7 @@
         background-image: url('/image/maze/brokenTrap.png');
 }
 .cell.Legionary {
-    background-image: url('/image/maze/goblin1.gif');
+    background-image: url('/image/maze/goblin.gif');
 }
 .cell.Rip {
     background-image: url('/image/maze/brokenTrap.png');

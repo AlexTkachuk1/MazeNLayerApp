@@ -46,7 +46,7 @@ namespace NLayerApp.WEB.Controllers
         public IActionResult AddNewItems([FromQuery(Name = "Name")] string cellTypeName)
         {
             heroService.StepOnMiracleShop(cellTypeName);
-            return RedirectToAction("MiracleShop", "Maze");
+            return RedirectToAction("DrawJs");
         }
 
         [HttpPost]
