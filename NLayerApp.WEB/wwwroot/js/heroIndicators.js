@@ -42,68 +42,149 @@
         var status = $('<div>');
         status.addClass('heroStatus');
 
+
+
+
+        var statusIconForHp = $('<div>');
+        statusIconForHp.addClass('statusIcon');
+
+        var statusIconForMyHp = $('<div>');
+        statusIconForMyHp.addClass('statusIconForMyHp');
+
         var Hp = $('<span>');
         Hp.addClass("status Hp");
-        status.append(Hp);
+        Hp.addClass("status");
+        statusIconForMyHp.append(Hp);
+        statusIconForHp.append(statusIconForMyHp);
 
         var HpValue = $('<h1>');
-        HpValue.addClass(HpValue);
+        HpValue.addClass('HpValue');
+        HpValue.addClass("text");
         HpValue.text(value.hp);
-        status.append(HpValue);
+        statusIconForHp.append(HpValue);
 
-        var Gold = $('<span>');
-        Gold.addClass("status Gold");
-        status.append(Gold);
+        status.append(statusIconForHp);
 
-        var GoldValue = $('<h1>');
-        GoldValue.addClass(GoldValue);
-        GoldValue.text(value.gold);
-        status.append(GoldValue);
 
-        var Damage = $('<span>');
-        Damage.addClass("status Damage");
-        status.append(Damage);
 
-        var DamageValue = $('<h1>');
-        DamageValue.addClass(DamageValue);
-        DamageValue.text(value.damage);
-        status.append(DamageValue);
+
+
+
+        var statusIconForArmor = $('<div>');
+        statusIconForArmor.addClass('statusIcon');
 
         var Armor = $('<span>');
         Armor.addClass("status Armor");
-        status.append(Armor);
+        Armor.addClass("status");
+        statusIconForArmor.append(Armor);
 
         var ArmorValue = $('<h1>');
-        ArmorValue.addClass(ArmorValue);
+        ArmorValue.addClass('ArmorValue');
+        ArmorValue.addClass('text');
         ArmorValue.text(value.armor);
-        status.append(ArmorValue);
+        statusIconForArmor.append(ArmorValue);
+
+        status.append(statusIconForArmor);
+
+
+
+
+
+
+        
+
+        var statusIconForGold = $('<div>');
+        statusIconForGold.addClass('statusIcon');
+
+        var Gold = $('<span>');
+        Gold.addClass("status Gold");
+        Gold.addClass("status");
+        statusIconForGold.append(Gold);
+
+        var GoldValue = $('<h1>');
+        GoldValue.addClass('GoldValue');
+        GoldValue.addClass('text');
+        GoldValue.text(value.gold);
+        statusIconForGold.append(GoldValue);
+
+        status.append(statusIconForGold);
+
+
+        var statusForAbilitiPower = $('<div>');
+        statusForAbilitiPower.addClass('statusForAbilitiPower');
+
+        var statusIconForDamage = $('<div>');
+        statusIconForDamage.addClass('statusIcon');
+
+        var Damage = $('<span>');
+        Damage.addClass("status Damage");
+        Damage.addClass("status");
+        statusIconForDamage.append(Damage);
+
+        var DamageValue = $('<h1>');
+        DamageValue.addClass('DamageValue');
+        DamageValue.addClass('text');
+        DamageValue.text(value.damage);
+        statusIconForDamage.append(DamageValue);
+
+        statusForAbilitiPower.append(statusIconForDamage);
+
+
+
+        
+
+        var statusIconInvisible = $('<div>');
+        statusIconInvisible.addClass('statusIcon');
 
         var Invisible = $('<span>');
         Invisible.addClass("status Invisible");
-        status.append(Invisible);
+        Invisible.addClass("status");
+        statusIconInvisible.append(Invisible);
 
         var InvisibleValue = $('<h1>');
-        InvisibleValue.addClass(InvisibleValue);
+        InvisibleValue.addClass('InvisibleValue');
+        InvisibleValue.addClass('text');
         InvisibleValue.text(value.invisible);
-        status.append(InvisibleValue);
+        statusIconInvisible.append(InvisibleValue);
+
+        statusForAbilitiPower.append(statusIconInvisible);
+
+
+
+        var statusIconHasGiganHammer = $('<div>');
+        statusIconHasGiganHammer.addClass('statusIcon');
 
         var HasGiganHammer = $('<span>');
         HasGiganHammer.addClass("status HasGiganHammer");
-        status.append(HasGiganHammer);
+        HasGiganHammer.addClass("status");
+        statusIconHasGiganHammer.append(HasGiganHammer);
 
         var HasGiganHammerValue = $('<h1>');
-        HasGiganHammerValue.addClass(HasGiganHammerValue);
+        HasGiganHammerValue.addClass('HasGiganHammerValue');
+        HasGiganHammerValue.addClass('text');
         HasGiganHammerValue.text(value.hasGiganHammer);
-        status.append(HasGiganHammerValue);
+        statusIconHasGiganHammer.append(HasGiganHammerValue);
+
+        statusForAbilitiPower.append(statusIconHasGiganHammer);
+
+
+        var statusIconCanJump = $('<div>');
+        statusIconCanJump.addClass('statusIcon');
 
         var CanJump = $('<span>');
         CanJump.addClass("status CanJump");
-        status.append(CanJump);
+        CanJump.addClass("status");
+        statusIconCanJump.append(CanJump);
 
         var CanJumpValue = $('<h1>');
-        CanJumpValue.addClass(CanJumpValue);
+        CanJumpValue.addClass('CanJumpValue');
+        CanJumpValue.addClass('text');
         CanJumpValue.text(value.canJump);
-        status.append(CanJumpValue);
+        statusIconCanJump.append(CanJumpValue);
+
+        statusForAbilitiPower.append(statusIconCanJump);
+
+        status.append(statusForAbilitiPower);
 
         mainBlock.append(status);
     }

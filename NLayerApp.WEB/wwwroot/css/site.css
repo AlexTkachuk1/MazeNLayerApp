@@ -40,3 +40,43 @@ body {
     border-left-width: 1px;
     border-right-width: 1px;
 }
+.heroStatus {
+    margin-left: 170px;
+    background-position-y: bottom;
+    background-position-x: left;
+    background-size: 953px 140px;
+    background-repeat: no-repeat;
+    background-image: url('/image/appBackground/ui1.png');
+}
+.text {
+    text-align: center;
+    font-family: "Herculanum", fantasy;
+}
+.status {
+    height: 100px;
+    width: 100px;
+    display: block;
+}
+.statusIconForMyHp{
+    margin-left:3px;
+}
+.statusIcon {
+    margin-left: 15px;
+    background-size: 100px 120px;
+    background-repeat:no-repeat;
+    background-position:center;
+    background-image: url('/image/appBackground/icon.png');
+}
+.statusForAbilitiPower{
+    margin-left:150px;
+    display:flex;
+}
+.shopMenu {
+    margin-left: 200px;
+}
+.shopText{
+    color:azure;
+}
+.end {
+    margin-left: 40px;
+}

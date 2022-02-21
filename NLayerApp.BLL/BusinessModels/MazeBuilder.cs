@@ -38,9 +38,9 @@ namespace NLayerApp.BLL_.BusinessModels
 
             BuildTeleport();
 
-            BuildMiracleShop(5);
+            BuildMiracleShop(200);
 
-            BuildСhest(10);
+            BuildСhest(20);
 
             return _maze;
         }
