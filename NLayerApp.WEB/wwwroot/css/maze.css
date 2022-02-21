@@ -93,7 +93,7 @@
         background-image: url('/image/maze/brokenTrap.png');
 }
 .cell.Legionary {
-    background-image: url('/image/maze/goblin.gif');
+    background-image: url('/image/maze/goblin1(1).gif');
 }
 .cell.Rip {
     background-image: url('/image/maze/brokenTrap.png');
@@ -112,71 +112,42 @@
     background-image: url('/image/maze/killer.gif');
 }
 .status.Hp {
-    width: 100px;
-    height: 70px;
-    background-size: 50px,50px;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: bottom;
     background-image: url('/image/status/hp1.gif');
 }
 .status.Gold {
-    width: 100px;
-    height: 70px;
-    background-size:50px,50px;
-    background-repeat:no-repeat;
-    background-position-x:center;
-    background-position-y:bottom;
     background-image: url('/image/maze/coin1.gif');
 }
 .status.Damage {
-    width:100px;
-    height: 70px;
     background-image: url('/image/status/sword.gif');
 }
 .status.Armor {
-    width: 100px;
-    height: 70px;
     background-size: 50px,50px;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: bottom;
     background-image: url('/image/status/sheald.gif');
 }
 .status.HasGiganHammer {
-    width: 100px;
-    height: 70px;
     background-size: 60px,60px;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: bottom;
     background-image: url('/image/status/hammer.gif');
 }
 .status.Invisible {
+    background-size: 50px,50px;
+    background-image: url('/image/status/stealth.gif');
+}
+.status.CanJump {
+    background-size: 70px,150px;
+    background-image: url('/image/status/flying.gif');
+}
+.status {
     width: 100px;
     height: 70px;
     background-size: 50px,50px;
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: bottom;
-    background-image: url('/image/status/stealth.gif');
-}
-.status.CanJump {
-    width: 100px;
-    height: 70px;
-    background-size: 70px,150px;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: bottom;
-    background-image: url('/image/status/flying.gif');
 }
 .heroStatus {
     display: flex;
 }
 .heroIndicators {
     
-}
-.font {
-    /*font-family: "Curlz MT", fantasy;*/
 }
 
