@@ -1,7 +1,7 @@
 ﻿var Labirint = (function () {
     var labyrinth = [];
-    heroX = 0;
-    heroY = 0;
+    heroX = 1;
+    heroY = 1;
 
     var teleport = [];
 

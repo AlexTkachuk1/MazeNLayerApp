@@ -11,8 +11,8 @@
 
 .drawerSection {
     display: flex;
-    background-size: 200px 80px;
-    background-image: url('/image/appBackground/ground6.jpg');
+    background-size: 162px 162px;
+    background-image: url('/image/appBackground/d1iTNJEjBdE.jpg');
 }
 
 .menu {
@@ -41,10 +41,6 @@
     height: 10px;
 }
 
-.gameMenuIndent {
-    height: 100px;
-}
-
 .status {
     width: 50px;
     height: 50px;
@@ -65,11 +61,12 @@
 }
 
     .cell.Wall {
-        background-image: url('/image/appBackground/wall2.png');
+        background-size: 120px 80px;
+        background-image: url('/image/maze/wall3.jpg');
     }
 
     .cell.GoldHeap {
-        background-size: 40px 40px;
+        background-size: 30px 30px;
         background-image: url('/image/maze/coin.gif');
     }
 
@@ -88,7 +85,8 @@
     }
 
     .cell.CellWithHero {
-        background-image: url('/image/maze/hero.webp');
+        background-size: 60px 80px;
+        background-image: url('/image/maze/hero3.gif');
     }
 
     .cell.Gate {
@@ -127,7 +125,7 @@
     }
 
     .cell.Draconian {
-        background-size: 70px 80px;
+        background-size: 100px 100px;
         background-image: url('/image/maze/goblin.gif');
     }
 
@@ -147,8 +145,8 @@
     }
 
     .cell.SmallPotionTreatment {
-        background-size: 50px 50px;
-        background-image: url('/image/maze/SmallPotionTreatment.gif');
+        background-size: 40px 40px;
+        background-image: url('/image/maze/Potion.png');
     }
 
     .cell.SwampCreature {
@@ -157,7 +155,7 @@
     }
 
     .cell.AverageTreatmentPotion {
-        background-size: 50px 50px;
+        background-size: 40px 40px;
         background-image: url('/image/maze/SmallPotionTreatment.gif');
     }
 

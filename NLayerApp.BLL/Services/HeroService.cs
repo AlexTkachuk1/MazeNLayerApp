@@ -119,8 +119,8 @@ namespace NLayerApp.BLL_.Services
             var hero = GetHero();
             if (!CanUseDamage(hero)) 
             {
-                var damag = _random.Next(15,30);
-                var trueDamage = damag - hero.Armor;
+                var damage = _random.Next(15,30);
+                var trueDamage = damage - hero.Armor;
                 DealDamage(trueDamage);
             }
         }
@@ -193,18 +193,9 @@ namespace NLayerApp.BLL_.Services
                 var trueDamage = 15;
                 if (hero.CanJump > 0 || hero.HasGiganHammer > 0 || hero.Invisible > 0)
                 {
-                    for (int i = 0; i < hero.CanJump; i++)
-                    {
-                        trueDamage += 5;
-                    }
-                    for (int i = 0; i < hero.HasGiganHammer; i++)
-                    {
-                        trueDamage += 5;
-                    }
-                    for (int i = 0; i < hero.Invisible; i++)
-                    {
-                        trueDamage += 5;
-                    }
+                    var val = 5 * (hero.CanJump + hero.HasGiganHammer + hero.Invisible);
+                    
+                    trueDamage += val;
                 }
                 DealDamage(trueDamage);
             }

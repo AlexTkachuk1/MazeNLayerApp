@@ -63,7 +63,7 @@
 }
 
     .cell.Wall {
-        background-image: url('/image/appBackground/Wall4.png');
+        background-image: url('/image/maze/wall3.jpg');
     }
 
     .cell.GoldHeap {
@@ -204,4 +204,5 @@
 }
 
 .heroIndicators {
+
 }

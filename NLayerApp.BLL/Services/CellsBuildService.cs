@@ -46,7 +46,7 @@ namespace NLayerApp.BLL_.Services
             {
                 //randomCell
             };
-            var startCell = maze.Cells.Single(x => x.CordinateX == 0 && x.CordinateY == 0);
+            var startCell = maze.Cells.Single(x => x.CordinateX == 1 && x.CordinateY == 1);
             wallsToDestroy.Add(startCell);
             maze.Hero.X = startCell.CordinateX;
             maze.Hero.Y = startCell.CordinateY;
@@ -61,7 +61,11 @@ namespace NLayerApp.BLL_.Services
                 var newGraundCell = _mazeBuildService.ReplaceCellToGround(wallToDestroy, maze);
                 wallsToDestroy.Remove(wallToDestroy);
 
-                var nearestWalls = _mazeBuildService.GetNears<Wall>(newGraundCell, maze);
+                var nearestWalls = _mazeBuildService.GetNears<Wall>(newGraundCell, maze)
+                    .Where(x=>x.CordinateX !=0
+                    && x.CordinateX < maze.Width-1 
+                    && x.CordinateY != 0
+                    && x.CordinateY < maze.Height-1);
 
                 wallsToDestroy.AddRange(nearestWalls);
 
@@ -193,7 +197,7 @@ namespace NLayerApp.BLL_.Services
         }
         public IMaze BuildRobot(int chanceFrom1000, IMaze maze)
         {
-            var allGroundCells = maze.Cells.OfType<Wall>().ToList();
+            var allGroundCells = maze.Cells.OfType<Ground>().ToList();
             var allCells = new List<BaseCell>();
             allCells.AddRange(allGroundCells);
             _mazeBuildService.generateWithTrueChance(chanceFrom1000, "Robot", allCells, maze);
@@ -202,7 +206,7 @@ namespace NLayerApp.BLL_.Services
         }
         public IMaze BuildExperiencedWarrior(int chanceFrom1000, IMaze maze)
         {
-            var allGroundCells = maze.Cells.OfType<Wall>().ToList();
+            var allGroundCells = maze.Cells.OfType<Ground>().ToList();
             var allCells = new List<BaseCell>();
             allCells.AddRange(allGroundCells);
             _mazeBuildService.generateWithTrueChance(chanceFrom1000, "ExperiencedWarrior", allCells, maze);
@@ -229,7 +233,7 @@ namespace NLayerApp.BLL_.Services
         }
         public IMaze BuildAverageTreatmentPotion(int chanceFrom1000, IMaze maze)
         {
-            var allGroundCells = maze.Cells.OfType<Wall>().ToList();
+            var allGroundCells = maze.Cells.OfType<Ground>().ToList();
             var allCells = new List<BaseCell>();
             allCells.AddRange(allGroundCells);
             _mazeBuildService.generateWithTrueChance(chanceFrom1000, "AverageTreatmentPotion", allCells, maze);
@@ -238,7 +242,7 @@ namespace NLayerApp.BLL_.Services
         }
         public IMaze BuildBagOfGold(int chanceFrom1000, IMaze maze)
         {
-            var allGroundCells = maze.Cells.OfType<Wall>().ToList();
+            var allGroundCells = maze.Cells.OfType<Ground>().ToList();
             var allCells = new List<BaseCell>();
             allCells.AddRange(allGroundCells);
             _mazeBuildService.generateWithTrueChance(chanceFrom1000, "BagOfGold", allCells, maze);
@@ -291,7 +295,10 @@ namespace NLayerApp.BLL_.Services
 
         public IMaze BuildMiracleShop(int chanceFrom1000, IMaze maze)
         {
-            var allGroundCells = maze.Cells.OfType<Wall>().ToList();
+            var allGroundCells = maze.Cells.OfType<Wall>().Where(x => x.CordinateX != 0
+                    && x.CordinateX < maze.Width - 1
+                    && x.CordinateY != 0
+                    && x.CordinateY < maze.Height - 1).ToList();
             var allCells = new List<BaseCell>();
             allCells.AddRange(allGroundCells);
             _mazeBuildService.generateWithTrueChance(chanceFrom1000, "MiracleShop", allCells, maze);
