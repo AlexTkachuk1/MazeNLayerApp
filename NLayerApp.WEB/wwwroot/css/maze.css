@@ -76,13 +76,13 @@
     }
 
     .cell.Ground {
-        background-size: 80px 40px;
-        background-image: url('/image/appBackground/ground.png');
+        /*background-size: 80px 40px;
+        background-image: url('/image/appBackground/ground.png');*/
     }
 
     .cell.InvisibleTrap {
-        background-size: 80px 40px;
-        background-image: url('/image/appBackground/ground.png');
+        /*background-size: 80px 40px;
+        background-image: url('/image/appBackground/ground.png');*/
     }
 
     .cell.Сhest {
@@ -94,7 +94,7 @@
     }
 
     .cell.CellWithHero {
-        background-image: url('/image/maze/hero10.gif');
+        background-image: url('/image/maze/hero.webp');
     }
 
     .cell.Gate {

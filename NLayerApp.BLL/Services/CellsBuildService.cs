@@ -71,6 +71,61 @@ namespace NLayerApp.BLL_.Services
             }
             return maze;
         }
+        public IMaze BuildGroundMyVersion(IMaze maze)
+        {
+            var wallsToDestroy = new List<BaseCell>() {
+                maze.Cells[0]
+            };
+
+            var cellVisited = new List<BaseCell>();
+            var allWallsToDestroy = wallsToDestroy;
+            while (wallsToDestroy.Any() && allWallsToDestroy.Any())
+            {
+                
+                if (wallsToDestroy.Any())
+                {
+                    var ToDestroy = _mazeBuildService.GetRandom(wallsToDestroy);
+                    allWallsToDestroy.Remove(ToDestroy);
+
+                    var ground = _mazeBuildService.ReplaceCellToGround(ToDestroy, maze);
+                    wallsToDestroy.Remove(ToDestroy);
+
+                    cellVisited.Add(ground);
+                    wallsToDestroy = new List<BaseCell>();
+
+                    var nearestWalls = _mazeBuildService.GetNears<Wall>(ground, maze);
+
+
+                    wallsToDestroy.AddRange(nearestWalls);
+
+
+                    wallsToDestroy = wallsToDestroy
+                        .Where(wall => _mazeBuildService.GetNears<Ground>(wall, maze).Count() < 2)
+                        .ToList();
+                    wallsToDestroy = wallsToDestroy.Where(wall => _mazeBuildService.GetNearsWhithDiagonals<Ground>(wall, maze).Count() < 3)
+                        .ToList();
+                    allWallsToDestroy.AddRange(wallsToDestroy);
+                    while (!wallsToDestroy.Any() && allWallsToDestroy.Any())
+                    {
+                        allWallsToDestroy = allWallsToDestroy.Where(wall => _mazeBuildService.GetNearsWhithDiagonals<Ground>(wall, maze).Count() < 3)
+                        .ToList();
+                        var randomCellVisited = _mazeBuildService.GetRandom(cellVisited);
+                        var allNearestWalls = _mazeBuildService.GetNearsWhithDiagonals<Wall>(randomCellVisited, maze);
+                        var newWallToDestroy = allNearestWalls.Where(wall => _mazeBuildService.GetNears<Ground>(wall, maze).Count() < 2)
+                        .ToList();
+                        if (newWallToDestroy.Any())
+                        {
+                            wallsToDestroy.Add(_mazeBuildService.GetRandom(newWallToDestroy));
+                        }
+                        else
+                        {
+                            cellVisited.Remove(randomCellVisited);
+                        }
+                    }
+                }
+            }
+            return maze;
+        }
         public IMaze BuildInvisibleTrap(int chans, IMaze maze)
         {
             _mazeBuildService.generateWithChance(chans, "InvisibleTrap", maze);

@@ -11,8 +11,8 @@
 
 .drawerSection {
     display: flex;
-    background-size: 120px 80px;
-    background-image: url('/image/appBackground/ground3.jpg');
+    background-size: 320px 80px;
+    background-image: url('/image/appBackground/ground7.jpg');
 }
 
 .menu {
@@ -72,13 +72,13 @@
     }
 
     .cell.Ground {
-        background-size: 80px 40px;
-        background-image: url('/image/appBackground/grass.png');
+        /*background-size: 85px 40px;
+        background-image: url('/image/appBackground/grass2.png');*/
     }
 
     .cell.InvisibleTrap {
-        background-size: 80px 40px;
-        background-image: url('/image/appBackground/grass.png');
+        /*background-size: 80px 40px;
+        background-image: url('/image/appBackground/grass.png');*/
     }
 
     .cell.Сhest {
@@ -90,6 +90,7 @@
     }
 
     .cell.Gate {
+        background-size: 100px 90px;
         background-image: url('/image/maze/castle3.png');
     }
 

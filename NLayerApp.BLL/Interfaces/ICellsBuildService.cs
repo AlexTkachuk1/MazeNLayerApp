@@ -6,6 +6,7 @@ namespace NLayerApp.BLL_.Interfaces
     {
         IMaze BuildWall(IMaze maze);
         IMaze BuildGround(IMaze maze);
+        IMaze BuildGroundMyVersion(IMaze maze);
         IMaze BuildLegionary(int chance, IMaze maze);
         IMaze BuildGate(IMaze maze);
         IMaze BuildGoldHeap(int chance, IMaze maze);

@@ -127,7 +127,7 @@ namespace NLayerApp.BLL_.BusinessModels
 
             _maze = cellsBuildService.BuildWall(_maze);
 
-            _maze = cellsBuildService.BuildGround(_maze);
+            _maze = cellsBuildService.BuildGroundMyVersion(_maze);
 
             _maze = cellsBuildService.BuildGate(_maze);
 

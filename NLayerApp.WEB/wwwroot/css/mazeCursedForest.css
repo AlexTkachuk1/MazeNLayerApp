@@ -12,7 +12,7 @@
 .drawerSection {
     display: flex;
     background-size: 160px 80px;
-    background-image: url('/image/appBackground/DarckGround.png');
+    background-image: url('/image/appBackground/ground.jpg');
 }
 
 .menu {
@@ -72,12 +72,12 @@
         background-image: url('/image/maze/coin.gif');
     }
     .cell.Ground {
-        background-size: 81px 40px;
-        background-image: url('/image/appBackground/dround2.png');
+        /*background-size: 81px 40px;
+        background-image: url('/image/appBackground/dround2.png');*/
     }
     .cell.DamnEarth {
-        background-size: 81px 40px;
-        background-image: url('/image/appBackground/dround2.png');
+        /*background-size: 81px 40px;
+        background-image: url('/image/appBackground/dround2.png');*/
     }
 
     .cell.InvisibleTrap {
@@ -90,7 +90,7 @@
     }
 
     .cell.CellWithHero {
-        background-image: url('/image/maze/hero10.gif');
+        background-image: url('/image/maze/hero.webp');
     }
 
     .cell.Gate {
@@ -159,6 +159,7 @@
 }
 
 .status.Damage {
+    background-size: 90px,90px;
     background-image: url('/image/status/sword.gif');
 }
 

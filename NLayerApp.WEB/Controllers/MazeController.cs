@@ -34,186 +34,186 @@ namespace NLayerApp.WEB.Controllers
         public IActionResult DrawJs()
         {
             return View();
-        }
-        public IActionResult DrawCursedForest()
-        {
-            return View();
-        }
-        public IActionResult DrawPoisonSwamps()
-        {
-            return View();
-        }
-
-        public IActionResult DrawFromDb()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult AddNewItems([FromQuery(Name = "Name")] string cellTypeName)
-        {
-            heroService.StepOnMiracleShop(cellTypeName);
-            return RedirectToAction("DrawJs");
-        }
-
-        [HttpPost]
-        public IActionResult HeroStepOnGold([FromQuery(Name = "Name")] string cellTypeName)
-        {
-
-            heroService.StepOn(cellTypeName);
-
-            return StatusCode(200);
-
-        }
-
-        public IActionResult GameOver()
-        {
-            heroService.ReturnDefaultHeroStatus();
-            return View();
-        }
-        public IActionResult Menu()
-        {
-            return View();
-        }
-        [HttpGet]
-        public IActionResult HeroIndicators()
-        {
-            var hero = heroService.GetHero();
-            var heroViewModel = mapper.Map<HeroViewModel>(hero);
-            return new JsonResult(heroViewModel);
-        }
-        public IActionResult GetHeroStatus()
-        {
-            var hero = heroService.GetHero();
-            var heroViewModel = mapper.Map<HeroViewModel>(hero);
-            return new JsonResult(heroViewModel);
-        }
-        public IActionResult BuildMaze(MazeViewModel mazeViewModel)
-        {
-            var mazeHeight = mazeViewModel.Height;
-            var mazeWidth = mazeViewModel.Width;
-            IMaze maze = mazeService.BuildMaze(mazeWidth, mazeHeight);
-            maze.Name = mazeViewModel.Name;
-            mazeService.SaveMaze(maze);
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult GetBaseLabyrinth()
-        {
-            var allMazes = mazeService.GetAllMazes();
-            var maze = allMazes[0];
-            var mazeVievModel = mapper.Map<ReadyMazeViewModel>(maze);
-            mazeVievModel.Hero = mapper.Map<HeroViewModel>(maze.Hero);
-            for (int i = 0; i < maze.Hero.Inventory.Count; i++)
-            {
-                var item = mapper.Map<ItemViewModel>(maze.Hero.Inventory[i]);
-                mazeVievModel.Hero.Inventory.Add(item);
-            }
-            for (int i = 0; i < maze.Cells.Count; i++)
-            {
-                var cell = mapper.Map<CellViewModel>(maze.Cells[i]);
-                mazeVievModel.CellViewModels.Add(cell);
-            }
-            return new JsonResult(mazeVievModel);
-        }
-        [HttpGet]
-        public IActionResult MazeDataForJs()
-        {
-            IMaze maze = mazeService.BuildMaze();
-
-            var cells = new List<CellViewModel>();
-
-            for (int c = 0; c < maze.Cells.Count; c++)
-            {
-                var cell = mapper.Map<CellViewModel>(maze.Cells[c]);
-                cells.Add(cell);
-            }
-
-            var items = new List<ItemViewModel>();
-
-            for (int i = 0; i < maze.Hero.Inventory.Count; i++)
-            {
-                var item = mapper.Map<ItemViewModel>(maze.Hero.Inventory[i]);
-                items.Add(item);
-            }
-
-            var hero = mapper.Map<HeroViewModel>(maze.Hero);
-            hero.Inventory.AddRange(items);
-
-
-            var mazeDrawJsModel = mapper.Map<ReadyMazeViewModel>(maze);
-            mazeDrawJsModel.Hero = hero;
-            mazeDrawJsModel.CellViewModels.AddRange(cells);
-
-            return new JsonResult(mazeDrawJsModel);
-        }
-        [HttpGet]
-        public IActionResult MazeDataForCursedForest()
-        {
-            IMaze maze = mazeService.BuildMazeCursedForest();
-
-            var cells = new List<CellViewModel>();
-
-            for (int c = 0; c < maze.Cells.Count; c++)
-            {
-                var cell = mapper.Map<CellViewModel>(maze.Cells[c]);
-                cells.Add(cell);
-            }
-
-            var items = new List<ItemViewModel>();
-
-            for (int i = 0; i < maze.Hero.Inventory.Count; i++)
-            {
-                var item = mapper.Map<ItemViewModel>(maze.Hero.Inventory[i]);
-                items.Add(item);
-            }
-
-            var hero = mapper.Map<HeroViewModel>(maze.Hero);
-            hero.Inventory.AddRange(items);
-
-
-            var mazeDrawJsModel = mapper.Map<ReadyMazeViewModel>(maze);
-            mazeDrawJsModel.Hero = hero;
-            mazeDrawJsModel.CellViewModels.AddRange(cells);
-
-            return new JsonResult(mazeDrawJsModel);
-        }
-        [HttpGet]
-        public IActionResult MazeDataForPoisonSwamps()
-        {
-            IMaze maze = mazeService.BuildMazePoisonSwamps();
-
-            var cells = new List<CellViewModel>();
-
-            for (int c = 0; c < maze.Cells.Count; c++)
-            {
-                var cell = mapper.Map<CellViewModel>(maze.Cells[c]);
-                cells.Add(cell);
-            }
-
-            var items = new List<ItemViewModel>();
-
-            for (int i = 0; i < maze.Hero.Inventory.Count; i++)
-            {
-                var item = mapper.Map<ItemViewModel>(maze.Hero.Inventory[i]);
-                items.Add(item);
-            }
-
-            var hero = mapper.Map<HeroViewModel>(maze.Hero);
-            hero.Inventory.AddRange(items);
-
-
-            var mazeDrawJsModel = mapper.Map<ReadyMazeViewModel>(maze);
-            mazeDrawJsModel.Hero = hero;
-            mazeDrawJsModel.CellViewModels.AddRange(cells);
-
-            return new JsonResult(mazeDrawJsModel);
-        }
-        protected override void Dispose(bool disposing)
-        {
-            mazeService.Dispose();
-            base.Dispose(disposing);
-        }
+         }
+    public IActionResult DrawCursedForest()
+    {
+        return View();
     }
+    public IActionResult DrawPoisonSwamps()
+    {
+        return View();
+    }
+
+    public IActionResult DrawFromDb()
+    {
+        return View();
+    }
+
+    [HttpGet]
+    public IActionResult AddNewItems([FromQuery(Name = "Name")] string cellTypeName)
+    {
+        heroService.StepOnMiracleShop(cellTypeName);
+        return RedirectToAction("DrawJs");
+    }
+
+    [HttpPost]
+    public IActionResult HeroStepOnGold([FromQuery(Name = "Name")] string cellTypeName)
+    {
+
+        heroService.StepOn(cellTypeName);
+
+        return StatusCode(200);
+
+    }
+
+    public IActionResult GameOver()
+    {
+        heroService.ReturnDefaultHeroStatus();
+        return View();
+    }
+    public IActionResult Menu()
+    {
+        return View();
+    }
+    [HttpGet]
+    public IActionResult HeroIndicators()
+    {
+        var hero = heroService.GetHero();
+        var heroViewModel = mapper.Map<HeroViewModel>(hero);
+        return new JsonResult(heroViewModel);
+    }
+    public IActionResult GetHeroStatus()
+    {
+        var hero = heroService.GetHero();
+        var heroViewModel = mapper.Map<HeroViewModel>(hero);
+        return new JsonResult(heroViewModel);
+    }
+    public IActionResult BuildMaze(MazeViewModel mazeViewModel)
+    {
+        var mazeHeight = mazeViewModel.Height;
+        var mazeWidth = mazeViewModel.Width;
+        IMaze maze = mazeService.BuildMaze(mazeWidth, mazeHeight);
+        maze.Name = mazeViewModel.Name;
+        mazeService.SaveMaze(maze);
+        return View();
+    }
+
+    [HttpGet]
+    public IActionResult GetBaseLabyrinth()
+    {
+        var allMazes = mazeService.GetAllMazes();
+        var maze = allMazes[0];
+        var mazeVievModel = mapper.Map<ReadyMazeViewModel>(maze);
+        mazeVievModel.Hero = mapper.Map<HeroViewModel>(maze.Hero);
+        for (int i = 0; i < maze.Hero.Inventory.Count; i++)
+        {
+            var item = mapper.Map<ItemViewModel>(maze.Hero.Inventory[i]);
+            mazeVievModel.Hero.Inventory.Add(item);
+        }
+        for (int i = 0; i < maze.Cells.Count; i++)
+        {
+            var cell = mapper.Map<CellViewModel>(maze.Cells[i]);
+            mazeVievModel.CellViewModels.Add(cell);
+        }
+        return new JsonResult(mazeVievModel);
+    }
+    [HttpGet]
+    public IActionResult MazeDataForJs()
+    {
+        IMaze maze = mazeService.BuildMaze();
+
+        var cells = new List<CellViewModel>();
+
+        for (int c = 0; c < maze.Cells.Count; c++)
+        {
+            var cell = mapper.Map<CellViewModel>(maze.Cells[c]);
+            cells.Add(cell);
+        }
+
+        var items = new List<ItemViewModel>();
+
+        for (int i = 0; i < maze.Hero.Inventory.Count; i++)
+        {
+            var item = mapper.Map<ItemViewModel>(maze.Hero.Inventory[i]);
+            items.Add(item);
+        }
+
+        var hero = mapper.Map<HeroViewModel>(maze.Hero);
+        hero.Inventory.AddRange(items);
+
+
+        var mazeDrawJsModel = mapper.Map<ReadyMazeViewModel>(maze);
+        mazeDrawJsModel.Hero = hero;
+        mazeDrawJsModel.CellViewModels.AddRange(cells);
+
+        return new JsonResult(mazeDrawJsModel);
+    }
+    [HttpGet]
+    public IActionResult MazeDataForCursedForest()
+    {
+        IMaze maze = mazeService.BuildMazeCursedForest();
+
+        var cells = new List<CellViewModel>();
+
+        for (int c = 0; c < maze.Cells.Count; c++)
+        {
+            var cell = mapper.Map<CellViewModel>(maze.Cells[c]);
+            cells.Add(cell);
+        }
+
+        var items = new List<ItemViewModel>();
+
+        for (int i = 0; i < maze.Hero.Inventory.Count; i++)
+        {
+            var item = mapper.Map<ItemViewModel>(maze.Hero.Inventory[i]);
+            items.Add(item);
+        }
+
+        var hero = mapper.Map<HeroViewModel>(maze.Hero);
+        hero.Inventory.AddRange(items);
+
+
+        var mazeDrawJsModel = mapper.Map<ReadyMazeViewModel>(maze);
+        mazeDrawJsModel.Hero = hero;
+        mazeDrawJsModel.CellViewModels.AddRange(cells);
+
+        return new JsonResult(mazeDrawJsModel);
+    }
+    [HttpGet]
+    public IActionResult MazeDataForPoisonSwamps()
+    {
+        IMaze maze = mazeService.BuildMazePoisonSwamps();
+
+        var cells = new List<CellViewModel>();
+
+        for (int c = 0; c < maze.Cells.Count; c++)
+        {
+            var cell = mapper.Map<CellViewModel>(maze.Cells[c]);
+            cells.Add(cell);
+        }
+
+        var items = new List<ItemViewModel>();
+
+        for (int i = 0; i < maze.Hero.Inventory.Count; i++)
+        {
+            var item = mapper.Map<ItemViewModel>(maze.Hero.Inventory[i]);
+            items.Add(item);
+        }
+
+        var hero = mapper.Map<HeroViewModel>(maze.Hero);
+        hero.Inventory.AddRange(items);
+
+
+        var mazeDrawJsModel = mapper.Map<ReadyMazeViewModel>(maze);
+        mazeDrawJsModel.Hero = hero;
+        mazeDrawJsModel.CellViewModels.AddRange(cells);
+
+        return new JsonResult(mazeDrawJsModel);
+    }
+    protected override void Dispose(bool disposing)
+    {
+        mazeService.Dispose();
+        base.Dispose(disposing);
+    }
+}
 }
