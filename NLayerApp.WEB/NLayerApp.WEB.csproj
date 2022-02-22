@@ -32,8 +32,4 @@
     <ProjectReference Include="..\NLayerApp.DAL\NLayerApp.DAL..csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Maze\NewFolder\" />
-  </ItemGroup>
-
 </Project>

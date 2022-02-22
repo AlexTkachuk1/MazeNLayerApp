@@ -60,13 +60,7 @@ body {
 .statusIconForMyHp{
     margin-left:3px;
 }
-.statusIcon {
-    margin-left: 15px;
-    background-size: 100px 120px;
-    background-repeat:no-repeat;
-    background-position:center;
-    background-image: url('/image/appBackground/icon.png');
-}
+
 .statusForAbilitiPower{
     margin-left:150px;
     display:flex;

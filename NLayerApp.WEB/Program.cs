@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using NLayerApp.BLL_.BusinessModels;
 using NLayerApp.BLL_.Interfaces;
 using NLayerApp.BLL_.Services;
 using NLayerApp.DAL_.EF;
@@ -19,7 +20,7 @@ new EFUnitOfWork(container.GetService<MazeDbContext>())
 );
 
 builder.Services.AddScoped<IMazeService>(container => 
-new MazeService(container.GetService<IMapper>(), container.GetService<IUnitOfWork>())
+new MazeService(container.GetService<MazeBuilder>(), container.GetService<IMapper>(), container.GetService<IUnitOfWork>())
 );;
 
 builder.Services.AddScoped<IUserService>(container =>
@@ -30,6 +31,14 @@ builder.Services.AddScoped<IHeroService>(container =>
 new HeroService(container.GetService<IMapper>(), container.GetService<IUnitOfWork>())
 );
 
+builder.Services.AddScoped<IMazeBuildService, MazeBuildService>();
+
+builder.Services.AddScoped<ICellsBuildService>(container =>
+new CellsBuildService(container.GetService<IMazeBuildService>())
+);
+builder.Services.AddScoped<MazeBuilder>(container =>
+new MazeBuilder(container.GetService<ICellsBuildService>())
+);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllersWithViews();

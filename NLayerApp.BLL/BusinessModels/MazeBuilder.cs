@@ -1,13 +1,22 @@
 ﻿using NLayerApp.BLL_.DTO;
 using NLayerApp.BLL_.DTO.Cells;
 using NLayerApp.BLL_.DTO.Interfaces;
+using NLayerApp.BLL_.Interfaces;
 
 namespace NLayerApp.BLL_.BusinessModels
 {
     public class MazeBuilder
     {
         private IMaze _maze;
-        private Random _random = new Random();
+
+        private ICellsBuildService cellsBuildService;
+        public MazeBuilder(
+            ICellsBuildService cellsBuildService
+            )
+        {
+            this.cellsBuildService = cellsBuildService;
+        }
+
         public IMaze Build(int width = 30,
             int height = 15,
             Action<IMaze> drawStepByStep = null)
@@ -20,344 +29,136 @@ namespace NLayerApp.BLL_.BusinessModels
                 DrawStepByStep = drawStepByStep
             };
 
-            BuildWall();
+            _maze = cellsBuildService.BuildWall(_maze);
 
-            BuildGround();
+            _maze = cellsBuildService.BuildGround(_maze);
 
-            BuildGate();
+            _maze = cellsBuildService.BuildGoldHeap(8, _maze);
 
-            BuildGoldHeap(8);
+            _maze = cellsBuildService.BuildGate(_maze);
 
-            BuildTrap(7);
+            _maze = cellsBuildService.BuildAverageTreatmentPotion(5, _maze);
 
-            BuildGoblin();
+            _maze = cellsBuildService.BuildBagOfGold(5, _maze);
 
-            BuildBoss(1);
+            _maze = cellsBuildService.BuildSmallPotionTreatment(5, _maze);
 
-            BuildKiller(2);
+            _maze = cellsBuildService.BuildTrap(7, _maze);
 
-            BuildTeleport();
+            _maze = cellsBuildService.BuildLegionary(5, _maze);
 
-            BuildMiracleShop(5);
+            _maze = cellsBuildService.BuildBoss(1, _maze);
 
-            BuildСhest(20);
+            _maze = cellsBuildService.BuildKiller(2,_maze);
 
+            _maze = cellsBuildService.BuildTeleport(_maze);
+
+            _maze = cellsBuildService.BuildMiracleShop(5, _maze);
+
+            _maze = cellsBuildService.BuildСhest(20, _maze);
+
+            _maze = cellsBuildService.BuildAverageTreatmentPotion(5, _maze);
+
+            _maze = cellsBuildService.BuildBagOfGold(5, _maze);
             return _maze;
-        }
-        private void BuildWall()
+        }  
+        public IMaze BuildCursedForest(int width = 30,
+            int height = 15,
+            Action<IMaze> drawStepByStep = null)
         {
-            for (int y = 0; y < _maze.Height; y++)
+            _maze = new MazeDTO()
             {
-                for (int x = 0; x < _maze.Width; x++)
-                {
-                    var wall = new Wall(x, y, _maze);
-                    _maze.Cells.Add(wall);
-                }
-            }
-        }
-        private void BuildGround()
-        {
-
-            var randomCell = GetRandom(_maze.Cells);
-            var wallsToDestroy = new List<BaseCell>()
-            {
-                //randomCell
+                Width = width,
+                Height = height,
+                Cells = new List<BaseCell>(),
+                DrawStepByStep = drawStepByStep
             };
-            var startCell = _maze.Cells.Single(x => x.CordinateX == 0 && x.CordinateY == 0);
-            wallsToDestroy.Add(startCell);
-            _maze.Hero.X = startCell.CordinateX;
-            _maze.Hero.Y = startCell.CordinateY;
 
+            _maze = cellsBuildService.BuildWall(_maze);
 
-            while (wallsToDestroy.Any())
-            {
-                ConsoleDrawer();
+            _maze = cellsBuildService.BuildGround(_maze);
 
-                var wallToDestroy = GetRandom(wallsToDestroy);
+            _maze = cellsBuildService.BuildGate(_maze);
 
-                var newGraundCell = ReplaceCellToGround(wallToDestroy);
-                wallsToDestroy.Remove(wallToDestroy);
+            _maze = cellsBuildService.BuildGoldHeap(8, _maze);
 
-                var nearestWalls = GetNears<Wall>(newGraundCell);
-                    
-                wallsToDestroy.AddRange(nearestWalls);
+            _maze = cellsBuildService.BuildInvisibleTrap(5, _maze);
 
-                wallsToDestroy = wallsToDestroy
-                    .Where(wall => GetNears<Ground>(wall).Count() < 2)
-                    .ToList();
-            }
-        }
-        public void BuildGoblin()
-        {
-            generateWithChance(5, "Legionary");
-            ConsoleDrawer();
-        }
-        public void BuildGate()
-        {
-            var lastCell = _maze.Cells.Single(cell => cell.CordinateY == _maze.Height - 1
-            && cell.CordinateX == _maze.Width - 1);
-            var cell = FindNearestCell<Ground>(lastCell, "Ground");
-            var gateCell = new Gate(cell.CordinateX, cell.CordinateY, _maze);
-            ReplaceCell(gateCell);
-            ConsoleDrawer();
-        }
+            _maze = cellsBuildService.BuildAssassin(3, _maze);
 
-        public void BuildGoldHeap(int chance)
-        {
-            generateWithChance(chance, "GoldHeap");
-            ConsoleDrawer();
-        }
+            _maze = cellsBuildService.BuildChampion(1, _maze);
 
-        public void BuildTrap(int chance)
-        {
-            generateWithChance(chance, "Trap");
-            ConsoleDrawer();
-        }
-        public void BuildBoss(int number)
-        {
-            var graundCells = _maze.Cells.OfType<Ground>().ToList();
-            var allGraundCells = new List<BaseCell>();
-            allGraundCells.AddRange(graundCells);
-            generateTheNumberOfCells(number, "Boss", allGraundCells);
-            ConsoleDrawer();
-        }
+            _maze = cellsBuildService.BuildElf(3, _maze);
 
-        public void BuildСhest(int chanceFrom1000)
-        {
-            var allGroundCells = _maze.Cells.OfType<Ground>().ToList();
-            var allCells = new List<BaseCell>();
-            allCells.AddRange(allGroundCells);
-            generateWithTrueChance(chanceFrom1000, "Сhest", allCells);
-            ConsoleDrawer();
-        }
+            _maze = cellsBuildService.BuildSwampCreature(6, _maze);
 
-        public void BuildMiracleShop(int chanceFrom1000)
-        {
-            var allGroundCells = _maze.Cells.OfType<Wall>().ToList();
-            var allCells = new List<BaseCell>();
-            allCells.AddRange(allGroundCells);
-            generateWithTrueChance(chanceFrom1000, "MiracleShop", allCells);
-            ConsoleDrawer();
-        }
-        public void BuildKiller(int number)
-        {
-            var graundCells = _maze.Cells.OfType<Ground>().ToList();
-            var allGraundCells = new List<BaseCell>();
-            allGraundCells.AddRange(graundCells);
-            generateTheNumberOfCells(number, "Killer", allGraundCells);
-            ConsoleDrawer();
-        }
-        public void BuildTeleport()
-        {
-            var graundCells = _maze.Cells.OfType<Ground>().ToList();
-            var allGraundCells = new List<BaseCell>();
-            allGraundCells.AddRange(graundCells);
-            generateTheNumberOfCells(2, "Teleport", allGraundCells);
-            ConsoleDrawer();
-        }
+            _maze = cellsBuildService.BuildExperiencedWarrior(10, _maze);
 
-        //метод принимает число до 100 которое представляет
-        //собой долю клеток земли из их общего пула, и экземпляр клетки
-        //копиями которой будут заменены клетки земли указанной доли.
-        public IMaze generateWithChance(double chance, string cellType)
-        {
-            double chanceFactor = chance / 100;
-            var graundCells = _maze.Cells.OfType<Ground>().ToList();
+            _maze = cellsBuildService.BuildRobot(5, _maze);
 
-            double numberOfGraundCells = graundCells.Count;
-            var numberOfCellsGenerated = (int)Math.Round(numberOfGraundCells * chanceFactor);
+            _maze = cellsBuildService.BuildSmallPotionTreatment(3, _maze);
 
-            var allGraundCells = new List<BaseCell>();
-            allGraundCells.AddRange(graundCells);
+            _maze = cellsBuildService.BuildTeleport(_maze);
 
-            return generateTheNumberOfCells(numberOfCellsGenerated, cellType, allGraundCells);
-        }
-        public IMaze generateWithTrueChance(double chance, string cellType,List<BaseCell> allCells)
-        {
-            var graundCells = allCells; /*_maze.Cells.OfType<Ground>().ToList()*/
-            var allGraundCells = new List<BaseCell>();
-            allGraundCells.AddRange(graundCells);
-            for (int i = 0; i < graundCells.Count; i++)
-            {
-                double number = _random.Next(0, 1000);
-                if (chance > number)
-                {
-                    IMaze maze = generateTheNumberOfCells(1, cellType, allGraundCells);
-                }
-            }
-            return _maze;
-        }
-        //метод получает название типа клетки и количество(int), а также принимает колекцию клеток ,
-        //из которой будут случайно выбрано указанное количество клеток и заменено на указанный тип клеток. 
-        public IMaze generateTheNumberOfCells(int numberOfCells, string cellType, List<BaseCell> cells)
-        {
-            for (int i = 0; i < numberOfCells; i++)
-            {
-                var oldCell = GetRandom(cells);
+            _maze = cellsBuildService.BuildAverageTreatmentPotion(5, _maze);
 
-                switch (cellType)
-                {
-                    case "Сhest":
-                        var newСhest = new Сhest(oldCell.CordinateX, oldCell.CordinateY, _maze);
-                        ReplaceCell(newСhest);
-                        break;
-                    case "GoldHeap":
-                        var newGoldHeap = new GoldHeap(oldCell.CordinateX, oldCell.CordinateY, _maze);
-                        ReplaceCell(newGoldHeap);
-                        break;
-                    case "Water":
-                        var newWater = new Water(oldCell.CordinateX, oldCell.CordinateY, _maze);
-                        ReplaceCell(newWater);
-                        break;
-                    case "Wall":
-                        var newWall = new Water(oldCell.CordinateX, oldCell.CordinateY, _maze);
-                        ReplaceCell(newWall);
-                        break;
-                    case "Lava":
-                        var newLava = new Lava(oldCell.CordinateX, oldCell.CordinateY, _maze);
-                        ReplaceCell(newLava);
-                        break;
-                    case "Trap":
-                        var newTrap = new Trap(oldCell.CordinateX, oldCell.CordinateY, _maze);
-                        ReplaceCell(newTrap);
-                        break;
-                    case "Legionary":
-                        var newLegionary = new Legionary(oldCell.CordinateX, oldCell.CordinateY, _maze);
-                        ReplaceCell(newLegionary);
-                        break;
-                    case "Boss":
-                        var newBoss = new Boss(oldCell.CordinateX, oldCell.CordinateY, _maze);
-                        ReplaceCell(newBoss);
-                        break;
-                    case "Teleport":
-                        var newTeleport = new Teleport(oldCell.CordinateX, oldCell.CordinateY, _maze);
-                        ReplaceCell(newTeleport);
-                        break;
-                    case "MiracleShop":
-                        var newMiracleShop = new MiracleShop(oldCell.CordinateX, oldCell.CordinateY, _maze);
-                        ReplaceCell(newMiracleShop);
-                        break;
-                    case "Killer":
-                        var newKiller = new Killer(oldCell.CordinateX, oldCell.CordinateY, _maze);
-                        ReplaceCell(newKiller);
-                        break;
-                }
+            _maze = cellsBuildService.BuildBagOfGold(5, _maze);
 
-                cells.Remove(oldCell);
-            }
+            _maze = cellsBuildService.BuildMiracleShop(5, _maze);
+
+            _maze = cellsBuildService.BuildСhest(20, _maze);
+
+            _maze = cellsBuildService.BuildDamnEarth(20, _maze);
 
             return _maze;
         }
 
-        //метод находть ближайшую клетку определенного типа к определенной координате,
-        //которую представляет клетка переданная в метод.
-        private BaseCell FindNearestCell<T>(BaseCell сell, string cellType)
-        where T : BaseCell
+        public IMaze BuildPoisonSwamps(int width = 30,
+            int height = 15,
+            Action<IMaze> drawStepByStep = null)
         {
-            var startCell = сell;
-            var differentTypeCells = new List<BaseCell>();
-            while (startCell.GetType().Name != cellType)
+            _maze = new MazeDTO()
             {
-                var goodCells = GetNears<T>(startCell);
-                if (goodCells.Any())
-                {
-                    return GetRandom(goodCells.ToList());
-                }
-                else
-                {
-                    differentTypeCells.AddRange(GetNears(startCell));
-                }
+                Width = width,
+                Height = height,
+                Cells = new List<BaseCell>(),
+                DrawStepByStep = drawStepByStep
+            };
 
-                if (differentTypeCells.Any())
-                {
-                    startCell = GetRandom(differentTypeCells);
-                    differentTypeCells.Remove(startCell);
-                }
-            }
-            return startCell;
-        }
+            _maze = cellsBuildService.BuildWall(_maze);
 
-        // метод GetNears находит все клетки лабиринта определенного типа находящиеся 
-        // рядом с клеткой переданной в метод , кроме тех что прилегают к ней по диагонали.
-        private IEnumerable<BaseCell> GetNears(BaseCell cell)
-        {
-            return GetNears<BaseCell>(cell);
-        }
-        private IEnumerable<BaseCell> GetNears<CellType>(BaseCell cell)
-            where CellType : BaseCell
-        {
-            return _maze.Cells
-                .Where(c =>
-                   Math.Abs(c.CordinateX - cell.CordinateX) == 0 && Math.Abs(c.CordinateY - cell.CordinateY) == 1
-                || Math.Abs(c.CordinateX - cell.CordinateX) == 1 && Math.Abs(c.CordinateY - cell.CordinateY) == 0
-                )
-                .OfType<CellType>();
-        }
+            _maze = cellsBuildService.BuildGround(_maze);
 
-        // метод GetNears находит все клетки лабиринта определенного типа находящиеся 
-        // рядом с клеткой переданной в метод , Включяя тех что прилегают к ней по диагонали.
-        private IEnumerable<BaseCell> GetNearsWhithDiagonals<CellType>(BaseCell cell)
-           where CellType : BaseCell
-        {
-            var NearestCell = GetNears<CellType>(cell);
-            var DiagonalCell = _maze.Cells
-                .Where(c =>
-                    Math.Abs(c.CordinateX - cell.CordinateX) == 1 && Math.Abs(c.CordinateY - cell.CordinateY) == 1
-                ).OfType<CellType>();
-            var result = new List<BaseCell>();
-            result.AddRange(NearestCell);
-            result.AddRange(DiagonalCell);
-            return result;
-        }
-        private T GetRandom<T>(List<T> data)
-        {
-            var index = _random.Next(data.Count);
-            return data[index];
-        }
-        public void ReplaceCell(BaseCell newCell)
-        {
-            var oldCell = _maze.Cells.Single(cell => cell.CordinateX == newCell.CordinateX && cell.CordinateY == newCell.CordinateY);
-            _maze.Cells.Remove(oldCell);
-            _maze.Cells.Add(newCell);
-        }
+            _maze = cellsBuildService.BuildGate(_maze);
 
-        public BaseCell ReplaceCellToGround(BaseCell oldCell)
-        {
-            var ground = new Ground(oldCell.CordinateX, oldCell.CordinateY, oldCell.Maze);
-            ReplaceCell(ground);
-            return ground;
-        }
+            _maze = cellsBuildService.BuildGoldHeap(8, _maze);
 
-        public void ConsoleDrawer()
-        {
-            if (_maze.DrawStepByStep != null)
-            {
-                _maze.DrawStepByStep.Invoke(_maze);
-                //Thread.Sleep(100);
-            }
-        }
+            _maze = cellsBuildService.BuildMutant(1, _maze);
 
-        public IMaze StateOfTheMaze()
-        {
-            var oldCell = _maze.Cells.Single(x => x.CordinateX == _maze.Hero.X
-            && x.CordinateY == _maze.Hero.Y);
-            string cellType = oldCell.GetType().Name;
-            switch (cellType)
-            {
-                case "Сhest":
-                    //сначала нужно добавить новый тип клетое будут называться OpenChest
-                    //и заменять эту клетку на клетку нового типа.
-                    break;
-                case "GoldHeap":
-                    ReplaceCellToGround(oldCell);
-                    break;
-                case "Lava":
-                    // требуется написать всю логику связанную с отображением смерти персонажа.
-                    break;
-                case "Trap":
-                    // требуется придумать как будет отображаться урон.
-                    break;
-            }
+            _maze = cellsBuildService.BuildDraconian(2, _maze);
+
+            _maze = cellsBuildService.BuildDeadMan(3, _maze);
+
+            _maze = cellsBuildService.BuildDecomposedCorpse(7, _maze);
+
+            _maze = cellsBuildService.BuildDragon(1, _maze);
+
+            _maze = cellsBuildService.BuildGoblin(3, _maze);
+
+            _maze = cellsBuildService.BuildSmallPotionTreatment(3, _maze);
+
+            _maze = cellsBuildService.BuildTeleport(_maze);
+
+            _maze = cellsBuildService.BuildAverageTreatmentPotion(5, _maze);
+
+            _maze = cellsBuildService.BuildBagOfGold(5, _maze);
+
+            _maze = cellsBuildService.BuildMiracleShop(5, _maze);
+
+            _maze = cellsBuildService.BuildСhest(20, _maze);
+
+            _maze = cellsBuildService.BuildSwampCreature(3, _maze);
+
             return _maze;
         }
     }

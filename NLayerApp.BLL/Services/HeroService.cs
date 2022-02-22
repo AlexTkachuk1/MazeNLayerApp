@@ -21,6 +21,332 @@ namespace NLayerApp.BLL_.Services
         {
             return Database.Heroes.Get(3);
         }
+        public void StepOn(string cellTypeName)
+        {
+            switch (cellTypeName)
+            {
+                case "Сhest":
+                    StepOnСhest();
+                    break;
+                case "Water":
+                    StepOnWater();
+                    break;
+                case "Trap":
+                    StepOnTrap();
+                    break;
+                case "GoldHeap":
+                    StepOnGoldHeap();
+                    break;
+                case "Gate":
+                    StepOnGate();
+                    break;
+                case "BrokenTrap":
+                    BrokenTrap();
+                    break;
+                case "Legionary":
+                    StepOnLegionary();
+                    break;
+                case "Rip":
+                    StepOnRip();
+                    break;
+                case "Boss":
+                    StepOnBoss();
+                    break;
+                case "Wall":
+                    StepOnWall();
+                    break;
+                case "Teleport":
+                    StepOnTeleport();
+                    break;
+                case "Killer":
+                    StepOnKiller();
+                    break;
+                case "InvisibleTrap":
+                    StepOnInvisibleTrap();
+                    break;
+                case "Assassin":
+                    StepOnAssassin();
+                    break;
+                case "AverageTreatmentPotion":
+                    StepOnAverageTreatmentPotion();
+                    break;
+                case "BagOfGold":
+                    StepOnBagOfGold();
+                    break;
+                case "Champion":
+                    StepOnChampion();
+                    break;
+                case "DamnEarth":
+                    StepOnDamnEarth();
+                    break;
+                case "DeadMan":
+                    StepOnDeadMan();
+                    break;
+                case "DecomposedCorpse":
+                    StepOnDecomposedCorpse();
+                    break;
+                case "Draconian":
+                    StepOnDraconian();
+                    break;
+                case "Dragon":
+                    StepOnDragon();
+                    break;
+                case "Elf":
+                    StepOnElf();
+                    break;
+                case "ExperiencedWarrior":
+                    StepOnExperiencedWarrior();
+                    break;
+                case "Goblin":
+                    StepOnGoblin();
+                    break;
+                case "Mutant":
+                    StepOnMutant();
+                    break;
+                case "Robot":
+                    StepOnRobor();
+                    break;
+                case "SmallPotionTreatment":
+                    StepOnSmallPotionTreatment();
+                    break;
+                case "SwampCreature":
+                    StepOnSwampCreature();
+                    break;
+            }
+        }
+        public void StepOnSwampCreature()
+        {
+            var hero = GetHero();
+            if (!CanUseDamage(hero)) 
+            {
+                var damag = _random.Next(15,30);
+                var trueDamage = damag - hero.Armor;
+                DealDamage(trueDamage);
+            }
+        }
+        public void StepOnSmallPotionTreatment()
+        {
+            var hero = GetHero();
+            var healingPower = _random.Next(10, 35);
+            if(hero.HP+ healingPower <= 100)
+            {
+                hero.HP += healingPower;
+            }
+            else
+            {
+                hero.HP = 100;
+            }
+            UpdateHero(hero);
+        }
+        public void StepOnRobor()
+        {
+            var hero = GetHero();
+            if (!CanStels(hero))
+            {
+                var trueDamage = _random.Next(4, 40);
+                var armor = trueDamage / 2;
+                hero.Armor += armor;
+                DealDamage(trueDamage);
+            }
+        }
+        public void StepOnMutant()
+        {
+            var hero = GetHero();
+            var trueDamage = 20;
+            if (hero.HP < 100)
+            {
+                trueDamage += (100 - hero.HP);
+            }
+            DealDamage(trueDamage);
+        }
+        public void StepOnGoblin()
+        {
+            var hero = GetHero();
+            if (!CanStels(hero))
+            {
+                if (!CanUseDamage(hero))
+                {
+                    var damage = _random.Next(10, 20);
+                    var trueDamage = damage - hero.Armor;
+                    DealDamage(trueDamage);
+                }
+            }
+        }
+        public void StepOnExperiencedWarrior()
+        {
+            var hero = GetHero();
+            if (hero.HP > 70)
+            {
+                var trueDamage = 30;
+                if (hero.Damage > 0 || hero.Armor > 0)
+                {
+                    trueDamage += (hero.Armor + (hero.Damage * 3));
+                }
+                DealDamage(trueDamage);
+            }
+        }
+        public void StepOnElf()
+        {
+            var hero = GetHero();
+            if (!CanUseDamage(hero))
+            {
+                var trueDamage = 15;
+                if (hero.CanJump > 0 || hero.HasGiganHammer > 0 || hero.Invisible > 0)
+                {
+                    for (int i = 0; i < hero.CanJump; i++)
+                    {
+                        trueDamage += 5;
+                    }
+                    for (int i = 0; i < hero.HasGiganHammer; i++)
+                    {
+                        trueDamage += 5;
+                    }
+                    for (int i = 0; i < hero.Invisible; i++)
+                    {
+                        trueDamage += 5;
+                    }
+                }
+                DealDamage(trueDamage);
+            }
+
+        }
+        public void StepOnDragon()
+        {
+            var hero = GetHero();
+            var trueDamage = 90;
+            if (hero.Gold > 100)
+            {
+                hero.Gold -= 100;
+                UpdateHero(hero);
+            }
+            else
+            {
+                if (hero.Armor > 0 || hero.Damage > 0)
+                {
+                    trueDamage = trueDamage / 3;
+                    hero.Armor = 0;
+                    hero.Damage = 0;
+                }
+                DealDamage(trueDamage);
+            }
+        }
+        public void StepOnDraconian()
+        {
+            var hero = GetHero();
+            if (!CanStels(hero))
+            {
+                var trueDamage = 60;
+                if (hero.Armor > 0 || hero.Damage > 0)
+                {
+                    trueDamage = trueDamage / 2;
+                }
+                var gold = trueDamage;
+                hero.Gold += gold;
+                DealDamage(trueDamage);
+            }
+        }
+        public void StepOnDecomposedCorpse()
+        {
+            var trueDamage = _random.Next(5, 10);
+            DealDamage(trueDamage);
+        }
+        public void StepOnDeadMan()
+        {
+            var hero = GetHero();
+            if (!CanStels(hero))
+            {
+                if (!CanUseDamage(hero))
+                {
+                    var damage = _random.Next(20, 40);
+                    var trueDamage = damage - (hero.Armor * 2);
+                    DealDamage(trueDamage);
+                }
+
+            }
+        }
+        public void StepOnDamnEarth()
+        {
+            var trueDamage = 1;
+            DealDamage(trueDamage);
+        }
+        public void StepOnChampion()
+        {
+            var hero = GetHero();
+            if (!CanStels(hero))
+            {
+                var trueDamage = 80;
+                var gold = 30;
+                if (hero.Armor > 0)
+                {
+                    trueDamage -= hero.Armor;
+                }
+                hero.Armor = 0;
+                if (hero.Damage > 0)
+                {
+                    for (int i = 0; i < hero.Damage; i++)
+                    {
+                        trueDamage -= 20;
+                    }
+                }
+                hero.Damage = 0;
+                if (hero.CanJump > 0)
+                {
+                    for (int i = 0; i < hero.CanJump; i++)
+                    {
+                        trueDamage -= 15;
+                    }
+                }
+                hero.CanJump = 0;
+                if (hero.HasGiganHammer > 0)
+                {
+                    for (int i = 0; i < hero.HasGiganHammer; i++)
+                    {
+                        trueDamage -= 20;
+                    }
+                }
+                hero.HasGiganHammer = 0;
+                if (trueDamage < 0)
+                {
+                    var goldBonus = trueDamage * -1 * 3;
+                    gold += goldBonus;
+                    hero.Gold += gold;
+                    UpdateHero(hero);
+                }
+                DealDamage(trueDamage);
+            }
+        }
+        public void StepOnBagOfGold()
+        {
+            var hero = GetHero();
+            hero.Gold += _random.Next(30, 60);
+            UpdateHero(hero);
+        }
+        public void StepOnAverageTreatmentPotion()
+        {
+            var hero = GetHero();
+            hero.HP = 100;
+            UpdateHero(hero);
+        }
+        public void StepOnAssassin()
+        {
+            var hero = GetHero();
+            if (hero.Gold >= 60)
+            {
+                hero.Gold -= 60;
+                hero.Damage += 1;
+                UpdateHero(hero);
+            }
+            else
+            {
+                int trueDamage = 35;
+                DealDamage(trueDamage);
+            }
+        }
+        public void StepOnInvisibleTrap()
+        {
+            int trueDamage = _random.Next(1, 10);
+            DealDamage(trueDamage);
+        }
         public void StepOnСhest()
         {
             var hero = GetHero();
@@ -62,16 +388,10 @@ namespace NLayerApp.BLL_.Services
         public void StepOnKiller()
         {
             var hero = GetHero();
-            if (hero.Invisible > 0)
-            {
-                hero.Invisible--;
-                Database.Save();
-            }
-            else
+            if (CanStels(hero))
             {
                 var trueDamage = 50;
                 DealDamage(trueDamage);
-
             }
             Database.Save();
         }
@@ -94,7 +414,7 @@ namespace NLayerApp.BLL_.Services
             var hero = GetHero();
             var damage = _random.Next(10, 15);
             var trueDamage = damage - hero.Armor;
-            
+
             if (trueDamage > 0)
             {
                 DealDamage(trueDamage);
@@ -114,30 +434,39 @@ namespace NLayerApp.BLL_.Services
         {
 
         }
-        public void StepOnLegionary()
+        public bool CanStels(Hero hero)
         {
-            var hero = GetHero();
             if (hero.Invisible > 0)
             {
                 hero.Invisible--;
                 Database.Save();
+                return true;
             }
-            else
+            return false;
+        }
+        public bool CanUseDamage(Hero hero)
+        {
+            if (hero.Damage > 0)
+            {
+                hero.Damage--;
+                Database.Save();
+                return true;
+            }
+            return false;
+        }
+        public void StepOnLegionary()
+        {
+            var hero = GetHero();
+            if (!CanStels(hero))
             {
                 var gold = _random.Next(15, 30);
                 hero.Gold += gold;
-                if (hero.Damage > 0)
-                {
-                    hero.Damage--;
-                    UpdateHero(hero);
-                }
-                else
+                if (!CanUseDamage(hero))
                 {
                     var damage = _random.Next(20, 50);
                     var allDamage = (damage - hero.Armor);
                     DealDamage(allDamage);
                 }
-
             }
         }
         public void StepOnRip()
@@ -151,7 +480,7 @@ namespace NLayerApp.BLL_.Services
             switch (cellTypeName)
             {
                 case "PotionTreatment":
-                    if (ToBuy(50)) 
+                    if (ToBuy(50))
                     {
                         if (hero.HP + 50 > 100)
                         {
@@ -161,7 +490,7 @@ namespace NLayerApp.BLL_.Services
                         {
                             hero.HP += 50;
                         }
-                    } 
+                    }
                     break;
                 case "InvisibilityCap":
                     if (ToBuy(60))
@@ -192,7 +521,7 @@ namespace NLayerApp.BLL_.Services
         public bool ToBuy(int cost)
         {
             var hero = GetHero();
-            if (hero.Gold - cost>0)
+            if (hero.Gold - cost > 0)
             {
                 hero.Gold -= cost;
                 return true;
@@ -205,12 +534,7 @@ namespace NLayerApp.BLL_.Services
         public void StepOnBoss()
         {
             var hero = GetHero();
-            if (hero.Invisible > 0)
-            {
-                hero.Invisible--;
-                Database.Save();
-            }
-            else
+            if (!CanStels(hero))
             {
                 var gold = _random.Next(1, 30);
                 hero.Gold += gold;
@@ -223,12 +547,7 @@ namespace NLayerApp.BLL_.Services
                 hero.HP -= trueDamage;
                 UpdateHero(hero);
 
-                if (hero.Damage > 0)
-                {
-                    hero.Damage--;
-                    UpdateHero(hero);
-                }
-                else
+                if (!CanUseDamage(hero))
                 {
                     var damage = _random.Next(20, 60);
                     var allDamage = (damage - hero.Armor);
@@ -264,8 +583,8 @@ namespace NLayerApp.BLL_.Services
                     Database.Save();
                 }
                 hero.HP -= damage;
-                UpdateHero(hero);
             }
+            UpdateHero(hero);
         }
         public void StepOnGoldHeap()
         {

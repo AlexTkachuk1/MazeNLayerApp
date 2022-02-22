@@ -3,6 +3,8 @@
     var HasGiganHammer;
     var Invisible;
     var CanJumpValue;
+    var HeroHP;
+    var HeroGold;
 
     var Update = (async function () {
         var value = null;
@@ -16,6 +18,9 @@
             HasGiganHammer = value.hasGiganHammer;
             Invisible = value.invisible;
             CanJumpValue = value.canJump;
+            HeroHP = value.hp;
+            HeroGold = value.gold;
+
             if (value.gameOver) {
                 window.location = "https://localhost:44328/Maze/GameOver";
             }
@@ -188,13 +193,20 @@
 
         mainBlock.append(status);
     }
-
+    function HeroHP() {
+        return HeroHP;
+    }
+    function HeroGold() {
+        return HeroGold;
+    }
     return {
         Update: Update,
         DisplayIndicators: DisplayIndicators,
         GetHasGiganHammer: GetHasGiganHammer,
         GetInvisible: GetInvisible,
-        GetCanJumpValue: CanJumpValue
+        GetCanJumpValue: CanJumpValue,
+        HeroHP: HeroHP,
+        HeroGold: HeroGold
     };
 })();
 

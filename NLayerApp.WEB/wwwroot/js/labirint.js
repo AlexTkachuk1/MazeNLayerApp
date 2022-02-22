@@ -46,7 +46,11 @@
         labyrinthWithHero[heroY][heroX] = "CellWithHero";
         return labyrinthWithHero;
     }
-
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
+    }
     function drawLab(selector, labyrinth) {
         var mainBlock = $(selector);
         oldBlock = $('div').remove('.maze');
@@ -105,7 +109,7 @@
                         HeroStatus.heroStepOnCell("Wall");
                         labyrinth[heroYPossible][heroXPossible] = "Ground";
                     }
-                    else if (HeroIndicators.GetCanJumpValue()>0) {
+                    else if (HeroIndicators.GetCanJumpValue() > 0) {
                         switch (direction) {
                             case 0:
                                 heroYPossible--;
@@ -147,13 +151,25 @@
                     labyrinth[heroYPossible][heroXPossible] = "Ground";
                     break;
                 case "Gate":
-                    window.location = "https://localhost:44328/Maze/DrawJs";
+                    var val = getRandomInt(1, 4);
+                    switch (val) {
+                        case 1:
+                            window.location = "https://localhost:44328/Maze/DrawJs";
+                            break;
+                        case 2:
+                            window.location = "https://localhost:44328/Maze/DrawCursedForest";
+                            break;
+                        case 3:
+                            window.location = "https://localhost:44328/Maze/DrawPoisonSwamps";
+                            break;
+                    }
+
                     break;
                 case "BrokenTrap":
 
                     break;
                 case "Legionary":
-                    if (HeroIndicators.GetInvisible()>0) {
+                    if (HeroIndicators.GetInvisible() > 0) {
                         HeroStatus.heroStepOnCell("Legionary");
                         labyrinth[heroYPossible][heroXPossible] = "Legionary";
                     }
@@ -163,7 +179,7 @@
                     }
                     break;
                 case "Boss":
-                    if (HeroIndicators.GetInvisible()>0) {
+                    if (HeroIndicators.GetInvisible() > 0) {
                         HeroStatus.heroStepOnCell("Boss");
                         labyrinth[heroYPossible][heroXPossible] = "Boss";
                     }
@@ -195,14 +211,122 @@
 
                     break;
                 case "Killer":
-                    if (HeroIndicators.GetInvisible()>0) {
+                    if (HeroIndicators.GetInvisible() > 0) {
                         HeroStatus.heroStepOnCell("Killer");
                         labyrinth[heroYPossible][heroXPossible] = "Killer";
                     }
                     else {
                         HeroStatus.heroStepOnCell("Killer");
-                        labyrinth[heroYPossible][heroXPossible] = "DethKiller";
+                        labyrinth[heroYPossible][heroXPossible] = "Rip";
                     }
+                    break;
+                case "InvisibleTrap":
+                    HeroStatus.heroStepOnCell("InvisibleTrap");
+                    break;
+                case "Assassin":
+                    if (HeroIndicators.HeroGold() > 60) {
+                        HeroStatus.heroStepOnCell("Assassin");
+                        labyrinth[heroYPossible][heroXPossible] = "Ground";
+                    }
+                    else {
+                        HeroStatus.heroStepOnCell("Assassin");
+                        labyrinth[heroYPossible][heroXPossible] = "Rip";
+                    }
+                    break;
+                case "AverageTreatmentPotion":
+                    HeroStatus.heroStepOnCell("AverageTreatmentPotion");
+                    labyrinth[heroYPossible][heroXPossible] = "Ground";
+                    break;
+                case "BagOfGold":
+                    HeroStatus.heroStepOnCell("BagOfGold");
+                    labyrinth[heroYPossible][heroXPossible] = "Ground";
+                    break;
+                case "Champion":
+                    if (HeroIndicators.GetInvisible() > 0) {
+                        HeroStatus.heroStepOnCell("Champion");
+                        labyrinth[heroYPossible][heroXPossible] = "Champion";
+                    }
+                    else {
+                        HeroStatus.heroStepOnCell("Champion");
+                        labyrinth[heroYPossible][heroXPossible] = "Rip";
+                    }
+                    break;
+                case "DamnEarth":
+                    HeroStatus.heroStepOnCell("DamnEarth");
+                    break;
+                case "DeadMan":
+                    if (HeroIndicators.GetInvisible() > 0) {
+                        HeroStatus.heroStepOnCell("DeadMan");
+                        labyrinth[heroYPossible][heroXPossible] = "DeadMan";
+                    }
+                    else {
+                        HeroStatus.heroStepOnCell("DeadMan");
+                        labyrinth[heroYPossible][heroXPossible] = "DecomposedCorpse";
+                    }
+                    break;
+                case "DecomposedCorpse":
+                    HeroStatus.heroStepOnCell("DecomposedCorpse");
+                    labyrinth[heroYPossible][heroXPossible] = "Ground";
+                    break;
+                case "Draconian":
+                    if (HeroIndicators.GetInvisible() > 0) {
+                        HeroStatus.heroStepOnCell("Draconian");
+                        labyrinth[heroYPossible][heroXPossible] = "Draconian";
+                    }
+                    else {
+                        HeroStatus.heroStepOnCell("Draconian");
+                        labyrinth[heroYPossible][heroXPossible] = "Rip";
+                    }
+                    break;
+                case "Dragon":
+                    if (HeroIndicators.HeroGold() > 100) {
+                        HeroStatus.heroStepOnCell("Dragon");
+                        labyrinth[heroYPossible][heroXPossible] = "Dragon";
+                    }
+                    else {
+                        HeroStatus.heroStepOnCell("Dragon");
+                        labyrinth[heroYPossible][heroXPossible] = "Rip";
+                    }
+                    break;
+                case "Elf":
+                    HeroStatus.heroStepOnCell("Elf");
+                    labyrinth[heroYPossible][heroXPossible] = "Rip";
+                    break;
+                case "ExperiencedWarrior":
+                    HeroStatus.heroStepOnCell("ExperiencedWarrior");
+                    labyrinth[heroYPossible][heroXPossible] = "Rip";
+                    break;
+                case "Goblin":
+                    if (HeroIndicators.GetInvisible() > 0) {
+                        HeroStatus.heroStepOnCell("Goblin");
+                        labyrinth[heroYPossible][heroXPossible] = "Goblin";
+                    }
+                    else {
+                        HeroStatus.heroStepOnCell("Goblin");
+                        labyrinth[heroYPossible][heroXPossible] = "Rip";
+                    }
+                    break;
+                case "Mutant":
+                    HeroStatus.heroStepOnCell("Mutant");
+                    labyrinth[heroYPossible][heroXPossible] = "Rip";
+                    break;
+                case "Robot":
+                    if (HeroIndicators.GetInvisible() > 0) {
+                        HeroStatus.heroStepOnCell("Robot");
+                        labyrinth[heroYPossible][heroXPossible] = "Robot";
+                    }
+                    else {
+                        HeroStatus.heroStepOnCell("Robot");
+                        labyrinth[heroYPossible][heroXPossible] = "Rip";
+                    }
+                    break;
+                case "SmallPotionTreatment":
+                    HeroStatus.heroStepOnCell("SmallPotionTreatment");
+                    labyrinth[heroYPossible][heroXPossible] = "Ground";
+                    break;
+                case "SwampCreature":
+                    HeroStatus.heroStepOnCell("SwampCreature");
+                    labyrinth[heroYPossible][heroXPossible] = "Rip";
                     break;
             }
             $('.end').click(function () {

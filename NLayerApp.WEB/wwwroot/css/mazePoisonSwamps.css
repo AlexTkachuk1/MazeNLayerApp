@@ -11,7 +11,8 @@
 
 .drawerSection {
     display: flex;
-    background-image: url('/image/appBackground/ground2 (2).jpg');
+    background-size: 120px 80px;
+    background-image: url('/image/appBackground/ground3.jpg');
 }
 
 .menu {
@@ -19,10 +20,10 @@
 }
 .statusIcon {
     margin-left: 15px;
-    background-size: 100px 120px;
+    background-size: 100px 130px;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url('/image/appBackground/icon.png');
+    background-image: url('/image/appBackground/icon2.png');
 }
 .Choice {
     display: flex;
@@ -50,7 +51,7 @@
 }
 
 .top {
-    background-image: url('/image/appBackground/фон.jpg');
+    background-image: url('/image/appBackground/фон5.jpg');
     background-repeat: no-repeat;
 }
 
@@ -62,12 +63,7 @@
 }
 
     .cell.Wall {
-        background-image: url('/image/appBackground/wall1.png');
-    }
-
-    .cell.DethBoss {
-        background-size: 50px 60px;
-        background-image: url('/image/maze/brokenTrap.png');
+        background-image: url('/image/appBackground/Wall4.png');
     }
 
     .cell.GoldHeap {
@@ -77,20 +73,16 @@
 
     .cell.Ground {
         background-size: 80px 40px;
-        background-image: url('/image/appBackground/ground.png');
+        background-image: url('/image/appBackground/grass.png');
     }
 
     .cell.InvisibleTrap {
         background-size: 80px 40px;
-        background-image: url('/image/appBackground/ground.png');
+        background-image: url('/image/appBackground/grass.png');
     }
 
     .cell.Сhest {
         background-image: url('/image/maze/chest.gif');
-    }
-
-    .cell.Boss {
-        background-image: url('/image/maze/test.gif');
     }
 
     .cell.CellWithHero {
@@ -98,21 +90,7 @@
     }
 
     .cell.Gate {
-        background-image: url('/image/maze/castle.gif');
-    }
-
-    .cell.Trap {
-        background-size: 50px 50px;
-        background-image: url('/image/maze/wolf1.gif');
-    }
-
-    .cell.BrokenTrap {
-        background-size: 50px 60px;
-        background-image: url('/image/maze/brokenTrap.png');
-    }
-
-    .cell.Legionary {
-        background-image: url('/image/maze/goblin1(1).gif');
+        background-image: url('/image/maze/castle3.png');
     }
 
     .cell.Rip {
@@ -121,7 +99,8 @@
     }
 
     .cell.Teleport {
-        background-image: url('/image/maze/teleport.gif');
+        background-size: 60px 80px;
+        background-image: url('/image/maze/teleport1.gif');
     }
 
     .cell.MiracleShop {
@@ -129,23 +108,52 @@
         background-image: url('/image/maze/miracleShop.gif');
     }
 
-    .cell.Killer {
-        background-image: url('/image/maze/killer.gif');
+    .cell.BagOfGold {
+        background-size: 40px 50px;
+        background-image: url('/image/maze/BagOfGold.gif');
     }
 
-    .cell.AverageTreatmentPotion {
-        background-size: 40px 40px;
-        background-image: url('/image/maze/SmallPotionTreatment.gif');
+    .cell.DeadMan {
+        background-size: 81px 80px;
+        background-image: url('/image/maze/deth.gif');
+    }
+
+    .cell.DecomposedCorpse {
+        background-size: 40px 50px;
+        background-image: url('/image/maze/DecomposedCorpse.gif');
+    }
+
+    .cell.Draconian {
+        background-size: 81px 60px;
+        background-image: url('/image/maze/boss1.gif');
+    }
+
+    .cell.Dragon {
+        background-size: 81px 80px;
+        background-image: url('/image/maze/dragon.gif');
+    }
+
+    .cell.Goblin {
+        background-size: 50px 50px;
+        background-image: url('/image/maze/goblin (2).gif');
+    }
+
+    .cell.Mutant {
+        background-size: 81px 80px;
+        background-image: url('/image/maze/bot1.gif');
     }
 
     .cell.SmallPotionTreatment {
         background-size: 40px 40px;
         background-image: url('/image/maze/SmallPotionTreatment.gif');
     }
-
-    .cell.BagOfGold {
-        background-size: 40px 50px;
-        background-image: url('/image/maze/BagOfGold.gif');
+    .cell.SwampCreature {
+        background-size: 60px 60px;
+        background-image: url('/image/maze/monsrt2.gif');
+    }
+    .cell.AverageTreatmentPotion {
+        background-size: 40px 40px;
+        background-image: url('/image/maze/SmallPotionTreatment.gif');
     }
 
 .status.Hp {
@@ -157,6 +165,7 @@
 }
 
 .status.Damage {
+    background-size: 90px,90px;
     background-image: url('/image/status/sword.gif');
 }
 
@@ -171,15 +180,14 @@
 }
 
 .status.Invisible {
-    background-size: 50px,50px;
+    background-size: 55px,65px;
     background-image: url('/image/status/stealth.gif');
 }
 
 .status.CanJump {
-    background-size: 70px,150px;
+    background-size: 80px,150px;
     background-image: url('/image/status/flying.gif');
 }
-
 
 .status {
     width: 100px;

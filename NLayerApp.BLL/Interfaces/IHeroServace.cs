@@ -5,6 +5,23 @@ namespace NLayerApp.BLL_.Interfaces
     public interface IHeroService
     {
         Hero GetHero();
+        void StepOn(string cellTypeName);
+        void StepOnSwampCreature();
+        void StepOnSmallPotionTreatment();
+        void StepOnRobor();
+        void StepOnMutant();
+        void StepOnGoblin();
+        void StepOnExperiencedWarrior();
+        void StepOnElf();
+        void StepOnDragon();
+        void StepOnDraconian();
+        void StepOnDecomposedCorpse();
+        void StepOnDeadMan();
+        void StepOnDamnEarth();
+        void StepOnChampion();
+        void StepOnBagOfGold();
+        void StepOnAverageTreatmentPotion();
+        void StepOnAssassin();
         void UpdateHero(Hero hero);
         void StepOnСhest();
         void StepOnGoldHeap();

@@ -1,7 +1,6 @@
 ﻿using NLayerApp.DAL_.EF;
 using NLayerApp.DAL_.Entities;
 using NLayerApp.DAL_.Interfaces;
-using System.Data.Entity;
 
 namespace NLayerApp.DAL_.Repositories
 {

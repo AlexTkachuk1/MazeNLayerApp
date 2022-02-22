@@ -11,17 +11,29 @@ namespace NLayerApp.BLL_.Services
     {
         IUnitOfWork Database { get; set; }
         public readonly IMapper mapper;
+        public readonly MazeBuilder mazeBuilder;
         public MazeService(
+            MazeBuilder mazeBuilder,
             IMapper mapper,
             IUnitOfWork uow)
         {
             Database = uow;
             this.mapper = mapper;
+            this.mazeBuilder = mazeBuilder;
         }
-        public  IMaze BuildMaze(int width = 25, int height = 10)
+        public  IMaze BuildMaze(int width = 16, int height = 10)
         {
-            var builder = new MazeBuilder();
-            IMaze newMaze = builder.Build(width, height);
+            IMaze newMaze = mazeBuilder.Build(width, height);
+            return newMaze;
+        }
+        public IMaze BuildMazeCursedForest(int width = 16, int height = 10)
+        {
+            IMaze newMaze = mazeBuilder.BuildCursedForest(width, height);
+            return newMaze;
+        }
+        public IMaze BuildMazePoisonSwamps(int width = 16, int height = 10)
+        {
+            IMaze newMaze = mazeBuilder.BuildPoisonSwamps(width, height);
             return newMaze;
         }
         public void SaveMaze(IMaze maze)
