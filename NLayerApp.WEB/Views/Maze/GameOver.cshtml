@@ -6,20 +6,14 @@
 }
 <h1 class='shopText'>Game Over</h1>
 <h4 class='shopText'>Would you like to try again?</h4>
-<div class ="Choice1">
-    <form asp-action="StartGame" asp-controller="Maze" asp-antiforgery="true">
-        <div>
-            <div>
-                <input type="submit" value="Yes" />
-            </div>
-        </div>
-    </form>
-
-    <form asp-action="Index" asp-controller="Home" asp-antiforgery="true">
-        <div>
-            <div>
-                <input type="submit" value="No" />
-            </div>
-        </div>
-    </form>
+<div class="Choice1">
+    <div>
+        <ul>
+            <li class="one_quarter"><a class="paginator-button" href="/Home/Index">No</a></li>
+        </ul>
+    </div><div>
+        <ul>
+            <li class="one_quarter"><a class="paginator-button" href="/Maze/StartGame">Yes</a></li>
+        </ul>
+    </div>
 </div>

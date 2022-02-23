@@ -329,7 +329,7 @@
                     labyrinth[heroYPossible][heroXPossible] = "Rip";
                     break;
             }
-            $('.end').click(function () {
+            $('#end').click(function () {
                 $('.Choice').hide();
                 $('.drawer').show();
             });

@@ -1,45 +1,30 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
-.Choice{
-    display:none;
+.Choice {
+    display: none;
 }
-.Choice1{
-    display:flex;
+
+.Choice1 {
+    display: flex;
 }
-.paginator-button {
-    color: #15AD72;
-    border-color: #F4F4F4;
-    font-size: 14px;
-    font-weight: 400;
-    display: block;
-    padding: 11px 11px;
-    height: 40.3929px;
-    background-clip: padding-box;
-    font-weight: normal;
-    cursor: pointer;
-    background-color: rgba(0,0,0,0);
-    box-shadow: 0,0,0,0;
-    border-block-width: 1px;
-    border-left-width: 1px;
-    border-right-width: 1px;
-}
+
 .heroStatus {
     margin-left: 170px;
     /*background-position-y: bottom;
@@ -48,32 +33,146 @@ body {
     background-repeat: no-repeat;
     background-image: url('/image/appBackground/ui1.png');*/
 }
+
 .text {
+    color: azure;
     text-align: center;
     font-family: "Herculanum", fantasy;
 }
+
 .status {
     height: 100px;
     width: 100px;
     display: block;
 }
-.statusIconForMyHp{
-    margin-left:3px;
+
+.statusIconForMyHp {
+    margin-left: 3px;
 }
 
-.statusForAbilitiPower{
-    margin-left:150px;
+.statusForAbilitiPower {
+    margin-left: 150px;
+    display: flex;
+}
+
+.shopMenu {
+    margin-left: 20px;
     display:flex;
 }
-.shopMenu {
-    margin-left: 200px;
+
+.shopText {
+    color: azure;
+    font-size: 2.2rem;
 }
-.shopText{
-    color:azure;
-}
+
 .end {
     margin-left: 40px;
 }
+
 .gameMenuIndent {
     height: 0px;
 }
+
+.cell.AverageTreatmentPotion {
+    background-size: 30px 30px;
+    background-image: url('/image/maze/SmallPotionTreatment.gif');
+}
+
+.cell.SmallPotionTreatment {
+    background-size: 25px 25px;
+    background-image: url('/image/maze/Potion.png');
+}
+
+.cell.BagOfGold {
+    background-size: 40px 50px;
+    background-image: url('/image/maze/BagOfGold.gif');
+}
+
+.cell.Rip {
+    background-size: 50px 60px;
+    background-image: url('/image/maze/brokenTrap.png');
+}
+
+.cell.MiracleShop {
+    background-size: 50px 40px;
+    background-image: url('/image/maze/miracleShop.gif');
+}
+
+.cell.CellWithHero {
+    background-size: 60px 5 0px;
+    background-image: url('/image/maze/hero3.gif');
+}
+
+.cell.GoldHeap {
+    background-size: 20px 20px;
+    background-image: url('/image/maze/coin.gif');
+}
+
+.cell.Ground {
+    /*background-size: 80px 40px;
+        background-image: url('/image/appBackground/ground.png');*/
+}
+
+.cell.InvisibleTrap {
+    /*background-size: 80px 40px;
+        background-image: url('/image/appBackground/ground.png');*/
+}
+
+.cell.Ñhest {
+    background-image: url('/image/maze/chest.gif');
+}
+
+.cell {
+    background-position-y: center;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    background-size: cover;
+}
+
+.spanSection {
+    width: 11px;
+}
+
+.menu {
+    /*background-image: url('/image/appBackground/ui.png');*/
+}
+
+.statusIcon {
+    margin-left: 15px;
+    background-size: 100px 120px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('/image/appBackground/icon2.png');
+}
+
+.paginator-button {
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 15px 25px;
+    padding: 15px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    transition: 0.4s ease-in-out;
+    border-radius: 10px;
+    color: #36454A;
+    background: -webkit-linear-gradient(top, #A4D3E0, #A4D3E0 50%, #CBE3EB 50%);
+    background: -o-linear-gradient(top, #A4D3E0, #A4D3E0 50%, #CBE3EB 50%);
+    background: linear-gradient(to top, #A4D3E0, #A4D3E0 50%, #CBE3EB 50%);
+    box-shadow: 2px 2px 3px black;
+}
+
+    .paginator-button:hover {
+        background: -webkit-linear-gradient(bottom, #A4D3E0, #A4D3E0 50%, #CBE3EB 50%);
+        background: -o-linear-gradient(bottom, #A4D3E0, #A4D3E0 50%, #CBE3EB 50%);
+        background: linear-gradient(to bottom, #A4D3E0, #A4D3E0 50%, #CBE3EB 50%);
+    }
