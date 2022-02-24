@@ -309,7 +309,7 @@ namespace NLayerApp.BLL_.Services
         public void StepOnBagOfGold()
         {
             var hero = GetHero();
-            hero.Gold += _random.Next(30, 60);
+            hero.Gold += _random.Next(10, 30);
             UpdateHero(hero);
         }
         public void StepOnAverageTreatmentPotion()
@@ -580,7 +580,7 @@ namespace NLayerApp.BLL_.Services
         public void StepOnGoldHeap()
         {
             var hero = GetHero();
-            var gold = _random.Next(5, 10);
+            var gold = _random.Next(1, 5);
             hero.Gold += gold;
             UpdateHero(hero);
         }
