@@ -9,6 +9,12 @@ namespace NLayerApp.BLL_.Interfaces
         IMaze BuildGroundMyVersion(IMaze maze);
         IMaze BuildLegionary(int chance, IMaze maze);
         IMaze BuildGate(IMaze maze);
+        IMaze BuildPortal(int chance, IMaze maze);
+        IMaze BuildSpiritOfTheForest(int chance, IMaze maze);
+        IMaze BuildGuard(int chance, IMaze maze);
+        IMaze BuildForgottenKing(int number, IMaze maze);
+        IMaze BuildWolf(int chance, IMaze maze);
+        IMaze BuildFaun(int chanceFrom1000, IMaze maze);
         IMaze BuildGoldHeap(int chance, IMaze maze);
         IMaze BuildAssassin(int chance, IMaze maze);
         IMaze BuildAverageTreatmentPotion(int chanceFrom1000, IMaze maze);

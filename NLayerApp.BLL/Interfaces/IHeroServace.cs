@@ -37,6 +37,12 @@ namespace NLayerApp.BLL_.Interfaces
         void StepOnMiracleShop(string cellTypeName);
         void StepOnKiller();
         void ReturnDefaultHeroStatus();
+        void StepOnPortal(int damage);
+        void StepOnSpiritOfTheForest(int damageMin, int damageMax);
+        void StepOnGuard(int damageMin, int damageMax);
+        void StepOnForgottenKing(int damageMin, int damageMax);
+        void StepOnWolf(int spiritDamage, int physicalDamage);
+        void StepOnFaun();
         void Dispose();
     }
 }

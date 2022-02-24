@@ -29,7 +29,7 @@
             var cell = value.cellViewModels[i];
             labyrinth[cell.cordinateY][cell.cordinateX] = cell.typeName;
             if (cell.typeName == "Ground") {
-                if (getRandomInt(0,100)<50) {
+                if (getRandomInt(0, 100) < 50) {
                     var num = getRandomInt(1, (environmentNames.length + 1))
                     labyrinth[cell.cordinateY][cell.cordinateX] = environmentNames[num];
                 }
@@ -173,8 +173,28 @@
                             break;
                     }
                     break;
-                case "BrokenTrap":
-
+                case "Portal":
+                    window.location = "https://localhost:44328/Maze/DrawCursedForest";
+                    break;
+                case "SpiritOfTheForest":
+                    HeroStatus.heroStepOnCell("SpiritOfTheForest");
+                    labyrinth[heroYPossible][heroXPossible] = "Rip";
+                    break;
+                case "ForgottenKing":
+                    HeroStatus.heroStepOnCell("ForgottenKing");
+                    labyrinth[heroYPossible][heroXPossible] = "AverageTreatmentPotion";
+                    break;
+                case "Wolf":
+                    HeroStatus.heroStepOnCell("Wolf");
+                    labyrinth[heroYPossible][heroXPossible] = "Rip";
+                    break;
+                case "Faun":
+                    HeroStatus.heroStepOnCell("Faun");
+                    labyrinth[heroYPossible][heroXPossible] = "Rip";
+                    break;
+                case "Guard":
+                    HeroStatus.heroStepOnCell("Guard");
+                    labyrinth[heroYPossible][heroXPossible] = "GoldHeap";
                     break;
                 case "Legionary":
                     if (HeroIndicators.GetInvisible() > 0) {
@@ -197,7 +217,7 @@
                     }
                     break;
                 case "Rip":
-                 break;
+                    break;
                 case "Teleport":
                     if (teleport[0][0] == heroYPossible && teleport[0][1] == heroXPossible) {
                         heroYPossible = teleport[1][0];
@@ -213,8 +233,6 @@
                     $('.drawer').hide();
                     heroXPossible = heroX;
                     heroYPossible = heroY;
-                    break;
-                case "DethBoss":
                     break;
                 case "Killer":
                     if (HeroIndicators.GetInvisible() > 0) {

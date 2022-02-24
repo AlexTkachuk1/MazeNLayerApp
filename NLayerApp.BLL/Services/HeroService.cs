@@ -112,14 +112,87 @@ namespace NLayerApp.BLL_.Services
                 case "SwampCreature":
                     StepOnSwampCreature();
                     break;
+                case "Portal":
+                    StepOnPortal(20);
+                    break;
+                case "SpiritOfTheForest":
+                    StepOnSpiritOfTheForest(3, 7);
+                    break;
+                case "Guard":
+                    StepOnGuard(10, 40);
+                    break;
+                case "ForgottenKing":
+                    StepOnForgottenKing(5, 16);
+                    break;
+                case "Wolf":
+                    StepOnWolf(3, 20);
+                    break;
+                case "Faun":
+                    StepOnFaun();
+                    break;
+            }
+        }
+        public void StepOnFaun()
+        {
+            var hero = GetHero();
+            var damage = hero.Stamina * 3;
+            DealDamage(damage);
+        }
+        public void StepOnWolf(int spiritDamage, int physicalDamage)
+        {
+            var hero = GetHero();
+            var rand = _random.Next(1, 3);
+            switch (spiritDamage)
+            {
+                case 1:
+                    DealDamage(physicalDamage);
+                    break;
+                case 2:
+                    DealSpiritDamage(spiritDamage);
+                    break;
+            }
+        }
+        public void StepOnForgottenKing(int damageMin, int damageMax)
+        {
+            var hero = GetHero();
+            var damage = _random.Next(damageMin, damageMax);
+            DealSpiritDamage(damage);
+        }
+        public void StepOnGuard(int damageMin, int damageMax)
+        {
+            var hero = GetHero();
+            if (!CanUseDamage(hero))
+            {
+                var damage = _random.Next(damageMin, damageMax);
+                DealDamage(damage);
+            }
+        }
+        public void StepOnSpiritOfTheForest(int damageMin, int damageMax)
+        {
+            var hero = GetHero();
+            var damage = _random.Next(damageMin, damageMax);
+            DealSpiritDamage(damage);
+        }
+        public void StepOnPortal(int damage)
+        {
+            var hero = GetHero();
+            var rand = _random.Next(1, 3);
+            if (rand < 2)
+            {
+                DealDamage(damage);
+            }
+            else
+            {
+                hero.Gold += 20;
+                UpdateHero(hero);
             }
         }
         public void StepOnSwampCreature()
         {
             var hero = GetHero();
-            if (!CanUseDamage(hero)) 
+            if (!CanUseDamage(hero))
             {
-                var damage = _random.Next(15,30);
+                var damage = _random.Next(15, 30);
                 var trueDamage = damage - hero.Armor;
                 DealDamage(trueDamage);
             }
@@ -128,7 +201,7 @@ namespace NLayerApp.BLL_.Services
         {
             var hero = GetHero();
             var healingPower = _random.Next(10, 35);
-            if(hero.HP+ healingPower <= 100)
+            if (hero.HP + healingPower <= 100)
             {
                 hero.HP += healingPower;
             }
@@ -193,8 +266,8 @@ namespace NLayerApp.BLL_.Services
                 var trueDamage = 15;
                 if (hero.CanJump > 0 || hero.HasGiganHammer > 0 || hero.Invisible > 0)
                 {
-                    var val = 5 * (hero.CanJump + hero.HasGiganHammer + hero.Invisible)+ hero.Armor/2;
-                    
+                    var val = 5 * (hero.CanJump + hero.HasGiganHammer + hero.Invisible) + hero.Armor / 2;
+
                     trueDamage += val;
                 }
                 DealDamage(trueDamage);
@@ -577,6 +650,20 @@ namespace NLayerApp.BLL_.Services
             }
             UpdateHero(hero);
         }
+        public void DealSpiritDamage(int damage)
+        {
+            var hero = GetHero();
+            if (damage > 0)
+            {
+                if (damage >= hero.Stamina)
+                {
+                    hero.GameOver = true;
+                    Database.Save();
+                }
+                hero.Stamina -= damage;
+            }
+            UpdateHero(hero);
+        }
         public void StepOnGoldHeap()
         {
             var hero = GetHero();
@@ -603,7 +690,7 @@ namespace NLayerApp.BLL_.Services
             hero.GameOver = false;
             hero.X = 0;
             hero.Y = 0;
-            hero.Stamina = 0;
+            hero.Stamina = 20;
             for (int i = 0; i < hero.Inventory.Count; i++)
             {
                 hero.Inventory.Remove(hero.Inventory[i]);

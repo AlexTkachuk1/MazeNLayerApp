@@ -1,9 +1,10 @@
 ﻿using NLayerApp.BLL_.DTO.Cells;
+using NLayerApp.BLL_.DTO.Cells.New;
 using NLayerApp.BLL_.DTO.Interfaces;
 using NLayerApp.BLL_.Interfaces;
 namespace NLayerApp.BLL_.Services
 {
-    public class CellsBuildService: ICellsBuildService
+    public class CellsBuildService : ICellsBuildService
     {
         private IMazeBuildService _mazeBuildService;
         public CellsBuildService(
@@ -68,10 +69,10 @@ namespace NLayerApp.BLL_.Services
                 wallsToDestroy.Remove(wallToDestroy);
 
                 var nearestWalls = _mazeBuildService.GetNears<Wall>(newGraundCell, maze)
-                    .Where(x=>x.CordinateX !=0
-                    && x.CordinateX < maze.Width-1 
+                    .Where(x => x.CordinateX != 0
+                    && x.CordinateX < maze.Width - 1
                     && x.CordinateY != 0
-                    && x.CordinateY < maze.Height-1);
+                    && x.CordinateY < maze.Height - 1);
 
                 wallsToDestroy.AddRange(nearestWalls);
 
@@ -91,7 +92,7 @@ namespace NLayerApp.BLL_.Services
             var allWallsToDestroy = wallsToDestroy;
             while (wallsToDestroy.Any() && allWallsToDestroy.Any())
             {
-                
+
                 if (wallsToDestroy.Any())
                 {
                     var ToDestroy = _mazeBuildService.GetRandom(wallsToDestroy);
@@ -134,6 +135,67 @@ namespace NLayerApp.BLL_.Services
                     }
                 }
             }
+            return maze;
+        }
+        public IMaze BuildFaun(int chanceFrom1000, IMaze maze)
+        {
+            var cellsForReplace = _mazeBuildService.generateWithTrueChance<Ground>(chanceFrom1000, maze);
+
+            _mazeBuildService.generateCells<Faun>(cellsForReplace, maze);
+
+            ConsoleDrawer(maze);
+            return maze;
+        }
+        public IMaze BuildWolf(int chance, IMaze maze)
+        {
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
+
+            _mazeBuildService.generateCells<Wolf>(cellsForReplace, maze);
+
+            ConsoleDrawer(maze);
+            return maze;
+        }
+        public IMaze BuildForgottenKing(int number, IMaze maze)
+        {
+            var cellsForReplace = _mazeBuildService.generateTheNumberOfCells<Ground>(number, maze);
+
+            _mazeBuildService.generateCells<ForgottenKing>(cellsForReplace, maze);
+
+            ConsoleDrawer(maze);
+            return maze;
+        }
+        // Сработает при вызове после создания портала.
+        public IMaze BuildGuard(int chance, IMaze maze)
+        {
+            var portalCell = maze.Cells.OfType<Portal>().ToList();
+            var cellsForReplace = new List<IBaseCell>();
+            for (int i = 0; i < portalCell.Count; i++)
+            {
+                var cell = portalCell[i];   
+                var cells = _mazeBuildService.GetNears<Ground>(cell, maze);
+                cellsForReplace.AddRange(cells);
+            }
+             _mazeBuildService.generateCells<SpiritOfTheForest>(cellsForReplace, maze);
+
+            ConsoleDrawer(maze);
+            return maze;
+        }
+        public IMaze BuildSpiritOfTheForest(int chance, IMaze maze)
+        {
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
+
+            _mazeBuildService.generateCells<SpiritOfTheForest>(cellsForReplace, maze);
+
+            ConsoleDrawer(maze);
+            return maze;
+        }
+        public IMaze BuildPortal(int chance, IMaze maze)
+        {
+            var cellsForReplace = _mazeBuildService.generateTheNumberOfCells<Wall>(chance, maze);
+
+            _mazeBuildService.generateCells<Portal>(cellsForReplace, maze);
+
+            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildInvisibleTrap(int chance, IMaze maze)
@@ -322,10 +384,10 @@ namespace NLayerApp.BLL_.Services
         {
             var allTypeCells = _mazeBuildService.generateWithTrueChance<Wall>(chanceFrom1000, maze);
 
-            var  cellsForReplace = allTypeCells.Where(x => x.CordinateX != 0
-                    && x.CordinateX < maze.Width - 1
-                    && x.CordinateY != 0
-                    && x.CordinateY < maze.Height - 1).ToList();
+            var cellsForReplace = allTypeCells.Where(x => x.CordinateX != 0
+                   && x.CordinateX < maze.Width - 1
+                   && x.CordinateY != 0
+                   && x.CordinateY < maze.Height - 1).ToList();
 
             _mazeBuildService.generateCells<MiracleShop>(cellsForReplace, maze);
             ConsoleDrawer(maze);
