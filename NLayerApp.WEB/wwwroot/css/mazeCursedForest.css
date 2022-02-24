@@ -75,7 +75,7 @@
 }
 
 .cell.Robot {
-    background-size: 81px 60px;
+    background-size: 50px 40px;
     background-image: url('/image/maze/bot.gif');
 }
 

@@ -42,8 +42,10 @@
     }
 
     .cell.Ground {
-        /*background-size: 81px 40px;
-        background-image: url('/image/appBackground/ground.png');*/
+        background-position-y: bottom;
+        background-position-x: left;
+        background-size: 40px 40px;
+        /*background-image: url('/image/environment/');*/
     }
 
     .cell.InvisibleTrap {

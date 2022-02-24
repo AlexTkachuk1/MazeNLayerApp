@@ -1,4 +1,5 @@
 ﻿using NLayerApp.BLL_.DTO.Cells;
+using NLayerApp.BLL_.DTO.Cells.environment;
 using NLayerApp.BLL_.DTO.Interfaces;
 using NLayerApp.BLL_.Interfaces;
 namespace NLayerApp.BLL_.Services
@@ -20,6 +21,20 @@ namespace NLayerApp.BLL_.Services
             for (int i = 0; i < allGrounCell.Count; i++)
             {
                 var oldCell = allGrounCell[i];
+                var newCell = new DamnEarth(oldCell.CordinateX, oldCell.CordinateY, maze);
+                _mazeBuildService.ReplaceCell(newCell, maze);
+            }
+            ConsoleDrawer(maze);
+            return maze;
+        }
+        public IMaze BuildEnvironment(int chance, IMaze maze)
+        {
+            var allGrounCell = maze.Cells.OfType<Ground>().ToList();
+            for (int i = 0; i < allGrounCell.Count; i++)
+            {
+                var oldCell = allGrounCell[i];
+
+                //_mazeBuildService.generateCells<Bush>(allGrounCell[i].CordinateX, allGrounCell[i].CordinateY, maze);
                 var newCell = new DamnEarth(oldCell.CordinateX, oldCell.CordinateY, maze);
                 _mazeBuildService.ReplaceCell(newCell, maze);
             }

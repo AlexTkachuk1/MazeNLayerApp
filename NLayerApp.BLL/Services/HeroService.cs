@@ -193,7 +193,7 @@ namespace NLayerApp.BLL_.Services
                 var trueDamage = 15;
                 if (hero.CanJump > 0 || hero.HasGiganHammer > 0 || hero.Invisible > 0)
                 {
-                    var val = 5 * (hero.CanJump + hero.HasGiganHammer + hero.Invisible);
+                    var val = 5 * (hero.CanJump + hero.HasGiganHammer + hero.Invisible)+ hero.Armor/2;
                     
                     trueDamage += val;
                 }
@@ -379,7 +379,7 @@ namespace NLayerApp.BLL_.Services
         public void StepOnKiller()
         {
             var hero = GetHero();
-            if (CanStels(hero))
+            if (!CanStels(hero))
             {
                 var trueDamage = 50;
                 DealDamage(trueDamage);

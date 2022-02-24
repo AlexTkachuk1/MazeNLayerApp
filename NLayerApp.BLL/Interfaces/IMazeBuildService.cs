@@ -6,6 +6,7 @@ namespace NLayerApp.BLL_.Interfaces
     public interface IMazeBuildService
     {
         IMaze generateWithChance(double chance, string cellType, IMaze maze);
+        T generateCells<T>() where T : new();
         IMaze generateWithTrueChance(double chance, string cellType, List<BaseCell> allCells, IMaze maze);
         IMaze generateTheNumberOfCells(int numberOfCells, string cellType, List<BaseCell> cells, IMaze maze);
         BaseCell FindNearestCell<T>(BaseCell сell, string cellType, IMaze maze) where T : BaseCell;

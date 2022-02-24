@@ -163,7 +163,6 @@
                             window.location = "https://localhost:44328/Maze/DrawPoisonSwamps";
                             break;
                     }
-
                     break;
                 case "BrokenTrap":
 
@@ -189,8 +188,7 @@
                     }
                     break;
                 case "Rip":
-
-                    break;
+                 break;
                 case "Teleport":
                     if (teleport[0][0] == heroYPossible && teleport[0][1] == heroXPossible) {
                         heroYPossible = teleport[1][0];
@@ -208,7 +206,6 @@
                     heroYPossible = heroY;
                     break;
                 case "DethBoss":
-
                     break;
                 case "Killer":
                     if (HeroIndicators.GetInvisible() > 0) {

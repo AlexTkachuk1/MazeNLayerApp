@@ -46,6 +46,12 @@ namespace NLayerApp.BLL_.Services
             }
             return newMaze;
         }
+        public T generateCells<T>() where T : new()
+        {
+            T instance = new T();
+            return instance;
+        }
+
         //метод получает название типа клетки и количество(int), а также принимает колекцию клеток ,
         //из которой будут случайно выбрано указанное количество клеток и заменено на указанный тип клеток. 
         public IMaze generateTheNumberOfCells(int numberOfCells, string cellType, List<BaseCell> cells, IMaze maze)
