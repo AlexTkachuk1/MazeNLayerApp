@@ -2,13 +2,17 @@
 
 namespace NLayerApp.BLL_.DTO.Cells
 {
-    public class CellWithHero : BaseCell
+    public class CellWithHero : IBaseCell
     {
-        public CellWithHero(IHero hero, IMaze maze) : base(hero.X, hero.Y, maze)
+        public int CordinateX { get; set; }
+        public int CordinateY { get; set; }
+        public IMaze Maze { get; set; }
+        public CellWithHero(IHero hero, IMaze maze)
         {
+
         }
 
-        public override bool TryStep()
+        public bool TryStep()
         {
             throw new NotImplementedException();
         }

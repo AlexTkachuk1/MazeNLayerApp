@@ -5,17 +5,23 @@ namespace NLayerApp.BLL_.Interfaces
 {
     public interface IMazeBuildService
     {
-        IMaze generateWithChance(double chance, string cellType, IMaze maze);
-        T generateCells<T>() where T : new();
-        IMaze generateWithTrueChance(double chance, string cellType, List<BaseCell> allCells, IMaze maze);
-        IMaze generateTheNumberOfCells(int numberOfCells, string cellType, List<BaseCell> cells, IMaze maze);
-        BaseCell FindNearestCell<T>(BaseCell сell, string cellType, IMaze maze) where T : BaseCell;
-        IEnumerable<BaseCell> GetNears(BaseCell cell, IMaze maze);
-        public IEnumerable<BaseCell> GetNears<CellType>(BaseCell cell, IMaze maze) where CellType : BaseCell;
-        IEnumerable<BaseCell> GetNearsWhithDiagonals<CellType>(BaseCell cell, IMaze maze) where CellType : BaseCell;
+        List<IBaseCell> generateWithChance<T>(double chance, IMaze maze)
+            where T : IBaseCell;
+        IMaze generateCells<T>(List<IBaseCell> cellsForReplace, IMaze maze) 
+            where T : IBaseCell, new();
+        public List<IBaseCell> generateWithTrueChance<T>(int chance, IMaze maze)
+            where T : IBaseCell;
+        List<IBaseCell> generateTheNumberOfCells<T>(int number, IMaze maze)
+            where T : IBaseCell;
+        IBaseCell FindNearestCell<T>(IBaseCell сell, string cellType, IMaze maze) where T : IBaseCell;
+        IEnumerable<IBaseCell> GetNears(IBaseCell cell, IMaze maze);
+        IEnumerable<CellType> GetNears<CellType>(IBaseCell cell, IMaze maze)
+           where CellType : IBaseCell;
+        public IEnumerable<CellType> GetNearsWhithDiagonals<CellType>(IBaseCell cell, IMaze maze)
+           where CellType : IBaseCell;
         T GetRandom<T>(List<T> data);
-        IMaze ReplaceCell(BaseCell newCell, IMaze maze);
-        BaseCell ReplaceCellToGround(BaseCell oldCell, IMaze maze);
+        IMaze ReplaceCell(IBaseCell newCell, IMaze maze);
+        IBaseCell ReplaceCellToGround(IBaseCell oldCell, IMaze maze);
         IMaze StateOfTheMaze(IMaze maze);
     }
 }

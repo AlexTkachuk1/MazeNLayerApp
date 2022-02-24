@@ -1,0 +1,184 @@
+﻿.barrel {
+
+    background-image: url('/image/environment/barrel.png');
+}
+.bush {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 40px,25px;
+    background-image: url('/image/environment/bush.png');
+}
+.bush1 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 40px,25px;
+    background-image: url('/image/environment/bush1.png');
+}
+.bush2 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 40px,25px;
+    background-image: url('/image/environment/bush2.png');
+}
+.fence {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 50px,25px;
+    background-image: url('/image/environment/fence.png');
+}
+.fence2 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 50px,25px;
+    background-image: url('/image/environment/fence2.png');
+}
+.fence3 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 50px,25px;
+    background-image: url('/image/environment/fence3.png');
+}
+.flower {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,40px;
+    background-image: url('/image/environment/flower.png');
+}
+.flower1 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,40px;
+    background-image: url('/image/environment/flower1.png');
+}
+.flower2 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,40px;
+    background-image: url('/image/environment/flower2.png');
+}
+.flower3 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,40px;
+    background-image: url('/image/environment/flower3.png');
+}
+.flower4 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,40px;
+    background-image: url('/image/environment/flower4.png');
+}
+.stone {
+    background-position-y: bottom;
+    background-position-x: left;
+    background-size: 30px,20px;
+    background-image: url('/image/environment/stone.png');
+}
+.stone1 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,20px;
+    background-image: url('/image/environment/stone1.png');
+}
+.stone2 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,20px;
+    background-image: url('/image/environment/stone2.png');
+}
+.stone3 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,20px;
+    background-image: url('/image/environment/stone3.png');
+}
+.stone4 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,20px;
+    background-image: url('/image/environment/stone4.png');
+}
+.stone5 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,20px;
+    background-image: url('/image/environment/stone5.png');
+}
+.stone6 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,20px;
+    background-image: url('/image/environment/stone6.png');
+}
+.stub {
+    background-position-y: bottom;
+    background-position-x: left;
+    background-size: 40px,20px;
+    background-image: url('/image/environment/stub.png');
+}
+.stub1 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 50px,30px;
+    background-image: url('/image/environment/stub1.png');
+}
+.stub2 {
+    background-position-y: bottom;
+    background-position-x: right;
+    background-size: 20px,20px;
+    background-image: url('/image/environment/stub2.png');
+}
+.tree {
+    background-position-y: bottom;
+    background-position-x: left;
+    background-size: 40px,80px;
+    background-image: url('/image/environment/tree.png');
+}
+.tree1 {
+    background-position-y: bottom;
+    background-position-x: left;
+    background-size: 40px,80px;
+    background-image: url('/image/environment/tree1.png');
+}
+.tree2 {
+    background-position-y: bottom;
+    background-position-x: left;
+    background-size: 40px,80px;
+    background-image: url('/image/environment/tree2.png');
+}
+.tree3 {
+    background-position-y: bottom;
+    background-position-x: left;
+    background-size: 40px,80px;
+    background-image: url('/image/environment/tree3.png');
+}
+.tree4 {
+    background-position-y: bottom;
+    background-position-x: left;
+    background-size: 40px,80px;
+    background-image: url('/image/environment/tree4.png');
+}
+.tree5 {
+    background-position-y: bottom;
+    background-position-x: left;
+    background-size: 30px,70px;
+    background-image: url('/image/environment/tree5.png');
+}
+.tree6 {
+    background-position-y: bottom;
+    background-position-x: left;
+    background-size: 40px,80px;
+    background-image: url('/image/environment/tree6.png');
+}
+.tree7 {
+    background-position-y: bottom;
+    background-position-x: left;
+    background-size: 50px,80px;
+    background-image: url('/image/environment/tree7.png');
+}
+.tree8 {
+    background-position-y: bottom;
+    background-position-x: left;
+    background-size: 50px,80px;
+    background-image: url('/image/environment/tree8.png');
+}

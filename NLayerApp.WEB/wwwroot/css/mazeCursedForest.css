@@ -51,7 +51,7 @@
 
 .cell.Assassin {
     background-size: 40px 50px;
-    background-image: url('/image/maze/Assassin.gif');
+    background-image: url('/image/maze/knught.gif');
 }
 
 .cell.Champion {
@@ -65,7 +65,7 @@
 }
 
 .cell.ExperiencedWarrior {
-    background-size: 50px 50px;
+    background-size: 60px 60px;
     background-image: url('/image/maze/ExperiencedWarrior (2).gif');
 }
 
@@ -75,17 +75,19 @@
 }
 
 .cell.Robot {
-    background-size: 50px 40px;
+    background-size: 60px 40px;
     background-image: url('/image/maze/bot.gif');
 }
-
+.cell.Сhest {
+    background-image: url('/image/maze/chest.gif');
+}
 
 .status.Hp {
     background-image: url('/image/status/hp1.gif');
 }
 
 .status.Gold {
-    background-image: url('/image/maze/coin1.gif');
+    background-image: url('/image/maze/gold.webp');
 }
 
 .status.Damage {

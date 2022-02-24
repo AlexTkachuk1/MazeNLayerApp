@@ -2,12 +2,22 @@
 
 namespace NLayerApp.BLL_.DTO.Cells
 {
-    public class MiracleShop : BaseCell
+    public class MiracleShop : IBaseCell
     {
-        public MiracleShop(int x, int y, IMaze maze) : base(x, y, maze)
+        public int CordinateX { get; set; }
+        public int CordinateY { get; set; }
+        public IMaze Maze { get; set; }
+        public MiracleShop()
         {
+
         }
-        public override bool TryStep()
+        public MiracleShop(int x, int y, IMaze maze)
+        {
+            CordinateX = x;
+            CordinateY = y;
+            Maze = maze;
+        }
+        public bool TryStep()
         {
             return true;
         }

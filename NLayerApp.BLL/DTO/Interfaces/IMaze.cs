@@ -4,13 +4,13 @@ namespace NLayerApp.BLL_.DTO.Interfaces
 {
     public interface IMaze
     {
-        List<BaseCell> Cells { get; set; }
-        List<BaseCell> CellsWithHero { get; }
+        List<IBaseCell> Cells { get; set; }
+        List<IBaseCell> CellsWithHero { get; }
         IHero Hero { get; }
         int Height { get; set; }
         int Width { get; set; }
         string Name { get; set; }
-        BaseCell this[int x, int y] { get; set; }
+        IBaseCell this[int x, int y] { get; set; }
         Action<IMaze> DrawStepByStep { get; set; }
         void TryToStep(Direction direction);
     }

@@ -45,7 +45,7 @@
         background-position-y: bottom;
         background-position-x: left;
         background-size: 40px 40px;
-        /*background-image: url('/image/environment/');*/
+        background-image: url('/image/environment/бочка.png');
     }
 
     .cell.InvisibleTrap {
@@ -97,13 +97,16 @@
         background-size: 55px 60px;
         background-image: url('/image/maze/monsrt2.gif');
     }
+    .cell.Сhest {
+        background-image: url('/image/maze/chest.gif');
+    }
 
 .status.Hp {
     background-image: url('/image/status/hp1.gif');
 }
 
 .status.Gold {
-    background-image: url('/image/maze/coin1.gif');
+    background-image: url('/image/maze/gold.webp');
 }
 
 .status.Damage {

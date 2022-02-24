@@ -89,7 +89,7 @@ body {
 }
 
 .cell.Rip {
-    background-size: 50px 60px;
+    background-size: 30px 40px;
     background-image: url('/image/maze/brokenTrap.png');
 }
 
@@ -118,9 +118,7 @@ body {
         background-image: url('/image/appBackground/ground.png');*/
 }
 
-.cell.Ñhest {
-    background-image: url('/image/maze/chest.gif');
-}
+
 
 .cell {
     background-position-y: center;

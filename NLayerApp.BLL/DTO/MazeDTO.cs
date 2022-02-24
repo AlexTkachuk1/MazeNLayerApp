@@ -9,8 +9,8 @@ namespace NLayerApp.BLL_.DTO
         public int Width { get; set; }
         public int Height { get; set; }
         public Action<IMaze> DrawStepByStep { get; set; } = null;
-        public List<BaseCell> Cells { get; set; }
-        public List<BaseCell> CellsWithHero
+        public List<IBaseCell> Cells { get; set; }
+        public List<IBaseCell> CellsWithHero
         {
             get
             {
@@ -29,7 +29,7 @@ namespace NLayerApp.BLL_.DTO
             }
         }
 
-        public BaseCell this[int x, int y]
+        public IBaseCell this[int x, int y]
         {
             get
             {

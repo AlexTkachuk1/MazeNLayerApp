@@ -17,6 +17,7 @@
     }
 
     function generateLab(value) {
+        var environmentNames = Environment.GetEnvironment();
         for (var y = 0; y < value.mazeHeight; y++) {
             var line = [];
             for (var x = 0; x < value.mazeWidth; x++) {
@@ -27,6 +28,12 @@
         for (var i = 0; i < value.cellViewModels.length; i++) {
             var cell = value.cellViewModels[i];
             labyrinth[cell.cordinateY][cell.cordinateX] = cell.typeName;
+            if (cell.typeName == "Ground") {
+                if (getRandomInt(0,100)<50) {
+                    var num = getRandomInt(1, (environmentNames.length + 1))
+                    labyrinth[cell.cordinateY][cell.cordinateX] = environmentNames[num];
+                }
+            }
             if (cell.typeName == "Teleport") {
                 var teleportCell = [];
                 teleportCell.push(cell.cordinateY);
@@ -46,11 +53,13 @@
         labyrinthWithHero[heroY][heroX] = "CellWithHero";
         return labyrinthWithHero;
     }
+
     function getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
     }
+
     function drawLab(selector, labyrinth) {
         var mainBlock = $(selector);
         oldBlock = $('div').remove('.maze');

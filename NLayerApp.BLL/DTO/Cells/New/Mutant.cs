@@ -2,13 +2,23 @@
 
 namespace NLayerApp.BLL_.DTO.Cells
 {
-    public class Mutant : BaseCell
+    public class Mutant : IBaseCell
     {
-        public Mutant(int x, int y, IMaze maze) : base(x, y, maze)
+        public int CordinateX { get; set; }
+        public int CordinateY { get; set; }
+        public IMaze Maze { get; set; }
+        public Mutant()
         {
+
+        }
+        public Mutant(int x, int y, IMaze maze)
+        {
+            CordinateX = x;
+            CordinateY = y;
+            Maze = maze;
         }
 
-        public override bool TryStep()
+        public bool TryStep()
         {
             throw new NotImplementedException();
         }

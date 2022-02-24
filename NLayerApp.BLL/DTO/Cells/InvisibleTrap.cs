@@ -2,13 +2,23 @@
 
 namespace NLayerApp.BLL_.DTO.Cells
 {
-    public class InvisibleTrap : BaseCell
+    public class InvisibleTrap : IBaseCell
     {
-        public InvisibleTrap(int x, int y, IMaze maze) : base(x, y, maze)
+        public int CordinateX { get; set; }
+        public int CordinateY { get; set; }
+        public IMaze Maze { get; set; }
+        public InvisibleTrap()
         {
+
+        }
+        public InvisibleTrap(int x, int y, IMaze maze)
+        {
+            CordinateX = x;
+            CordinateY = y;
+            Maze = maze;
         }
 
-        public override bool TryStep()
+        public bool TryStep()
         {
             throw new NotImplementedException();
         }

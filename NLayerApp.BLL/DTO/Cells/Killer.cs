@@ -2,12 +2,22 @@
 
 namespace NLayerApp.BLL_.DTO.Cells
 {
-    public class Killer : BaseCell
+    public class Killer : IBaseCell
     {
-        public Killer(int x, int y, IMaze maze) : base(x, y, maze)
+        public int CordinateX { get; set; }
+        public int CordinateY { get; set; }
+        public IMaze Maze { get; set; }
+        public Killer()
         {
+
         }
-        public override bool TryStep()
+        public Killer(int x, int y, IMaze maze)
+        {
+            CordinateX = x;
+            CordinateY = y;
+            Maze = maze;
+        }
+        public bool TryStep()
         {
             return true;
         }

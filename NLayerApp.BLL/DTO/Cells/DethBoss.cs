@@ -2,12 +2,22 @@
 
 namespace NLayerApp.BLL_.DTO.Cells
 {
-    public class DethBoss : BaseCell
+    public class DethBoss : IBaseCell
     {
-        public DethBoss(int x, int y, IMaze maze) : base(x, y, maze)
+        public int CordinateX { get; set; }
+        public int CordinateY { get; set; }
+        public IMaze Maze { get; set; }
+        public DethBoss()
         {
+
         }
-        public override bool TryStep()
+        public DethBoss(int x, int y, IMaze maze)
+        {
+            CordinateX = x;
+            CordinateY = y;
+            Maze = maze;
+        }
+        public bool TryStep()
         {
             return true;
         }

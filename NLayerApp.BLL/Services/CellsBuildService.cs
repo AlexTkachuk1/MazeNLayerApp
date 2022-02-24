@@ -1,5 +1,4 @@
 ﻿using NLayerApp.BLL_.DTO.Cells;
-using NLayerApp.BLL_.DTO.Cells.environment;
 using NLayerApp.BLL_.DTO.Interfaces;
 using NLayerApp.BLL_.Interfaces;
 namespace NLayerApp.BLL_.Services
@@ -7,7 +6,6 @@ namespace NLayerApp.BLL_.Services
     public class CellsBuildService: ICellsBuildService
     {
         private IMazeBuildService _mazeBuildService;
-
         public CellsBuildService(
             IMazeBuildService mazeBuildService
             )
@@ -29,15 +27,8 @@ namespace NLayerApp.BLL_.Services
         }
         public IMaze BuildEnvironment(int chance, IMaze maze)
         {
-            var allGrounCell = maze.Cells.OfType<Ground>().ToList();
-            for (int i = 0; i < allGrounCell.Count; i++)
-            {
-                var oldCell = allGrounCell[i];
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
 
-                //_mazeBuildService.generateCells<Bush>(allGrounCell[i].CordinateX, allGrounCell[i].CordinateY, maze);
-                var newCell = new DamnEarth(oldCell.CordinateX, oldCell.CordinateY, maze);
-                _mazeBuildService.ReplaceCell(newCell, maze);
-            }
             ConsoleDrawer(maze);
             return maze;
         }
@@ -57,7 +48,7 @@ namespace NLayerApp.BLL_.Services
         {
 
             var randomCell = _mazeBuildService.GetRandom(maze.Cells);
-            var wallsToDestroy = new List<BaseCell>()
+            var wallsToDestroy = new List<IBaseCell>()
             {
                 //randomCell
             };
@@ -92,11 +83,11 @@ namespace NLayerApp.BLL_.Services
         }
         public IMaze BuildGroundMyVersion(IMaze maze)
         {
-            var wallsToDestroy = new List<BaseCell>() {
+            var wallsToDestroy = new List<IBaseCell>() {
                 maze.Cells[0]
             };
 
-            var cellVisited = new List<BaseCell>();
+            var cellVisited = new List<IBaseCell>();
             var allWallsToDestroy = wallsToDestroy;
             while (wallsToDestroy.Any() && allWallsToDestroy.Any())
             {
@@ -110,7 +101,7 @@ namespace NLayerApp.BLL_.Services
                     wallsToDestroy.Remove(ToDestroy);
 
                     cellVisited.Add(ground);
-                    wallsToDestroy = new List<BaseCell>();
+                    wallsToDestroy = new List<IBaseCell>();
 
                     var nearestWalls = _mazeBuildService.GetNears<Wall>(ground, maze);
 
@@ -145,15 +136,20 @@ namespace NLayerApp.BLL_.Services
             }
             return maze;
         }
-        public IMaze BuildInvisibleTrap(int chans, IMaze maze)
+        public IMaze BuildInvisibleTrap(int chance, IMaze maze)
         {
-            _mazeBuildService.generateWithChance(chans, "InvisibleTrap", maze);
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
+
+            _mazeBuildService.generateCells<InvisibleTrap>(cellsForReplace, maze);
+
             ConsoleDrawer(maze);
             return maze;
         }
-        public IMaze BuildLegionary(int chans, IMaze maze)
+        public IMaze BuildLegionary(int chance, IMaze maze)
         {
-            _mazeBuildService.generateWithChance(chans, "Legionary", maze);
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
+
+            _mazeBuildService.generateCells<Legionary>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
@@ -170,171 +166,183 @@ namespace NLayerApp.BLL_.Services
 
         public IMaze BuildGoldHeap(int chance, IMaze maze)
         {
-            _mazeBuildService.generateWithChance(chance, "GoldHeap", maze);
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
+
+            _mazeBuildService.generateCells<GoldHeap>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildAssassin(int chance, IMaze maze)
         {
-            _mazeBuildService.generateWithChance(chance, "Assassin", maze);
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
+
+            _mazeBuildService.generateCells<Assassin>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildElf(int chance, IMaze maze)
         {
-            _mazeBuildService.generateWithChance(chance, "Elf", maze);
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
+
+            _mazeBuildService.generateCells<Elf>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildGoblin(int chance, IMaze maze)
         {
-            _mazeBuildService.generateWithChance(chance, "Goblin", maze);
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
+
+            _mazeBuildService.generateCells<Goblin>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildMutant(int chance, IMaze maze)
         {
-            _mazeBuildService.generateWithChance(chance, "Mutant", maze);
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
+
+            _mazeBuildService.generateCells<Mutant>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildSmallPotionTreatment(int chance, IMaze maze)
         {
-            _mazeBuildService.generateWithChance(chance, "SmallPotionTreatment", maze);
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
+
+            _mazeBuildService.generateCells<SmallPotionTreatment>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildSwampCreature(int chance, IMaze maze)
         {
-            _mazeBuildService.generateWithChance(chance, "SwampCreature", maze);
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
+
+            _mazeBuildService.generateCells<SwampCreature>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildRobot(int chanceFrom1000, IMaze maze)
         {
-            var allGroundCells = maze.Cells.OfType<Ground>().ToList();
-            var allCells = new List<BaseCell>();
-            allCells.AddRange(allGroundCells);
-            _mazeBuildService.generateWithTrueChance(chanceFrom1000, "Robot", allCells, maze);
+            var cellsForReplace = _mazeBuildService.generateWithTrueChance<Ground>(chanceFrom1000, maze);
+
+            _mazeBuildService.generateCells<Robot>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildExperiencedWarrior(int chanceFrom1000, IMaze maze)
         {
-            var allGroundCells = maze.Cells.OfType<Ground>().ToList();
-            var allCells = new List<BaseCell>();
-            allCells.AddRange(allGroundCells);
-            _mazeBuildService.generateWithTrueChance(chanceFrom1000, "ExperiencedWarrior", allCells, maze);
+            var cellsForReplace = _mazeBuildService.generateWithTrueChance<Ground>(chanceFrom1000, maze);
+
+            _mazeBuildService.generateCells<ExperiencedWarrior>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildDecomposedCorpse(int chance, IMaze maze)
         {
-            _mazeBuildService.generateWithChance(chance, "DecomposedCorpse", maze);
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
+
+            _mazeBuildService.generateCells<DecomposedCorpse>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildDeadMan(int chance, IMaze maze)
         {
-            _mazeBuildService.generateWithChance(chance, "DeadMan", maze);
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
+
+            _mazeBuildService.generateCells<DeadMan>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildDraconian(int chance, IMaze maze)
         {
-            _mazeBuildService.generateWithChance(chance, "Draconian", maze);
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
+
+            _mazeBuildService.generateCells<Draconian>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildAverageTreatmentPotion(int chanceFrom1000, IMaze maze)
         {
-            var allGroundCells = maze.Cells.OfType<Ground>().ToList();
-            var allCells = new List<BaseCell>();
-            allCells.AddRange(allGroundCells);
-            _mazeBuildService.generateWithTrueChance(chanceFrom1000, "AverageTreatmentPotion", allCells, maze);
+            var cellsForReplace = _mazeBuildService.generateWithTrueChance<Ground>(chanceFrom1000, maze);
+
+            _mazeBuildService.generateCells<AverageTreatmentPotion>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildBagOfGold(int chanceFrom1000, IMaze maze)
         {
-            var allGroundCells = maze.Cells.OfType<Ground>().ToList();
-            var allCells = new List<BaseCell>();
-            allCells.AddRange(allGroundCells);
-            _mazeBuildService.generateWithTrueChance(chanceFrom1000, "BagOfGold", allCells, maze);
+            var cellsForReplace = _mazeBuildService.generateWithTrueChance<Ground>(chanceFrom1000, maze);
+
+            _mazeBuildService.generateCells<BagOfGold>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildChampion(int number, IMaze maze)
         {
-            var graundCells = maze.Cells.OfType<Ground>().ToList();
-            var allGraundCells = new List<BaseCell>();
-            allGraundCells.AddRange(graundCells);
-            _mazeBuildService.generateTheNumberOfCells(number, "Champion", allGraundCells, maze);
+            var cellsForReplace = _mazeBuildService.generateTheNumberOfCells<Ground>(number, maze);
+
+            _mazeBuildService.generateCells<Champion>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildDragon(int number, IMaze maze)
         {
-            var graundCells = maze.Cells.OfType<Ground>().ToList();
-            var allGraundCells = new List<BaseCell>();
-            allGraundCells.AddRange(graundCells);
-            _mazeBuildService.generateTheNumberOfCells(number, "Dragon", allGraundCells, maze);
+            var cellsForReplace = _mazeBuildService.generateTheNumberOfCells<Ground>(number, maze);
+
+            _mazeBuildService.generateCells<Dragon>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildTrap(int chance, IMaze maze)
         {
-            _mazeBuildService.generateWithChance(chance, "Trap", maze);
+            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
+
+            _mazeBuildService.generateCells<Trap>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildBoss(int number, IMaze maze)
         {
-            var graundCells = maze.Cells.OfType<Ground>().ToList();
-            var allGraundCells = new List<BaseCell>();
-            allGraundCells.AddRange(graundCells);
-            _mazeBuildService.generateTheNumberOfCells(number, "Boss", allGraundCells, maze);
+            var cellsForReplace = _mazeBuildService.generateTheNumberOfCells<Ground>(number, maze);
+
+            _mazeBuildService.generateCells<Boss>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
 
         public IMaze BuildСhest(int chanceFrom1000, IMaze maze)
         {
-            var allGroundCells = maze.Cells.OfType<Ground>().ToList();
-            var allCells = new List<BaseCell>();
-            allCells.AddRange(allGroundCells);
-            _mazeBuildService.generateWithTrueChance(chanceFrom1000, "Сhest", allCells, maze);
+            var cellsForReplace = _mazeBuildService.generateWithTrueChance<Ground>(chanceFrom1000, maze);
+
+            _mazeBuildService.generateCells<Сhest>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
 
         public IMaze BuildMiracleShop(int chanceFrom1000, IMaze maze)
         {
-            var allGroundCells = maze.Cells.OfType<Wall>().Where(x => x.CordinateX != 0
+            var allTypeCells = _mazeBuildService.generateWithTrueChance<Wall>(chanceFrom1000, maze);
+
+            var  cellsForReplace = allTypeCells.Where(x => x.CordinateX != 0
                     && x.CordinateX < maze.Width - 1
                     && x.CordinateY != 0
                     && x.CordinateY < maze.Height - 1).ToList();
-            var allCells = new List<BaseCell>();
-            allCells.AddRange(allGroundCells);
-            _mazeBuildService.generateWithTrueChance(chanceFrom1000, "MiracleShop", allCells, maze);
+
+            _mazeBuildService.generateCells<MiracleShop>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildKiller(int number, IMaze maze)
         {
-            var graundCells = maze.Cells.OfType<Ground>().ToList();
-            var allGraundCells = new List<BaseCell>();
-            allGraundCells.AddRange(graundCells);
-            _mazeBuildService.generateTheNumberOfCells(number, "Killer", allGraundCells, maze);
-            ConsoleDrawer(maze);
+            var cellsForReplace = _mazeBuildService.generateTheNumberOfCells<Ground>(number, maze);
+
+            _mazeBuildService.generateCells<Killer>(cellsForReplace, maze);
             return maze;
         }
         public IMaze BuildTeleport(IMaze maze)
         {
-            var graundCells = maze.Cells.OfType<Ground>().ToList();
-            var allGraundCells = new List<BaseCell>();
-            allGraundCells.AddRange(graundCells);
-            _mazeBuildService.generateTheNumberOfCells(2, "Teleport", allGraundCells, maze);
+            var cellsForReplace = _mazeBuildService.generateTheNumberOfCells<Ground>(2, maze);
+
+            _mazeBuildService.generateCells<Teleport>(cellsForReplace, maze);
             ConsoleDrawer(maze);
             return maze;
         }

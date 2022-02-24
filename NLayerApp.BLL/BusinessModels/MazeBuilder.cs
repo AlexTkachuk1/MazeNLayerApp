@@ -25,7 +25,7 @@ namespace NLayerApp.BLL_.BusinessModels
             {
                 Width = width,
                 Height = height,
-                Cells = new List<BaseCell>(),
+                Cells = new List<IBaseCell>(),
                 DrawStepByStep = drawStepByStep
             };
 
@@ -55,7 +55,7 @@ namespace NLayerApp.BLL_.BusinessModels
 
             _maze = cellsBuildService.BuildMiracleShop(5, _maze);
 
-            _maze = cellsBuildService.BuildСhest(20, _maze);
+            _maze = cellsBuildService.BuildСhest(10, _maze);
 
             _maze = cellsBuildService.BuildAverageTreatmentPotion(5, _maze);
 
@@ -70,7 +70,7 @@ namespace NLayerApp.BLL_.BusinessModels
             {
                 Width = width,
                 Height = height,
-                Cells = new List<BaseCell>(),
+                Cells = new List<IBaseCell>(),
                 DrawStepByStep = drawStepByStep
             };
 
@@ -108,8 +108,6 @@ namespace NLayerApp.BLL_.BusinessModels
 
             _maze = cellsBuildService.BuildСhest(20, _maze);
 
-            _maze = cellsBuildService.BuildDamnEarth(20, _maze);
-
             return _maze;
         }
 
@@ -121,7 +119,7 @@ namespace NLayerApp.BLL_.BusinessModels
             {
                 Width = width,
                 Height = height,
-                Cells = new List<BaseCell>(),
+                Cells = new List<IBaseCell>(),
                 DrawStepByStep = drawStepByStep
             };
 

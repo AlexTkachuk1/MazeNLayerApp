@@ -36,8 +36,4 @@
     <ProjectReference Include="..\NLayerApp.DAL\NLayerApp.DAL..csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\image\environment\" />
-  </ItemGroup>
-
 </Project>

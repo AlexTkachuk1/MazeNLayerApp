@@ -2,13 +2,23 @@
 
 namespace NLayerApp.BLL_.DTO.Cells
 {
-    public class Ground : BaseCell
+    public class Ground : IBaseCell
     {
-        public Ground(int x, int y, IMaze maze) : base(x, y, maze)
+        public int CordinateX { get; set; }
+        public int CordinateY { get; set; }
+        public IMaze Maze { get; set; }
+        public Ground()
         {
+
+        }
+        public Ground(int x, int y, IMaze maze)
+        {
+            CordinateX = x;
+            CordinateY = y;
+            Maze = maze;
         }
 
-        public override bool TryStep()
+        public bool TryStep()
         {
             return true;
         }

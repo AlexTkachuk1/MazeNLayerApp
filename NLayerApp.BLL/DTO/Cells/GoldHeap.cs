@@ -3,23 +3,25 @@ using NLayerApp.BLL_.DTO.Interfaces;
 
 namespace NLayerApp.BLL_.DTO.Cells
 {
-    public class GoldHeap : BaseCell
+    public class GoldHeap : IBaseCell
     {
-        private int goldCount;
-        private Random _random = new Random();
-        public GoldHeap(int x, int y, IMaze maze) : base(x, y, maze)
+        public int CordinateX { get; set; }
+        public int CordinateY { get; set; }
+        public IMaze Maze { get; set; }
+        public GoldHeap()
         {
-            //if (goldCount < 0)
-            //{
-            //    throw new Exception("Gold heap can't has negative gold count");
-            //}
 
-            this.goldCount = _random.Next(1,60);
+        }
+        public GoldHeap(int x, int y, IMaze maze)
+        {
+            CordinateX = x;
+            CordinateY = y;
+            Maze = maze;
+
         }
 
-        public override bool TryStep()
+        public bool TryStep()
         {
-            Maze.Hero.Gold += goldCount;
             return true;
         }
     }
