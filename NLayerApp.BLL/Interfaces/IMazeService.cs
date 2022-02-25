@@ -10,6 +10,7 @@ namespace NLayerApp.BLL_.Interfaces
         IMaze BuildMazeCursedForest(int width = 26, int height = 18);
 
         IMaze BuildMazePoisonSwamps(int width = 26, int height = 18);
+        IMaze BuildMazeForestOfSouls(int width = 26, int height = 18);
         void SaveMaze(IMaze maze);
         List<Maze> GetAllMazes();
         void Dispose();

@@ -1,0 +1,125 @@
+﻿.drawerSection {
+    display: flex;
+    background-size: 150px 150px;
+    background-image: url('/image/appBackground/ground11.jpg');
+}
+.Choice {
+    background-position-y: center;
+    background-position-x: center;
+    background-size: 1200px 500px;
+    background-repeat: no-repeat;
+    background-image: url('/image/appBackground/shop.jpeg');
+}
+.indent {
+    height: 10px;
+}
+
+.status {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    background-size: cover;
+}
+
+.top {
+    background-image: url('/image/appBackground/фон.jpg');
+    background-repeat: no-repeat;
+}
+
+.cell.Wall {
+    background-size: 70px 70px;
+    background-image: url('/image/maze/wall7.jpg')
+}
+
+.cell.Gate {
+    background-image: url('/image/maze/castle.gif');
+}
+
+.cell.Teleport {
+    background-size: 40px 40px;
+    background-image: url('/image/maze/teleport4.gif');
+}
+
+.cell.Faun {
+    background-image: url('/image/maze/Faun.gif');
+}
+.cell.ForgottenKing {
+    background-size: 60px 60px;
+    background-image: url('/image/maze/ForgottenKing.gif');
+}
+.cell.Guard {
+    background-size: 70px 60px;
+    background-image: url('/image/maze/guard.gif');
+}
+.cell.Portal {
+    background-image: url('/image/maze/teleport6.gif');
+}
+.cell.SpiritOfTheForest {
+    background-size: 60px 60px;
+    background-image: url('/image/maze/SpiritOfTheForest.gif');
+}
+.cell.Wolf {
+    background-size: 50px 40px;
+    background-image: url('/image/maze/wolf.gif');
+}
+.cell.InvisibleTrap {
+    background-image: url('/image/maze/lightning.webp');
+}
+.cell.Сhest {
+    background-image: url('/image/maze/chest.gif');
+}
+.cell.Tornado {
+    background-image: url('/image/maze/tornado-joypixels.gif');
+}
+.status.Hp {
+    background-image: url('/image/status/hp1.gif');
+}
+
+.status.Gold {
+    background-image: url('/image/maze/gold.webp');
+}
+
+.status.Damage {
+    background-size: 90px,90px;
+    background-image: url('/image/status/sword.gif');
+}
+
+.status.Armor {
+    background-size: 50px,50px;
+    background-image: url('/image/status/sheald.gif');
+}
+
+.status.HasGiganHammer {
+    background-size: 60px,60px;
+    background-image: url('/image/status/hammer.gif');
+}
+
+.status.Invisible {
+    background-size: 50px,50px;
+    background-image: url('/image/status/stealth.gif');
+}
+
+.status.CanJump {
+    background-size: 70px,150px;
+    background-image: url('/image/status/flying.gif');
+}
+
+.status.Stamina {
+    background-size: 60px 70px;
+    background-image: url('/image/maze/Portal.gif')
+}
+.status {
+    width: 100px;
+    height: 70px;
+    background-size: 50px,50px;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: bottom;
+}
+
+.heroStatus {
+    display: flex;
+}
+
+.heroIndicators {
+}

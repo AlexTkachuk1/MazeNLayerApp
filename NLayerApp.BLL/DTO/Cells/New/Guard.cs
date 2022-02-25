@@ -1,8 +1,8 @@
 ﻿using NLayerApp.BLL_.DTO.Interfaces;
 
-namespace NLayerApp.BLL_.DTO.Cells.New
+namespace NLayerApp.BLL_.DTO.Cells
 {
-    internal class Guard:IBaseCell
+    public class Guard : IBaseCell
     {
         public int CordinateX { get; set; }
         public int CordinateY { get; set; }

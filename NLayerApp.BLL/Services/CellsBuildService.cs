@@ -137,6 +137,15 @@ namespace NLayerApp.BLL_.Services
             }
             return maze;
         }
+        public IMaze BuildTornado(int number, IMaze maze)
+        {
+            var cellsForReplace = _mazeBuildService.generateTheNumberOfCells<Ground>(number, maze);
+
+            _mazeBuildService.generateCells<Tornado>(cellsForReplace, maze);
+
+            ConsoleDrawer(maze);
+            return maze;
+        }
         public IMaze BuildFaun(int chanceFrom1000, IMaze maze)
         {
             var cellsForReplace = _mazeBuildService.generateWithTrueChance<Ground>(chanceFrom1000, maze);
@@ -165,7 +174,7 @@ namespace NLayerApp.BLL_.Services
             return maze;
         }
         // Сработает при вызове после создания портала.
-        public IMaze BuildGuard(int chance, IMaze maze)
+        public IMaze BuildGuard(IMaze maze)
         {
             var portalCell = maze.Cells.OfType<Portal>().ToList();
             var cellsForReplace = new List<IBaseCell>();
@@ -175,7 +184,7 @@ namespace NLayerApp.BLL_.Services
                 var cells = _mazeBuildService.GetNears<Ground>(cell, maze);
                 cellsForReplace.AddRange(cells);
             }
-             _mazeBuildService.generateCells<SpiritOfTheForest>(cellsForReplace, maze);
+             _mazeBuildService.generateCells<Guard>(cellsForReplace, maze);
 
             ConsoleDrawer(maze);
             return maze;
@@ -189,9 +198,12 @@ namespace NLayerApp.BLL_.Services
             ConsoleDrawer(maze);
             return maze;
         }
-        public IMaze BuildPortal(int chance, IMaze maze)
+        public IMaze BuildPortal(int number, IMaze maze)
         {
-            var cellsForReplace = _mazeBuildService.generateTheNumberOfCells<Wall>(chance, maze);
+            var cellsForReplace = _mazeBuildService.generateTheNumberOfCells<Wall>(number, maze).Where(x => x.CordinateX != 0
+                   && x.CordinateX < maze.Width - 1
+                   && x.CordinateY != 0
+                   && x.CordinateY < maze.Height - 1).ToList(); 
 
             _mazeBuildService.generateCells<Portal>(cellsForReplace, maze);
 

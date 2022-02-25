@@ -140,9 +140,8 @@ namespace NLayerApp.BLL_.Services
         }
         public void StepOnWolf(int spiritDamage, int physicalDamage)
         {
-            var hero = GetHero();
             var rand = _random.Next(1, 3);
-            switch (spiritDamage)
+            switch (rand)
             {
                 case 1:
                     DealDamage(physicalDamage);
@@ -169,7 +168,6 @@ namespace NLayerApp.BLL_.Services
         }
         public void StepOnSpiritOfTheForest(int damageMin, int damageMax)
         {
-            var hero = GetHero();
             var damage = _random.Next(damageMin, damageMax);
             DealSpiritDamage(damage);
         }

@@ -4,6 +4,7 @@
     heroY = 1;
 
     var teleport = [];
+    var allGroundCell = [];
 
     mazeHight = 10;
     mazeWidth = 20;
@@ -15,7 +16,18 @@
             mazeWidth = width;
         }
     }
-
+    function GetAllGroundCell() {
+        for (var y = 0; y < labyrinth.length; y++) {
+            for (var x = 0; x < labyrinth[y].length; x++) {
+                if (labyrinth[y][x] == 'Ground') {
+                    var cellСordinates = {};
+                    cellСordinates.x = x;
+                    cellСordinates.y = y;
+                    allGroundCell.push(cellСordinates);
+                }
+            }
+        }
+    }
     function generateLab(value) {
         var environmentNames = Environment.GetEnvironment();
         for (var y = 0; y < value.mazeHeight; y++) {
@@ -160,7 +172,7 @@
                     labyrinth[heroYPossible][heroXPossible] = "Ground";
                     break;
                 case "Gate":
-                    var val = getRandomInt(1, 4);
+                    var val = getRandomInt(1, 5);
                     switch (val) {
                         case 1:
                             window.location = "https://localhost:44328/Maze/DrawJs";
@@ -171,10 +183,21 @@
                         case 3:
                             window.location = "https://localhost:44328/Maze/DrawPoisonSwamps";
                             break;
+                        case 4:
+                            window.location = "https://localhost:44328/Maze/DrowForestOfSouls";
+                            break;
                     }
                     break;
                 case "Portal":
-                    window.location = "https://localhost:44328/Maze/DrawCursedForest";
+                    var val = getRandomInt(1, 3);
+                    switch (val) {
+                        case 1:
+                            window.location = "https://localhost:44328/Maze/DrawCursedForest";
+                            break;
+                        case 2:
+                            window.location = "https://localhost:44328/Maze/DrawPoisonSwamps";
+                            break;
+                    }
                     break;
                 case "SpiritOfTheForest":
                     HeroStatus.heroStepOnCell("SpiritOfTheForest");
@@ -351,6 +374,12 @@
                 case "SwampCreature":
                     HeroStatus.heroStepOnCell("SwampCreature");
                     labyrinth[heroYPossible][heroXPossible] = "Rip";
+                    break;
+                case "Tornado":
+                    GetAllGroundCell();
+                    var rand = getRandomInt(1, allGroundCell.length);
+                    heroXPossible = allGroundCell[rand].x;
+                    heroYPossible = allGroundCell[rand].y;
                     break;
             }
             $('#end').click(function () {

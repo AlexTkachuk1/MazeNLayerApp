@@ -159,5 +159,55 @@ namespace NLayerApp.BLL_.BusinessModels
 
             return _maze;
         }
+        public IMaze BuildMazeForForestOfSouls(int width = 30,
+            int height = 15,
+            Action<IMaze> drawStepByStep = null)
+        {
+            _maze = new MazeDTO()
+            {
+                Width = width,
+                Height = height,
+                Cells = new List<IBaseCell>(),
+                DrawStepByStep = drawStepByStep
+            };
+
+            _maze = cellsBuildService.BuildWall(_maze);
+
+            _maze = cellsBuildService.BuildGround(_maze);
+
+            _maze = cellsBuildService.BuildGate(_maze);
+
+            _maze = cellsBuildService.BuildGoldHeap(2, _maze);
+
+            _maze = cellsBuildService.BuildForgottenKing(1, _maze);
+
+            _maze = cellsBuildService.BuildPortal(2,_maze);
+
+            _maze = cellsBuildService.BuildGuard(_maze);
+
+            _maze = cellsBuildService.BuildWolf(7, _maze);
+
+            _maze = cellsBuildService.BuildSpiritOfTheForest(3, _maze);
+
+            _maze = cellsBuildService.BuildFaun(5, _maze);
+
+            _maze = cellsBuildService.BuildSmallPotionTreatment(1, _maze);
+
+            _maze = cellsBuildService.BuildTeleport(_maze);
+
+            _maze = cellsBuildService.BuildAverageTreatmentPotion(3, _maze);
+
+            _maze = cellsBuildService.BuildBagOfGold(2, _maze);
+
+            _maze = cellsBuildService.BuildMiracleShop(5, _maze);
+
+            _maze = cellsBuildService.BuildСhest(10, _maze);
+
+            _maze = cellsBuildService.BuildInvisibleTrap(10, _maze);
+
+            _maze = cellsBuildService.BuildTornado(2, _maze);
+
+            return _maze;
+        }
     }
 }

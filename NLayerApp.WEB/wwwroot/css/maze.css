@@ -28,7 +28,7 @@
 
 .cell.Wall {
     background-size: 50px 50px;
-    background-image: url('/image/maze/wall4.jpg');
+    background-image: url('/image/maze/wall6.jpg');
 }
 
 .cell.Gate {

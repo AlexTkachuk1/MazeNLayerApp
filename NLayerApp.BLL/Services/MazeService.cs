@@ -21,9 +21,14 @@ namespace NLayerApp.BLL_.Services
             this.mapper = mapper;
             this.mazeBuilder = mazeBuilder;
         }
-        public  IMaze BuildMaze(int width = 16, int height = 10)
+        public IMaze BuildMaze(int width = 16, int height = 10)
         {
             IMaze newMaze = mazeBuilder.Build(width, height);
+            return newMaze;
+        }
+        public  IMaze BuildMazeForestOfSouls(int width = 16, int height = 10)
+        {
+            IMaze newMaze = mazeBuilder.BuildMazeForForestOfSouls(width, height);
             return newMaze;
         }
         public IMaze BuildMazeCursedForest(int width = 16, int height = 10)

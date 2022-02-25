@@ -5,6 +5,7 @@
     var CanJumpValue;
     var HeroHP;
     var HeroGold;
+    var Stamina;
 
     var Update = (async function () {
         var value = null;
@@ -20,7 +21,7 @@
             CanJumpValue = value.canJump;
             HeroHP = value.hp;
             HeroGold = value.gold;
-
+            Stamina = value.stamina
             if (value.gameOver) {
                 window.location = "https://localhost:44328/Maze/GameOver";
             }
@@ -93,7 +94,21 @@
 
 
 
+        var statusIconForStamina = $('<div>');
+        statusIconForStamina.addClass('statusIcon');
 
+        var Stamina = $('<span>');
+        Stamina.addClass("status Stamina");
+        Stamina.addClass("status");
+        statusIconForStamina.append(Stamina);
+
+        var StaminaValue = $('<h1>');
+        StaminaValue.addClass('StaminaValue');
+        StaminaValue.addClass('text');
+        StaminaValue.text(value.stamina);
+        statusIconForStamina.append(StaminaValue);
+
+        status.append(statusIconForStamina);
 
 
         
@@ -199,6 +214,9 @@
     function HeroGold() {
         return HeroGold;
     }
+    function HeroStamina() {
+        return Stamina;
+    }
     return {
         Update: Update,
         DisplayIndicators: DisplayIndicators,
@@ -206,7 +224,8 @@
         GetInvisible: GetInvisible,
         GetCanJumpValue: CanJumpValue,
         HeroHP: HeroHP,
-        HeroGold: HeroGold
+        HeroGold: HeroGold,
+        HeroStamina: HeroStamina
     };
 })();
 
