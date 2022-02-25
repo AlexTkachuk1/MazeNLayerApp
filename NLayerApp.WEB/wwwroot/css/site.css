@@ -57,7 +57,7 @@ body {
 
 .shopMenu {
     margin-left: 20px;
-    display:flex;
+    display: flex;
 }
 
 .shopText {
@@ -175,3 +175,56 @@ body {
         background: -o-linear-gradient(bottom, #A4D3E0, #A4D3E0 50%, #CBE3EB 50%);
         background: linear-gradient(to bottom, #A4D3E0, #A4D3E0 50%, #CBE3EB 50%);
     }
+
+.status.Gold {
+    background-image: url('/image/maze/gold.webp');
+}
+
+.status.Damage {
+    background-size: 90px,90px;
+    background-image: url('/image/status/sword.gif');
+}
+
+.status.Armor {
+    background-size: 50px,50px;
+    background-image: url('/image/status/sheald.gif');
+}
+
+.status.HasGiganHammer {
+    background-size: 60px,60px;
+    background-image: url('/image/status/hammer.gif');
+}
+
+.status.Invisible {
+    background-size: 50px,50px;
+    background-image: url('/image/status/stealth.gif');
+}
+
+.status.CanJump {
+    background-size: 70px,150px;
+    background-image: url('/image/status/flying.gif');
+}
+
+.status.Stamina {
+    background-size: 60px 70px;
+    background-image: url('/image/maze/Portal.gif')
+}
+
+.status {
+    width: 100px;
+    height: 70px;
+    background-size: 50px,50px;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: bottom;
+}
+
+.heroStatus {
+    display: flex;
+}
+
+.heroIndicators {
+}
+.status.Hp {
+    background-image: url('/image/status/hp1.gif');
+}
