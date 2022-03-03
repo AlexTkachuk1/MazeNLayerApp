@@ -1,7 +1,7 @@
 ﻿.drawerSection {
     display: flex;
-    background-size: 200px 200px;
-    background-image: url('/image/appBackground/ground.jpg');
+    background-size: 150px 150px;
+    background-image: url('/image/maze/ground10.jpg');
 }
 .Choice {
     background-position-y: center;
@@ -27,8 +27,8 @@
 }
 
 .cell.Wall {
-    background-size: 50px 50px;
-    background-image: url('/image/maze/wall6.jpg');
+    background-size: 60px 60px;
+    background-image: url('/image/maze/wall9.jpg');
 }
 
 .cell.Gate {

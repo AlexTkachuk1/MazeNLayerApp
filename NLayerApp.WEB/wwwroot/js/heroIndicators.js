@@ -31,51 +31,24 @@
         }
     });
 
-    function GetInvisible() {
-        return Invisible;
-    }
-
-    function GetHasGiganHammer() {
-        return HasGiganHammer;
-    }
-    function CanJumpValue() {
-        return CanJumpValue;
-    }
-
-    function DisplayIndicators(value) {
-        var mainBlock = $("div.heroIndicators");
-        oldBlock = $('div').remove('.heroStatus');
-        var status = $('<div>');
-        status.addClass('heroStatus');
-
-
-
-
+    function BuildHpIcon(value) {
         var statusIconForHp = $('<div>');
         statusIconForHp.addClass('statusIcon');
-
-        var statusIconForMyHp = $('<div>');
-        statusIconForMyHp.addClass('statusIconForMyHp');
 
         var Hp = $('<span>');
         Hp.addClass("status Hp");
         Hp.addClass("status");
-        statusIconForMyHp.append(Hp);
-        statusIconForHp.append(statusIconForMyHp);
+        statusIconForHp.append(Hp);
 
         var HpValue = $('<h1>');
         HpValue.addClass('HpValue');
         HpValue.addClass("text");
         HpValue.text(value.hp);
         statusIconForHp.append(HpValue);
+        return statusIconForHp;
+    }
 
-        status.append(statusIconForHp);
-
-
-
-
-
-
+    function BuildArmorIcon(value) {
         var statusIconForArmor = $('<div>');
         statusIconForArmor.addClass('statusIcon');
 
@@ -89,11 +62,10 @@
         ArmorValue.addClass('text');
         ArmorValue.text(value.armor);
         statusIconForArmor.append(ArmorValue);
+        return statusIconForArmor;
+    }
 
-        status.append(statusIconForArmor);
-
-
-
+    function BuildStaminaIcon(value) {
         var statusIconForStamina = $('<div>');
         statusIconForStamina.addClass('statusIcon');
 
@@ -107,12 +79,10 @@
         StaminaValue.addClass('text');
         StaminaValue.text(value.stamina);
         statusIconForStamina.append(StaminaValue);
+        return statusIconForStamina;
+    }
 
-        status.append(statusIconForStamina);
-
-
-        
-
+    function BuildGoldIcon(value) {
         var statusIconForGold = $('<div>');
         statusIconForGold.addClass('statusIcon');
 
@@ -126,13 +96,10 @@
         GoldValue.addClass('text');
         GoldValue.text(value.gold);
         statusIconForGold.append(GoldValue);
+        return statusIconForGold;
+    }
 
-        status.append(statusIconForGold);
-
-
-        var statusForAbilitiPower = $('<div>');
-        statusForAbilitiPower.addClass('statusForAbilitiPower');
-
+    function BuildDamageIcon(value) {
         var statusIconForDamage = $('<div>');
         statusIconForDamage.addClass('statusIcon');
 
@@ -146,13 +113,10 @@
         DamageValue.addClass('text');
         DamageValue.text(value.damage);
         statusIconForDamage.append(DamageValue);
+        return statusIconForDamage;
+    }
 
-        statusForAbilitiPower.append(statusIconForDamage);
-
-
-
-        
-
+    function BuildInvisibleIcon(value) {
         var statusIconInvisible = $('<div>');
         statusIconInvisible.addClass('statusIcon');
 
@@ -166,11 +130,10 @@
         InvisibleValue.addClass('text');
         InvisibleValue.text(value.invisible);
         statusIconInvisible.append(InvisibleValue);
+        return statusIconInvisible;
+    }
 
-        statusForAbilitiPower.append(statusIconInvisible);
-
-
-
+    function BuildHasGiganHammerIcon(value) {
         var statusIconHasGiganHammer = $('<div>');
         statusIconHasGiganHammer.addClass('statusIcon');
 
@@ -184,10 +147,10 @@
         HasGiganHammerValue.addClass('text');
         HasGiganHammerValue.text(value.hasGiganHammer);
         statusIconHasGiganHammer.append(HasGiganHammerValue);
+        return statusIconHasGiganHammer;
+    }
 
-        statusForAbilitiPower.append(statusIconHasGiganHammer);
-
-
+    function BuildCanJumpIcon(value) {
         var statusIconCanJump = $('<div>');
         statusIconCanJump.addClass('statusIcon');
 
@@ -201,31 +164,65 @@
         CanJumpValue.addClass('text');
         CanJumpValue.text(value.canJump);
         statusIconCanJump.append(CanJumpValue);
+        return statusIconCanJump;
+    }
 
+    function DisplayIndicators(value) {
+        var mainBlock = $("div.heroIndicators");
+        oldBlock = $('div').remove('.heroStatus');
+        var status = $('<div>');
+        status.addClass('heroStatus');
+
+        // Создание иконки для HP
+        var statusIconForHp = BuildHpIcon(value);
+        status.append(statusIconForHp);
+
+        // Создание иконки для Armor
+        var statusIconForArmor = BuildArmorIcon(value);
+        status.append(statusIconForArmor);
+
+        // Создание иконки для Stamina
+        var statusIconForStamina = BuildStaminaIcon(value);
+        status.append(statusIconForStamina);
+
+        // Созлание иконки для Gold
+        var statusIconForGold = BuildGoldIcon(value);
+        status.append(statusIconForGold);
+
+        
+        var statusForAbilitiPower = $('<div>');
+        statusForAbilitiPower.addClass('statusForAbilitiPower');
+
+        // Созлание иконки для Damage
+        var statusIconForDamage = BuildDamageIcon(value);
+        statusForAbilitiPower.append(statusIconForDamage);
+
+        // Созлание иконки для Invisible
+        var statusIconInvisible = BuildInvisibleIcon(value);
+        statusForAbilitiPower.append(statusIconInvisible);
+
+        // Созлание иконки для HasGiganHammer
+        var statusIconHasGiganHammer = BuildHasGiganHammerIcon(value);
+        statusForAbilitiPower.append(statusIconHasGiganHammer);
+
+        // Созлание иконки для CanJump
+        var statusIconCanJump = BuildCanJumpIcon(value);
         statusForAbilitiPower.append(statusIconCanJump);
 
         status.append(statusForAbilitiPower);
 
         mainBlock.append(status);
     }
-    function HeroHP() {
-        return HeroHP;
-    }
-    function HeroGold() {
-        return HeroGold;
-    }
-    function HeroStamina() {
-        return Stamina;
-    }
+
     return {
         Update: Update,
         DisplayIndicators: DisplayIndicators,
-        GetHasGiganHammer: GetHasGiganHammer,
-        GetInvisible: GetInvisible,
-        GetCanJumpValue: CanJumpValue,
-        HeroHP: HeroHP,
-        HeroGold: HeroGold,
-        HeroStamina: HeroStamina
+        GetHasGiganHammer: function () { return HasGiganHammer; },
+        GetInvisible: function () { return Invisible; },
+        GetCanJumpValue: function () { return CanJumpValue; },
+        HeroHP: function () { return HeroHP; },
+        HeroGold: function () { return HeroGold; },
+        HeroStamina: function () { return Stamina; }
     };
 })();
 

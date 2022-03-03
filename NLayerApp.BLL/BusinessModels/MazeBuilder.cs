@@ -33,15 +33,15 @@ namespace NLayerApp.BLL_.BusinessModels
 
             _maze = cellsBuildService.BuildGround(_maze);
 
-            _maze = cellsBuildService.BuildGoldHeap(8, _maze);
+            _maze = cellsBuildService.BuildGoldHeap(4, _maze);
 
-            _maze = cellsBuildService.BuildGate(_maze);
+            _maze = cellsBuildService.BuildGates(_maze);
 
-            _maze = cellsBuildService.BuildAverageTreatmentPotion(5, _maze);
+            _maze = cellsBuildService.BuildAverageTreatmentPotion(2, _maze);
 
-            _maze = cellsBuildService.BuildBagOfGold(5, _maze);
+            _maze = cellsBuildService.BuildBagOfGold(2, _maze);
 
-            _maze = cellsBuildService.BuildSmallPotionTreatment(5, _maze);
+            _maze = cellsBuildService.BuildSmallPotionTreatment(2, _maze);
 
             _maze = cellsBuildService.BuildTrap(7, _maze);
 
@@ -49,17 +49,14 @@ namespace NLayerApp.BLL_.BusinessModels
 
             _maze = cellsBuildService.BuildBoss(1, _maze);
 
-            _maze = cellsBuildService.BuildKiller(2,_maze);
+            _maze = cellsBuildService.BuildKiller(3,_maze);
 
             _maze = cellsBuildService.BuildTeleport(_maze);
 
-            _maze = cellsBuildService.BuildMiracleShop(5, _maze);
+            _maze = cellsBuildService.BuildMiracleShop(2, _maze);
 
-            _maze = cellsBuildService.BuildСhest(10, _maze);
+            _maze = cellsBuildService.BuildСhest(2, _maze);
 
-            _maze = cellsBuildService.BuildAverageTreatmentPotion(5, _maze);
-
-            _maze = cellsBuildService.BuildBagOfGold(5, _maze);
             return _maze;
         }  
         public IMaze BuildCursedForest(int width = 30,
@@ -78,11 +75,11 @@ namespace NLayerApp.BLL_.BusinessModels
 
             _maze = cellsBuildService.BuildGround(_maze);
 
-            _maze = cellsBuildService.BuildGate(_maze);
+            _maze = cellsBuildService.BuildGates(_maze);
 
             _maze = cellsBuildService.BuildGoldHeap(8, _maze);
 
-            _maze = cellsBuildService.BuildInvisibleTrap(5, _maze);
+            _maze = cellsBuildService.BuildInvisibleTrap(10, _maze);
 
             _maze = cellsBuildService.BuildAssassin(3, _maze);
 
@@ -127,7 +124,7 @@ namespace NLayerApp.BLL_.BusinessModels
 
             _maze = cellsBuildService.BuildGround(_maze);
 
-            _maze = cellsBuildService.BuildGate(_maze);
+            _maze = cellsBuildService.BuildGates(_maze);
 
             _maze = cellsBuildService.BuildGoldHeap(8, _maze);
 
@@ -175,13 +172,13 @@ namespace NLayerApp.BLL_.BusinessModels
 
             _maze = cellsBuildService.BuildGround(_maze);
 
-            _maze = cellsBuildService.BuildGate(_maze);
+            _maze = cellsBuildService.BuildGates(_maze);
 
             _maze = cellsBuildService.BuildGoldHeap(2, _maze);
 
-            _maze = cellsBuildService.BuildForgottenKing(1, _maze);
+            _maze = cellsBuildService.BuildForgottenKing(2, _maze);
 
-            _maze = cellsBuildService.BuildPortal(2,_maze);
+            _maze = cellsBuildService.BuildPortal(1,_maze);
 
             _maze = cellsBuildService.BuildGuard(_maze);
 
@@ -195,17 +192,17 @@ namespace NLayerApp.BLL_.BusinessModels
 
             _maze = cellsBuildService.BuildTeleport(_maze);
 
-            _maze = cellsBuildService.BuildAverageTreatmentPotion(3, _maze);
+            _maze = cellsBuildService.BuildAverageTreatmentPotion(2, _maze);
 
             _maze = cellsBuildService.BuildBagOfGold(2, _maze);
 
-            _maze = cellsBuildService.BuildMiracleShop(5, _maze);
+            _maze = cellsBuildService.BuildMiracleShop(3, _maze);
 
             _maze = cellsBuildService.BuildСhest(10, _maze);
 
             _maze = cellsBuildService.BuildInvisibleTrap(10, _maze);
 
-            _maze = cellsBuildService.BuildTornado(2, _maze);
+            _maze = cellsBuildService.BuildTornado(1, _maze);
 
             return _maze;
         }

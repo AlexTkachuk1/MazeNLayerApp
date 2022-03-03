@@ -42,8 +42,10 @@
     }
 
     .cell.Ground {
-        /*background-size: 81px 40px;
-        background-image: url('/image/appBackground/ground.png');*/
+        background-position-y: bottom;
+        background-position-x: left;
+        background-size: 40px 40px;
+        background-image: url('/image/environment/бочка.png');
     }
 
     .cell.InvisibleTrap {
@@ -95,52 +97,6 @@
         background-size: 55px 60px;
         background-image: url('/image/maze/monsrt2.gif');
     }
-
-.status.Hp {
-    background-image: url('/image/status/hp1.gif');
-}
-
-.status.Gold {
-    background-image: url('/image/maze/coin1.gif');
-}
-
-.status.Damage {
-    background-size: 90px,90px;
-    background-image: url('/image/status/sword.gif');
-}
-
-.status.Armor {
-    background-size: 50px,50px;
-    background-image: url('/image/status/sheald.gif');
-}
-
-.status.HasGiganHammer {
-    background-size: 60px,60px;
-    background-image: url('/image/status/hammer.gif');
-}
-
-.status.Invisible {
-    background-size: 55px,65px;
-    background-image: url('/image/status/stealth.gif');
-}
-
-.status.CanJump {
-    background-size: 80px,150px;
-    background-image: url('/image/status/flying.gif');
-}
-
-.status {
-    width: 100px;
-    height: 70px;
-    background-size: 50px,50px;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: bottom;
-}
-
-.heroStatus {
-    display: flex;
-}
-
-.heroIndicators {
-}
+    .cell.Сhest {
+        background-image: url('/image/maze/chest.gif');
+    }

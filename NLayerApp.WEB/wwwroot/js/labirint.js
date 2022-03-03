@@ -382,6 +382,7 @@
                     heroYPossible = allGroundCell[rand].y;
                     break;
             }
+
             $('#end').click(function () {
                 $('.Choice').hide();
                 $('.drawer').show();

@@ -219,16 +219,19 @@ namespace NLayerApp.BLL_.Services
                 hero.Armor += armor;
                 DealDamage(trueDamage);
             }
-        }
+        } 
         public void StepOnMutant()
         {
             var hero = GetHero();
+            var spirit = _random.Next(1, 6);
             var trueDamage = 20;
             if (hero.HP < 100)
             {
                 trueDamage += (100 - hero.HP);
             }
             DealDamage(trueDamage);
+            hero.Stamina += spirit;
+            UpdateHero(hero);
         }
         public void StepOnGoblin()
         {
@@ -275,6 +278,7 @@ namespace NLayerApp.BLL_.Services
         public void StepOnDragon()
         {
             var hero = GetHero();
+            var spirit = _random.Next(3, 6);
             var trueDamage = 90;
             if (hero.Gold > 100)
             {
@@ -291,6 +295,8 @@ namespace NLayerApp.BLL_.Services
                 }
                 DealDamage(trueDamage);
             }
+            hero.Stamina += spirit;
+            UpdateHero(hero);
         }
         public void StepOnDraconian()
         {
@@ -333,9 +339,11 @@ namespace NLayerApp.BLL_.Services
         }
         public void StepOnChampion()
         {
+            var spirit = _random.Next(3, 5);
             var hero = GetHero();
             if (!CanStels(hero))
             {
+                
                 var trueDamage = 80;
                 var gold = 30;
                 if (hero.Armor > 0)
@@ -375,6 +383,8 @@ namespace NLayerApp.BLL_.Services
                     UpdateHero(hero);
                 }
                 DealDamage(trueDamage);
+                hero.Stamina += spirit;
+                UpdateHero(hero);
             }
         }
         public void StepOnBagOfGold()
@@ -600,6 +610,7 @@ namespace NLayerApp.BLL_.Services
             {
                 var gold = _random.Next(1, 30);
                 hero.Gold += gold;
+                var spirit = _random.Next(3, 5);
                 var trueDamage = 40;
                 if (trueDamage >= hero.HP)
                 {
@@ -630,7 +641,8 @@ namespace NLayerApp.BLL_.Services
                 item.Hero = hero;
                 useInventory();
                 Database.Save();
-
+                hero.Stamina += spirit;
+                UpdateHero(hero);
 
             }
         }

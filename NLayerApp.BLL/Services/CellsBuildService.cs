@@ -26,13 +26,6 @@ namespace NLayerApp.BLL_.Services
             ConsoleDrawer(maze);
             return maze;
         }
-        public IMaze BuildEnvironment(int chance, IMaze maze)
-        {
-            var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
-
-            ConsoleDrawer(maze);
-            return maze;
-        }
         public IMaze BuildWall(IMaze maze)
         {
             for (int y = 0; y < maze.Height; y++)
@@ -227,7 +220,7 @@ namespace NLayerApp.BLL_.Services
             ConsoleDrawer(maze);
             return maze;
         }
-        public IMaze BuildGate(IMaze maze)
+        public IMaze BuildGates(IMaze maze)
         {
             var lastCell = maze.Cells.Single(cell => cell.CordinateY == maze.Height - 1
             && cell.CordinateX == maze.Width - 1);

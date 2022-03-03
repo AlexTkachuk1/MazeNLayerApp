@@ -8,7 +8,7 @@ namespace NLayerApp.BLL_.Interfaces
         IMaze BuildGround(IMaze maze);
         IMaze BuildGroundMyVersion(IMaze maze);
         IMaze BuildLegionary(int chance, IMaze maze);
-        IMaze BuildGate(IMaze maze);
+        IMaze BuildGates(IMaze maze);
         IMaze BuildPortal(int number,IMaze maze);
         IMaze BuildSpiritOfTheForest(int chance, IMaze maze);
         IMaze BuildGuard(IMaze maze);

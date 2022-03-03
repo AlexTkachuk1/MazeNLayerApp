@@ -1,7 +1,6 @@
-﻿$(document).ready(function () {
-var Fetch = (async function () {
+﻿async function Fetch(string) {
     var value = null;
-    const requestURL = 'https://localhost:44328/Maze/GetBaseLabyrinth';
+    const requestURL = 'https://localhost:44328/Maze/' + string;
 
     var response = await fetch(requestURL);
 
@@ -12,5 +11,4 @@ var Fetch = (async function () {
     } else {
         alert("Ошибка HTTP: " + response.status);
     }
-})();
-});
+};
