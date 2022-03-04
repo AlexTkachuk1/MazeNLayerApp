@@ -22,6 +22,5 @@ namespace NLayerApp.BLL_.Interfaces
         T GetRandom<T>(List<T> data);
         IMaze ReplaceCell(IBaseCell newCell, IMaze maze);
         IBaseCell ReplaceCellToGround(IBaseCell oldCell, IMaze maze);
-        IMaze StateOfTheMaze(IMaze maze);
     }
 }

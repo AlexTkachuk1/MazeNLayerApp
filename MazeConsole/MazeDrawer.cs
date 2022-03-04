@@ -22,47 +22,13 @@ namespace MazeConsole
                 {
                     Console.Write(".");
                 }
-                if (cell is GoldHeap)
-                {
-                    Console.Write("$");
-                }
-                if (cell is Сhest)
-                {
-                    Console.Write("%");
-                }
                 if (cell is CellWithHero)
                 {
                     Console.Write("@");
                 }
-                if (cell is Trap)
-                {
-                    Console.Write("*");
-                }
                 if (cell is Gate)
                 {
                     Console.Write("!");
-                }
-                if (cell is Legionary)
-                {
-                    Console.Write("+");
-                }
-                if (cell is Teleport)
-                {
-                    Console.Write("0");
-                }
-                if (cell is MiracleShop)
-                {
-                    Console.Write("F");
-                }
-                if (cell is Killer)
-                {
-                    Console.Write("X");
-                }
-                if (cell is Lava)
-                {
-                    Console.BackgroundColor = ConsoleColor.DarkRed;
-                    Console.Write(" ");
-                    Console.BackgroundColor = ConsoleColor.Black;
                 }
             }
 

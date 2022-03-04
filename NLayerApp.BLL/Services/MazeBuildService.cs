@@ -155,28 +155,5 @@ namespace NLayerApp.BLL_.Services
             ReplaceCell(ground, maze);
             return ground;
         }
-        public IMaze StateOfTheMaze(IMaze maze)
-        {
-            var oldCell = maze.Cells.Single(x => x.CordinateX == maze.Hero.X
-            && x.CordinateY == maze.Hero.Y);
-            string cellType = oldCell.GetType().Name;
-            switch (cellType)
-            {
-                case "Сhest":
-                    //сначала нужно добавить новый тип клетое будут называться OpenChest
-                    //и заменять эту клетку на клетку нового типа.
-                    break;
-                case "GoldHeap":
-                    ReplaceCellToGround(oldCell, maze);
-                    break;
-                case "Lava":
-                    // требуется написать всю логику связанную с отображением смерти персонажа.
-                    break;
-                case "Trap":
-                    // требуется придумать как будет отображаться урон.
-                    break;
-            }
-            return maze;
-        }
     }
 }

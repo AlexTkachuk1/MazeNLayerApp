@@ -23,7 +23,6 @@ namespace NLayerApp.BLL_.Services
                 var newCell = new DamnEarth(oldCell.CordinateX, oldCell.CordinateY, maze);
                 _mazeBuildService.ReplaceCell(newCell, maze);
             }
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildWall(IMaze maze)
@@ -54,7 +53,7 @@ namespace NLayerApp.BLL_.Services
 
             while (wallsToDestroy.Any())
             {
-                ConsoleDrawer(maze);
+                //ConsoleDrawer(maze);
 
                 var wallToDestroy = _mazeBuildService.GetRandom(wallsToDestroy);
 
@@ -75,68 +74,12 @@ namespace NLayerApp.BLL_.Services
             }
             return maze;
         }
-        public IMaze BuildGroundMyVersion(IMaze maze)
-        {
-            var wallsToDestroy = new List<IBaseCell>() {
-                maze.Cells[0]
-            };
-
-            var cellVisited = new List<IBaseCell>();
-            var allWallsToDestroy = wallsToDestroy;
-            while (wallsToDestroy.Any() && allWallsToDestroy.Any())
-            {
-
-                if (wallsToDestroy.Any())
-                {
-                    var ToDestroy = _mazeBuildService.GetRandom(wallsToDestroy);
-                    allWallsToDestroy.Remove(ToDestroy);
-
-                    var ground = _mazeBuildService.ReplaceCellToGround(ToDestroy, maze);
-                    wallsToDestroy.Remove(ToDestroy);
-
-                    cellVisited.Add(ground);
-                    wallsToDestroy = new List<IBaseCell>();
-
-                    var nearestWalls = _mazeBuildService.GetNears<Wall>(ground, maze);
-
-
-                    wallsToDestroy.AddRange(nearestWalls);
-
-
-                    wallsToDestroy = wallsToDestroy
-                        .Where(wall => _mazeBuildService.GetNears<Ground>(wall, maze).Count() < 2)
-                        .ToList();
-                    wallsToDestroy = wallsToDestroy.Where(wall => _mazeBuildService.GetNearsWhithDiagonals<Ground>(wall, maze).Count() < 3)
-                        .ToList();
-                    allWallsToDestroy.AddRange(wallsToDestroy);
-                    while (!wallsToDestroy.Any() && allWallsToDestroy.Any())
-                    {
-                        allWallsToDestroy = allWallsToDestroy.Where(wall => _mazeBuildService.GetNearsWhithDiagonals<Ground>(wall, maze).Count() < 3)
-                        .ToList();
-                        var randomCellVisited = _mazeBuildService.GetRandom(cellVisited);
-                        var allNearestWalls = _mazeBuildService.GetNearsWhithDiagonals<Wall>(randomCellVisited, maze);
-                        var newWallToDestroy = allNearestWalls.Where(wall => _mazeBuildService.GetNears<Ground>(wall, maze).Count() < 2)
-                        .ToList();
-                        if (newWallToDestroy.Any())
-                        {
-                            wallsToDestroy.Add(_mazeBuildService.GetRandom(newWallToDestroy));
-                        }
-                        else
-                        {
-                            cellVisited.Remove(randomCellVisited);
-                        }
-                    }
-                }
-            }
-            return maze;
-        }
         public IMaze BuildTornado(int number, IMaze maze)
         {
             var cellsForReplace = _mazeBuildService.generateTheNumberOfCells<Ground>(number, maze);
 
             _mazeBuildService.generateCells<Tornado>(cellsForReplace, maze);
 
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildFaun(int chanceFrom1000, IMaze maze)
@@ -145,7 +88,6 @@ namespace NLayerApp.BLL_.Services
 
             _mazeBuildService.generateCells<Faun>(cellsForReplace, maze);
 
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildWolf(int chance, IMaze maze)
@@ -154,7 +96,6 @@ namespace NLayerApp.BLL_.Services
 
             _mazeBuildService.generateCells<Wolf>(cellsForReplace, maze);
 
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildForgottenKing(int number, IMaze maze)
@@ -163,7 +104,6 @@ namespace NLayerApp.BLL_.Services
 
             _mazeBuildService.generateCells<ForgottenKing>(cellsForReplace, maze);
 
-            ConsoleDrawer(maze);
             return maze;
         }
         // Сработает при вызове после создания портала.
@@ -179,7 +119,6 @@ namespace NLayerApp.BLL_.Services
             }
              _mazeBuildService.generateCells<Guard>(cellsForReplace, maze);
 
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildSpiritOfTheForest(int chance, IMaze maze)
@@ -188,7 +127,6 @@ namespace NLayerApp.BLL_.Services
 
             _mazeBuildService.generateCells<SpiritOfTheForest>(cellsForReplace, maze);
 
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildPortal(int number, IMaze maze)
@@ -200,7 +138,6 @@ namespace NLayerApp.BLL_.Services
 
             _mazeBuildService.generateCells<Portal>(cellsForReplace, maze);
 
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildInvisibleTrap(int chance, IMaze maze)
@@ -209,7 +146,6 @@ namespace NLayerApp.BLL_.Services
 
             _mazeBuildService.generateCells<InvisibleTrap>(cellsForReplace, maze);
 
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildLegionary(int chance, IMaze maze)
@@ -217,7 +153,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
 
             _mazeBuildService.generateCells<Legionary>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildGates(IMaze maze)
@@ -227,7 +162,6 @@ namespace NLayerApp.BLL_.Services
             var cell = _mazeBuildService.FindNearestCell<Ground>(lastCell, "Ground", maze);
             var gateCell = new Gate(cell.CordinateX, cell.CordinateY, maze);
             _mazeBuildService.ReplaceCell(gateCell, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
 
@@ -236,7 +170,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
 
             _mazeBuildService.generateCells<GoldHeap>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildAssassin(int chance, IMaze maze)
@@ -244,7 +177,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
 
             _mazeBuildService.generateCells<Assassin>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildElf(int chance, IMaze maze)
@@ -252,7 +184,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
 
             _mazeBuildService.generateCells<Elf>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildGoblin(int chance, IMaze maze)
@@ -260,7 +191,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
 
             _mazeBuildService.generateCells<Goblin>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildMutant(int chance, IMaze maze)
@@ -268,7 +198,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
 
             _mazeBuildService.generateCells<Mutant>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildSmallPotionTreatment(int chance, IMaze maze)
@@ -276,7 +205,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
 
             _mazeBuildService.generateCells<SmallPotionTreatment>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildSwampCreature(int chance, IMaze maze)
@@ -284,7 +212,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
 
             _mazeBuildService.generateCells<SwampCreature>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildRobot(int chanceFrom1000, IMaze maze)
@@ -292,7 +219,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithTrueChance<Ground>(chanceFrom1000, maze);
 
             _mazeBuildService.generateCells<Robot>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildExperiencedWarrior(int chanceFrom1000, IMaze maze)
@@ -300,7 +226,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithTrueChance<Ground>(chanceFrom1000, maze);
 
             _mazeBuildService.generateCells<ExperiencedWarrior>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildDecomposedCorpse(int chance, IMaze maze)
@@ -308,7 +233,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
 
             _mazeBuildService.generateCells<DecomposedCorpse>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildDeadMan(int chance, IMaze maze)
@@ -316,7 +240,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
 
             _mazeBuildService.generateCells<DeadMan>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildDraconian(int chance, IMaze maze)
@@ -324,7 +247,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
 
             _mazeBuildService.generateCells<Draconian>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildAverageTreatmentPotion(int chanceFrom1000, IMaze maze)
@@ -332,7 +254,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithTrueChance<Ground>(chanceFrom1000, maze);
 
             _mazeBuildService.generateCells<AverageTreatmentPotion>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildBagOfGold(int chanceFrom1000, IMaze maze)
@@ -340,7 +261,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithTrueChance<Ground>(chanceFrom1000, maze);
 
             _mazeBuildService.generateCells<BagOfGold>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildChampion(int number, IMaze maze)
@@ -348,7 +268,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateTheNumberOfCells<Ground>(number, maze);
 
             _mazeBuildService.generateCells<Champion>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildDragon(int number, IMaze maze)
@@ -356,7 +275,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateTheNumberOfCells<Ground>(number, maze);
 
             _mazeBuildService.generateCells<Dragon>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildTrap(int chance, IMaze maze)
@@ -364,7 +282,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithChance<Ground>(chance, maze);
 
             _mazeBuildService.generateCells<Trap>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildBoss(int number, IMaze maze)
@@ -372,7 +289,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateTheNumberOfCells<Ground>(number, maze);
 
             _mazeBuildService.generateCells<Boss>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
 
@@ -381,7 +297,6 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateWithTrueChance<Ground>(chanceFrom1000, maze);
 
             _mazeBuildService.generateCells<Сhest>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
 
@@ -395,7 +310,6 @@ namespace NLayerApp.BLL_.Services
                    && x.CordinateY < maze.Height - 1).ToList();
 
             _mazeBuildService.generateCells<MiracleShop>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
         }
         public IMaze BuildKiller(int number, IMaze maze)
@@ -410,16 +324,7 @@ namespace NLayerApp.BLL_.Services
             var cellsForReplace = _mazeBuildService.generateTheNumberOfCells<Ground>(2, maze);
 
             _mazeBuildService.generateCells<Teleport>(cellsForReplace, maze);
-            ConsoleDrawer(maze);
             return maze;
-        }
-        public void ConsoleDrawer(IMaze maze)
-        {
-            if (maze.DrawStepByStep != null)
-            {
-                maze.DrawStepByStep.Invoke(maze);
-                //Thread.Sleep(100);
-            }
         }
     }
 }

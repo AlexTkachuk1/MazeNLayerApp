@@ -39,6 +39,7 @@ new CellsBuildService(container.GetService<IMazeBuildService>())
 builder.Services.AddScoped<MazeBuilder>(container =>
 new MazeBuilder(container.GetService<ICellsBuildService>())
 );
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllersWithViews();

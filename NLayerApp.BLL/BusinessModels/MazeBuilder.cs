@@ -18,15 +18,13 @@ namespace NLayerApp.BLL_.BusinessModels
         }
 
         public IMaze Build(int width = 30,
-            int height = 15,
-            Action<IMaze> drawStepByStep = null)
+            int height = 15)
         {
             _maze = new MazeDTO()
             {
                 Width = width,
                 Height = height,
                 Cells = new List<IBaseCell>(),
-                DrawStepByStep = drawStepByStep
             };
 
             _maze = cellsBuildService.BuildWall(_maze);
@@ -60,15 +58,13 @@ namespace NLayerApp.BLL_.BusinessModels
             return _maze;
         }  
         public IMaze BuildCursedForest(int width = 30,
-            int height = 15,
-            Action<IMaze> drawStepByStep = null)
+            int height = 15)
         {
             _maze = new MazeDTO()
             {
                 Width = width,
                 Height = height,
                 Cells = new List<IBaseCell>(),
-                DrawStepByStep = drawStepByStep
             };
 
             _maze = cellsBuildService.BuildWall(_maze);
@@ -109,15 +105,13 @@ namespace NLayerApp.BLL_.BusinessModels
         }
 
         public IMaze BuildPoisonSwamps(int width = 30,
-            int height = 15,
-            Action<IMaze> drawStepByStep = null)
+            int height = 15)
         {
             _maze = new MazeDTO()
             {
                 Width = width,
                 Height = height,
                 Cells = new List<IBaseCell>(),
-                DrawStepByStep = drawStepByStep
             };
 
             _maze = cellsBuildService.BuildWall(_maze);
@@ -157,15 +151,13 @@ namespace NLayerApp.BLL_.BusinessModels
             return _maze;
         }
         public IMaze BuildMazeForForestOfSouls(int width = 30,
-            int height = 15,
-            Action<IMaze> drawStepByStep = null)
+            int height = 15)
         {
             _maze = new MazeDTO()
             {
                 Width = width,
                 Height = height,
                 Cells = new List<IBaseCell>(),
-                DrawStepByStep = drawStepByStep
             };
 
             _maze = cellsBuildService.BuildWall(_maze);

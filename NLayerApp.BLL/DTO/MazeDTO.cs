@@ -8,7 +8,6 @@ namespace NLayerApp.BLL_.DTO
         public string Name { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
-        public Action<IMaze> DrawStepByStep { get; set; } = null;
         public List<IBaseCell> Cells { get; set; }
         public List<IBaseCell> CellsWithHero
         {
@@ -17,7 +16,10 @@ namespace NLayerApp.BLL_.DTO
                 var copyCells = Cells.ToList();
                 var badCell = copyCells.Single(c => c.CordinateX == Hero.X && c.CordinateY == Hero.Y);
                 copyCells.Remove(badCell);
-                copyCells.Add(new CellWithHero(Hero, this));
+                var cellWithHero = new CellWithHero(Hero, this);
+                cellWithHero.CordinateX = Hero.X;
+                cellWithHero.CordinateY = Hero.Y;
+                copyCells.Add(cellWithHero);
                 return copyCells;
             }
         }

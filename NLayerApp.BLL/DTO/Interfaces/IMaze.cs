@@ -11,7 +11,6 @@ namespace NLayerApp.BLL_.DTO.Interfaces
         int Width { get; set; }
         string Name { get; set; }
         IBaseCell this[int x, int y] { get; set; }
-        Action<IMaze> DrawStepByStep { get; set; }
         void TryToStep(Direction direction);
     }
 }
