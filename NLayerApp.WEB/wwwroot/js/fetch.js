@@ -1,6 +1,6 @@
 ﻿async function Fetch(string) {
     var value = null;
-    const requestURL = 'https://localhost:44328/Maze/' + string;
+    const requestURL = 'https://localhost:44328/Levels/' + string;
 
     var response = await fetch(requestURL);
 

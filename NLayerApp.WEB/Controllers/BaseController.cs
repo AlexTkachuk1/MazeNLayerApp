@@ -17,6 +17,5 @@ namespace NLayerApp.WEB.Controllers
             this.mazeService = mazeSetvice;
             this.mapper = mapper;
         }
-
     }
 }

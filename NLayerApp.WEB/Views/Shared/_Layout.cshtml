@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/NLayerApp.WEB.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/maze.css" asp-append-version="true" />
-     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     @RenderSection("Head", false)
 </head>
 <body class="top">
@@ -26,19 +26,19 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Maze" asp-action="StartGame">StartGame</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Maze" asp-action="DrawCursedForest">CursedForest</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Levels" asp-action="DrawCursedForest">CursedForest</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Maze" asp-action="DrawPoisonSwamps">PoisonSwamps</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Levels" asp-action="DrawPoisonSwamps">PoisonSwamps</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Maze" asp-action="DrowForestOfSouls">ForestOfSouls</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Levels" asp-action="DrowForestOfSouls">ForestOfSouls</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Maze" asp-action="CreateMaze">CreateMazeForTest</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="MazeFromeDB" asp-action="CreateMaze">CreateMazeForTest</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Maze" asp-action="DrawFromDb">TestMaze</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="MazeFromeDB" asp-action="DrawFromDb">TestMaze</a>
                         </li>
                     </ul>
                 </div>
@@ -48,6 +48,58 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+
+            <div class="Choice">
+                <div class="shopMenu">
+                    <div>
+                        <ul>
+                            <li class="one_quarter"><h5 class='shopText'>Potion treatment costs 50 silver</h5></li>
+                        </ul>
+                        <ul>
+                            <li class="one_quarter"><a class="paginator-button" href="/Maze/AddNewItems?Name=PotionTreatment">I want to buy potion treatment</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <ul>
+                            <li class="one_quarter"><h5 class='shopText'>InvisibilityCap costs 60 silver</h5></li>
+                        </ul>
+
+                        <ul>
+                            <li class="one_quarter"><a class="paginator-button" href="/Maze/AddNewItems?Name=InvisibilityCap">I want to buy invisibilityCap</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <ul>
+                            <li class="one_quarter"><h5 class='shopText'>GiganHammer costs 70 silver</h5></li>
+                        </ul>
+
+                        <ul>
+                            <li class="one_quarter"><a class="paginator-button" href="/Maze/AddNewItems?Name=GiganHammer">I want to buy giganHammer</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <ul>
+                            <li class="one_quarter"><h5 class='shopText'>JumperBoots costs 100 silver</h5></li>
+                        </ul>
+
+                        <ul>
+                            <li class="one_quarter"><a class="paginator-button" href="/Maze/AddNewItems?Name=JumperBoots">I want to buy JumperBoots</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <ul>
+                            <li class="one_quarter"><h5 class='shopText'>I teleport you back and enjoy being alive.</h5></li>
+                        </ul>
+                        <ul>
+                            <li class="one_quarter"><a class="paginator-button" id="end" href="#">Сontinue the game</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 

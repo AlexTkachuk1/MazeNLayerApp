@@ -41,18 +41,18 @@
 }
 
 .cell.Faun {
-    background-image: url('/image/maze/Faun.gif');
+    background-image: url('/image/maze/Faun2.gif');
 }
 .cell.ForgottenKing {
     background-size: 60px 60px;
     background-image: url('/image/maze/ForgottenKing.gif');
 }
 .cell.Guard {
-    background-size: 70px 60px;
-    background-image: url('/image/maze/guard.gif');
+    background-size: 60px 50px;
+    background-image: url('/image/maze/guard6.gif');
 }
 .cell.Portal {
-    background-image: url('/image/maze/teleport6.gif');
+    background-image: url('/image/maze/teleport7.gif');
 }
 .cell.SpiritOfTheForest {
     background-size: 60px 60px;
@@ -60,7 +60,7 @@
 }
 .cell.Wolf {
     background-size: 50px 40px;
-    background-image: url('/image/maze/wolf.gif');
+    background-image: url('/image/maze/maokai.gif');
 }
 .cell.InvisibleTrap {
     background-image: url('/image/maze/lightning.webp');

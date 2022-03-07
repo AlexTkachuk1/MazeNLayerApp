@@ -50,23 +50,23 @@
 }
 
 .cell.Assassin {
-    background-size: 40px 50px;
-    background-image: url('/image/maze/knught.gif');
+    background-size: 45px 50px;
+    background-image: url('/image/maze/Roxy_Sprite2.gif');
 }
 
 .cell.Champion {
-    background-size: 60px,55px;
-    background-image: url('/image/maze/champion2.gif');
+    background-size: 60px 60px;
+    background-image: url('/image/maze/ExperiencedWarrior (3).gif');
 }
 
 .cell.Elf {
-    background-size: 50px 60px;
-    background-image: url('/image/maze/elf.gif');
+    background-size: 35px 50px;
+    background-image: url('/image/maze/sentanel.gif');
 }
 
 .cell.ExperiencedWarrior {
-    background-size: 60px 60px;
-    background-image: url('/image/maze/ExperiencedWarrior (2).gif');
+    background-size: 60px,55px;
+    background-image: url('/image/maze/champion2.gif');
 }
 
 .cell.SwampCreature {

@@ -1,3 +1,3 @@
 ﻿$(document).ready(function () {
-    value = Fetch('MazeDataForJs');
+    value = Fetch('DataForFirstMaze');
 });

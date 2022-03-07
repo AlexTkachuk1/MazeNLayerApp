@@ -75,8 +75,8 @@ body {
 }
 
 .cell.SmallPotionTreatment {
-    background-size: 25px 25px;
-    background-image: url('/image/maze/Potion.png');
+    background-size: 30px 30px;
+    background-image: url('/image/maze/Potion.gif');
 }
 
 .cell.BagOfGold {
@@ -85,8 +85,8 @@ body {
 }
 
 .cell.Rip {
-    background-size: 30px 40px;
-    background-image: url('/image/maze/brokenTrap.png');
+    background-size: 45px 45px;
+    background-image: url('/image/maze/rip.gif');
 }
 
 .cell.MiracleShop {
@@ -95,13 +95,14 @@ body {
 }
 
 .cell.CellWithHero {
-    background-size: 55px,50px;
-    background-image: url('/image/maze/testHero.webp');
+    background-size: 35px,45px;
+    background-image: url('/image/maze/hero2.gif');
 }
 
 .cell.GoldHeap {
-    background-size: 30px 30px;
-    background-image: url('/image/maze/gold.webp');
+    background-position-y: bottom;
+    background-size: 20px 20px;
+    background-image: url('/image/maze/coin2.gif');
 }
 
 

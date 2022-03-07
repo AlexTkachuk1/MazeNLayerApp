@@ -1,3 +1,3 @@
 ﻿$(document).ready(function () {
-    value = Fetch('MazeDataForForestOfSouls');
+    value = Fetch('MazeDataForestOfSouls');
 });

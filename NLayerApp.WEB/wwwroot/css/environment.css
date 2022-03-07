@@ -2,6 +2,24 @@
 
     background-image: url('/image/environment/barrel.png');
 }
+.bat {
+    background-image: url('/image/environment/bat.gif');
+}
+.bat2 {
+    background-position-y: top;
+    background-position-x: center;
+    background-size: 30px,30px;
+    background-image: url('/image/environment/bat2.gif');
+}
+.blood {
+    background-image: url('/image/environment/blood.gif');
+}
+.book {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,30px;
+    background-image: url('/image/environment/book.gif');
+}
 .bush {
     background-position-y: bottom;
     background-position-x: center;
@@ -19,6 +37,63 @@
     background-position-x: center;
     background-size: 40px,25px;
     background-image: url('/image/environment/bush2.png');
+}
+.cat {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,30px;
+    background-image: url('/image/environment/cat.gif');
+}
+.cat2 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,30px;
+    background-image: url('/image/environment/cat2.gif');
+}
+.cat3 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,30px;
+    background-image: url('/image/environment/cat3.gif');
+}
+.cat4 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,30px;
+    background-image: url('/image/environment/cat4.gif');
+}
+.cat5 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,30px;
+    background-image: url('/image/environment/cat5.gif');
+}
+.cat6 {
+    background-image: url('/image/environment/cat6.gif');
+}
+.cemetery {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 80px,30px;
+    background-image: url('/image/environment/cemetery.gif');
+}
+.dog {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,30px;
+    background-image: url('/image/environment/dog.gif');
+}
+.dog2 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,30px;
+    background-image: url('/image/environment/dog2.gif');
+}
+.dog3 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,30px;
+    background-image: url('/image/environment/dog3.gif');
 }
 .fence {
     background-position-y: bottom;
@@ -67,6 +142,48 @@
     background-position-x: center;
     background-size: 30px,40px;
     background-image: url('/image/environment/flower4.png');
+}
+.flower5 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,40px;
+    background-image: url('/image/environment/flower5.gif');
+}
+.flower6 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,40px;
+    background-image: url('/image/environment/flower6.gif');
+}
+.flower7 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,40px;
+    background-image: url('/image/environment/flower7.gif');
+}
+.flower8 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,40px;
+    background-image: url('/image/environment/flower8.gif');
+}
+.spaider {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 30px,40px;
+    background-image: url('/image/environment/spaider.gif');
+}
+.squirrel {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 40px,40px;
+    background-image: url('/image/environment/squirrel.gif');
+}
+.squirrel2 {
+    background-position-y: bottom;
+    background-position-x: center;
+    background-size: 40px,40px;
+    background-image: url('/image/environment/squirrel2.gif');
 }
 .stone {
     background-position-y: bottom;
@@ -132,19 +249,19 @@
     background-position-y: bottom;
     background-position-x: left;
     background-size: 40px,80px;
-    background-image: url('/image/environment/tree.png');
+    background-image: url('/image/environment/tree.gif');
 }
 .tree1 {
     background-position-y: bottom;
     background-position-x: left;
     background-size: 40px,80px;
-    background-image: url('/image/environment/tree1.png');
+    background-image: url('/image/environment/tree1.gif');
 }
 .tree2 {
     background-position-y: bottom;
     background-position-x: left;
-    background-size: 40px,80px;
-    background-image: url('/image/environment/tree2.png');
+    background-size: 30px,40px;
+    background-image: url('/image/environment/tree2.gif');
 }
 .tree3 {
     background-position-y: bottom;

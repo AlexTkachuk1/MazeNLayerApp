@@ -7,7 +7,7 @@
 
         const xhr = new XMLHttpRequest();
         // POST-запрос к ресурсу /user
-        xhr.open("POST", "https://localhost:44328/Maze/HeroStepOnGold?Name="+user);
+        xhr.open("POST", "https://localhost:44328/Maze/HeroStepOnCell?Name="+user);
 
         // обработчик получения ответа сервера
         xhr.onload = () => {

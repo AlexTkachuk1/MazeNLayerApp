@@ -41,7 +41,7 @@
             var cell = value.cellViewModels[i];
             labyrinth[cell.cordinateY][cell.cordinateX] = cell.typeName;
             if (cell.typeName == "Ground") {
-                if (getRandomInt(0, 100) < 50) {
+                if (getRandomInt(0, 100) < 65) {
                     var num = getRandomInt(1, (environmentNames.length + 1))
                     labyrinth[cell.cordinateY][cell.cordinateX] = environmentNames[num];
                 }
@@ -175,16 +175,16 @@
                     var val = getRandomInt(1, 5);
                     switch (val) {
                         case 1:
-                            window.location = "https://localhost:44328/Maze/DrawJs";
+                            window.location = "https://localhost:44328/Levels/DrawFirstMaze";
                             break;
                         case 2:
-                            window.location = "https://localhost:44328/Maze/DrawCursedForest";
+                            window.location = "https://localhost:44328/Levels/DrawCursedForest";
                             break;
                         case 3:
-                            window.location = "https://localhost:44328/Maze/DrawPoisonSwamps";
+                            window.location = "https://localhost:44328/Levels/DrawPoisonSwamps";
                             break;
                         case 4:
-                            window.location = "https://localhost:44328/Maze/DrowForestOfSouls";
+                            window.location = "https://localhost:44328/Levels/DrowForestOfSouls";
                             break;
                     }
                     break;
@@ -192,10 +192,10 @@
                     var val = getRandomInt(1, 3);
                     switch (val) {
                         case 1:
-                            window.location = "https://localhost:44328/Maze/DrawCursedForest";
+                            window.location = "https://localhost:44328/Levels/DrawCursedForest";
                             break;
                         case 2:
-                            window.location = "https://localhost:44328/Maze/DrawPoisonSwamps";
+                            window.location = "https://localhost:44328/Levels/DrawPoisonSwamps";
                             break;
                     }
                     break;
