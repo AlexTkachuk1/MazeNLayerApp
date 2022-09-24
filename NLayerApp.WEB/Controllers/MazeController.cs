@@ -29,7 +29,7 @@ namespace NLayerApp.WEB.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddNewItems([FromQuery(Name = "Name")] string cellTypeName)
+        public IActionResult AddNewItems([FromQuery (Name = "Name")] string cellTypeName)
         {
             heroService.StepOnMiracleShop(cellTypeName);
             return RedirectToAction("DrawFirstMaze", "Levels");
