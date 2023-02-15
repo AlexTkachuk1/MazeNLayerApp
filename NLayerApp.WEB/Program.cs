@@ -6,6 +6,7 @@ using NLayerApp.BLL_.Services;
 using NLayerApp.DAL_.EF;
 using NLayerApp.DAL_.Interfaces;
 using NLayerApp.DAL_.Repositories;
+using NLayerApp.WEB;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,9 +20,9 @@ builder.Services.AddScoped<IUnitOfWork>(container =>
 new EFUnitOfWork(container.GetService<MazeDbContext>())
 );
 
-builder.Services.AddScoped<IMazeService>(container => 
+builder.Services.AddScoped<IMazeService>(container =>
 new MazeService(container.GetService<MazeBuilder>(), container.GetService<IMapper>(), container.GetService<IUnitOfWork>())
-);;
+); ;
 
 builder.Services.AddScoped<IUserService>(container =>
 new UserService(container.GetService<IUnitOfWork>())
@@ -67,5 +68,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Seed();
 
 app.Run();

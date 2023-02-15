@@ -866,17 +866,7 @@ namespace NLayerApp.WEB.Profiles
                     dest => dest.TypeName,
                     from => from.MapFrom(x => $"{x.GetType().Name}")
                 );
-
-
-
-
-
-
-
-
-
-
-
+           
             CreateMap<Faun, Cell>()
                  .ForMember(
                      dest => dest.CordinateX,
